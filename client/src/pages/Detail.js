@@ -15,7 +15,7 @@ class Detail extends Component {
       .then(res => this.setState({ book: res.data }))
       .catch(err => console.log(err));
   }
-
+// TODO: Good page to expand on to see the individual detials of an item for their general information, price paid, current value, and maybe a depreation table overtime. 
   render() {
     return (
       <Container fluid>

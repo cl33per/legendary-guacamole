@@ -2,6 +2,7 @@ const path = require("path");
 const router = require("express").Router();
 const apiRoutes = require("./api");
 
+// TODO: Starts configuration of routes. BolierPlate No need to modify.
 // API Routes
 router.use("/api", apiRoutes);
 
