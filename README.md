@@ -19,11 +19,15 @@ See the working app here:
 
 legendary-guacamole uses:
 
+- [React](https://reactjs.org/) / React
+  
 - [express](https://expressjs.com/) / Express
 
-- [mongoose](https://mongoosejs.com/) / Mongoose
+- [Node](https://nodejs.org/en/) / NodeJS
 
-- [React](https://reactjs.org/) / React
+- [MongoDB](https://docs.mongodb.com/manual/) / MongoDB
+
+- [Mongoose](https://mongoosejs.com/) / Mongoose
 
 - [Heroku](https://www.heroku.com) / Heroku
 
@@ -33,3 +37,13 @@ Have a bug or a feature request? [please open a new issue](https://github.com/cl
 
  
 
+Must use ReactJS or Angular in some way (even if minimal)
+Must use a Node and Express Web Server
+Must be backed by a MySQL or MongoDB Database with a Sequelize or Mongoose ORM
+Must have both GET and POST routes for retrieving and adding new data
+Must be deployed using Heroku (with Data)
+Must utilize at least two libraries, packages, or technologies that we haven°Øt discussed
+Must allow for or involve the authentication of users in some way
+Must have a polished frontend / UI
+Must have folder structure that meets MVC Paradigm
+Must meet good quality coding standards (indentation, scoping, naming)
