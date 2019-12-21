@@ -1,0 +1,34 @@
+{
+    "paths": [
+        {
+            "name": "/items",
+            "lambdaFunction": "legendaryguacamolec0ad25f6",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "apia8510e52",
+    "apiName": "apia8510e52",
+    "functionArns": [
+        {
+            "lambdaFunction": "legendaryguacamolec0ad25f6"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-legendary-guacamole-aws-145637-authRole",
+        "unAuthRoleName": "amplify-legendary-guacamole-aws-145637-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "legendaryguacamolec0ad25f6",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

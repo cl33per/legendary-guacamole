@@ -1,0 +1,15 @@
+{
+    "aws": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-legendary-guacamole-aws-145637-authRole",
+            "UnauthRoleArn": "arn:aws:iam::666973263633:role/amplify-legendary-guacamole-aws-145637-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::666973263633:role/amplify-legendary-guacamole-aws-145637-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-legendary-guacamole-aws-145637-deployment",
+            "UnauthRoleName": "amplify-legendary-guacamole-aws-145637-unauthRole",
+            "StackName": "amplify-legendary-guacamole-aws-145637",
+            "StackId": "arn:aws:cloudformation:us-east-1:666973263633:stack/amplify-legendary-guacamole-aws-145637/d63cfdf0-2362-11ea-98b1-12301089d57f",
+            "AmplifyAppId": "d3r8oen5pd213b"
+        }
+    }
+}
