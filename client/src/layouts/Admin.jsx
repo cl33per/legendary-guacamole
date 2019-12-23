@@ -4,17 +4,16 @@ import NotificationSystem from "react-notification-system";
 import AdminNavbar from "components/Navbars/AdminNavbar";
 import Footer from "components/Footer/Footer";
 import Sidebar from "components/Sidebar/Sidebar";
-// import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx"; // TODO: Removed to hide side componet.
 import { style } from "variables/Variables.jsx";
 import routes from "routes.js";
-import image from "assets/img/sidebar-3.jpg";
+// import image from "assets/img/.jpg"; TODO: Need image to use for sidebar background or just color.
 
 class Admin extends Component {
   constructor(props) {
     super(props);
     this.state = {
       _notificationSystem: null,
-      image: image,
+      // image: image, TODO: No current image being used
       color: "black",
       hasImage: true,
       fixedClasses: "dropdown show-dropdown open"
@@ -86,22 +85,7 @@ class Admin extends Component {
     }
     return "Brand";
   };
-  handleImageClick = image => {
-    this.setState({ image: image });
-  };
-  handleColorClick = color => {
-    this.setState({ color: color });
-  };
-  handleHasImage = hasImage => {
-    this.setState({ hasImage: hasImage });
-  };
-  handleFixedClick = () => {
-    if (this.state.fixedClasses === "dropdown") {
-      this.setState({ fixedClasses: "dropdown show-dropdown open" });
-    } else {
-      this.setState({ fixedClasses: "dropdown" });
-    }
-  };
+
   // TODO: Commited out to remove welcome notifcation.
   /* componentDidMount() {
     this.setState({ _notificationSystem: this.refs.notificationSystem });
@@ -137,6 +121,7 @@ class Admin extends Component {
       autoDismiss: 15
     });
   }*/
+  
   componentDidUpdate(e) {
     if (
       window.innerWidth < 993 &&
@@ -151,6 +136,7 @@ class Admin extends Component {
       this.refs.mainPanel.scrollTop = 0;
     }
   }
+
   render() {
     return (
       <div className="wrapper">
@@ -165,16 +151,6 @@ class Admin extends Component {
           />
           <Switch>{this.getRoutes(routes)}</Switch>
           <Footer />
-          {/* <FixedPlugin TODO: Commented out to side side notification.
-            handleImageClick={this.handleImageClick}
-            handleColorClick={this.handleColorClick}
-            handleHasImage={this.handleHasImage}
-            bgColor={this.state["color"]}
-            bgImage={this.state["image"]}
-            mini={this.state["mini"]}
-            handleFixedClick={this.handleFixedClick}
-            fixedClasses={this.state.fixedClasses}
-          /> */}
         </div>
       </div>
     );

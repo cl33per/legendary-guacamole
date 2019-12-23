@@ -6,7 +6,8 @@ class Footer extends Component {
     return (
       <footer className="footer">
         <Grid fluid>
-          <nav className="pull-left">
+        {/* TODO: Not used.  */}
+          {/* <nav className="pull-left">
             <ul>
               <li>
                 <a href="#pablo">Home</a>
@@ -21,13 +22,12 @@ class Footer extends Component {
                 <a href="#pablo">Blog</a>
               </li>
             </ul>
-          </nav>
+          </nav> */}
           <p className="copyright pull-right">
             &copy; {new Date().getFullYear()}{" "}
-            <a href="http://www.creative-tim.com?ref=lbr-footer">
-              Creative Tim
+            <a href="https://github.com/cl33per/legendary-guacamole">
+              Legendary Guacamole
             </a>
-            , made with love for a better web
           </p>
         </Grid>
       </footer>
