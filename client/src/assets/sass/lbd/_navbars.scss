@@ -64,8 +64,8 @@
        // @include center-item();
     }
     
-    &.fixed{
-        width: calc(100% - $sidebar-width);
+    &.fixed {
+        width: calc(100% - #{$sidebar-width});
         right: 0;
         left: auto;
         border-radius: 0;
