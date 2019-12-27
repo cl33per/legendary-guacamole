@@ -20,7 +20,14 @@ const profileSchema = new Schema({
     picture: { 
         type: String,
         get: v => `${root}${v}`
-    }
+    },
+    //The allows us to populate the profile with associated to-do items.
+    todos: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Todo"
+        }
+    ]
 })
 
 const Proile = mongoose.model("Profile", profileSchema);
