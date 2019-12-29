@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"),
     Schema = mongoose.Schema,
-    bcrypt = require("bcrypt"),
+    bcrypt = require("bcryptjs"),
     SALT_WORK_FACTOR = 10;
 
 // TODO: Need to build schemas.
@@ -9,7 +9,7 @@ var UserSchema = new Schema({
     password: { type: String, required: true }
 });
 
-UserSchema.pre(save, function (next) {
+UserSchema.pre('save', function (next) {
     var user = this;
 
     // only hash the password if it has been modified (or is new)
@@ -39,4 +39,4 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
     });
 };
 
-module.exports = mongoose.model(User, UserSchema);
+module.exports = mongoose.model('User', UserSchema);
