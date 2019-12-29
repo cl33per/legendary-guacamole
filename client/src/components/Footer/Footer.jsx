@@ -26,7 +26,7 @@ class Footer extends Component {
           <p className="copyright pull-right">
             &copy; {new Date().getFullYear()}{" "}
             <a href="https://github.com/cl33per/legendary-guacamole">
-              Legendary Guacamole
+            Family Ties 
             </a>
           </p>
         </Grid>

@@ -51,7 +51,7 @@ class Sidebar extends Component {
             href="#"
             className="simple-text logo-normal"
           >
-            Legendary Guacamole
+          Family Ties
           </a>
         </div>
         <div className="sidebar-wrapper">
