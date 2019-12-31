@@ -14,8 +14,8 @@ class Icons extends Component {
             <Col md={8} mdOffset={2}>
               <Card
                 hCenter
-                title="Light Bootstrap Dashboard PRO React"
-                category="Are you looking for more components? Please check our Premium Version of Light Bootstrap Dashboard React."
+                title="Family Ties"
+                category="Are you looking for more components? Please check our Premium Version of Family Ties."
                 ctTableResponsive
                 ctTableFullWidth
                 ctTableUpgrade
@@ -83,7 +83,7 @@ class Icons extends Component {
                         <td>
                           <Button
                             target="_blank"
-                            href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro-react/?ref=lbdr-upgrade-page"
+                            href="https://github.com/cl33per/legendary-guacamole"
                             round
                             fill
                             bsStyle="info"

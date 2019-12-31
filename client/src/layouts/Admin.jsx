@@ -20,7 +20,7 @@ class Admin extends Component {
     };
   }
   // TODO: Commited out to remove welcome notifcation.
-  /* handleNotificationClick = position => {
+  handleNotificationClick = position => {
     var color = Math.floor(Math.random() * 4 + 1);
     var level;
     switch (color) {
@@ -51,7 +51,7 @@ class Admin extends Component {
       position: position,
       autoDismiss: 15
     });
-  };*/
+  };
 
   getRoutes = routes => {
     return routes.map((prop, key) => {
@@ -87,7 +87,7 @@ class Admin extends Component {
   };
 
   // TODO: Commited out to remove welcome notifcation.
-  /* componentDidMount() {
+  componentDidMount() {
     this.setState({ _notificationSystem: this.refs.notificationSystem });
     var _notificationSystem = this.refs.notificationSystem;
     var color = Math.floor(Math.random() * 4 + 1);
@@ -120,7 +120,7 @@ class Admin extends Component {
       position: "tr",
       autoDismiss: 15
     });
-  }*/
+  }
   
   componentDidUpdate(e) {
     if (
