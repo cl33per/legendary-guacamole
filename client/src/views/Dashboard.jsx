@@ -35,6 +35,7 @@ class Dashboard extends Component {
         <Grid fluid>
           <Row>
             <Col lg={3} sm={6}>
+            {/* TODO: Need to figure out what to add for these */}
               <StatsCard
                 bigIcon={<i className="pe-7s-server text-warning" />}
                 statsText="Capacity"
@@ -140,6 +141,7 @@ class Dashboard extends Component {
             </Col>
 
             <Col md={6}>
+            {/* TODO: Integrate to database */}
               <Card
                 title="Tasks"
                 category="Backend development"
