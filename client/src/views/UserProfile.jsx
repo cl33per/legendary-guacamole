@@ -15,7 +15,7 @@ import Button from "components/CustomButton/CustomButton.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
 
-class UserProfile extends Component {
+export default  class UserProfile extends Component {
   render() {
     return (
       <div className="content">
@@ -168,5 +168,3 @@ class UserProfile extends Component {
     );
   }
 }
-
-export default UserProfile;
