@@ -5,7 +5,7 @@ import Card from "components/Card/Card";
 
 import Button from "components/CustomButton/CustomButton";
 
-class Icons extends Component {
+export default class Icons extends Component {
   render() {
     return (
       <div className="content">
@@ -103,5 +103,3 @@ class Icons extends Component {
     );
   }
 }
-
-export default Icons;

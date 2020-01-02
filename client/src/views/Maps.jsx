@@ -24,6 +24,7 @@ const CustomMap = withScriptjs(
 
 function Maps({ ...prop }) {
   const mapKey = "https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_GOOGLE_KEY;
+  if (prop.invisible) return null;
   return (
     <CustomMap
       googleMapURL= {mapKey}

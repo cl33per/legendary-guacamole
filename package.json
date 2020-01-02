@@ -31,12 +31,15 @@
     "if-env": "^1.0.4",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
+    "momentjs": "^2.0.0",
     "mongoose": "^5.8.2",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "plaid": "^4.3.0",
+    "react-big-calendar": "^0.23.0",
     "react-native-dotenv": "^0.2.0",
     "react-plaid-link": "^1.5.0",
+    "react_google_calendar": "^2.2.4444",
     "stream-chat-react": "^0.7.15",
     "validator": "^12.1.0"
   }

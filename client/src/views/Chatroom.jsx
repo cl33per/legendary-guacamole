@@ -9,7 +9,7 @@ import 'stream-chat-react/dist/css/index.css';
 const chatClient = new StreamChat('q248zfvps3kj');
 const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoic3VwZXItY2hlcnJ5LTYifQ.dgGf8HzOOGb8hdeUo_CSSgtR7HMoVabaiaFn9jKWphI';
 
-// TODO: Need to integrate with databsase.
+// TODO: Need to integrate with user databsase.
 chatClient.setUser(
     {
         id: 'super-cherry-6',
@@ -21,9 +21,9 @@ chatClient.setUser(
 
 const filters = { type: 'messaging' };
 const sort = { last_message_at: -1 };
-const channels = chatClient.queryChannels(filters, sort);
+// const channels = chatClient.queryChannels(filters, sort); TODO: Commented out since there are no addtional chatrooms currently, need to conffigure.
 
-const App = () => (
+const ChatRooom = () => (
     <Chat client={chatClient} theme={'messaging light'}>
         <ChannelList
             filters={filters}
@@ -40,4 +40,4 @@ const App = () => (
     </Chat>
 );
 
-export default App; 
+export default ChatRooom; 

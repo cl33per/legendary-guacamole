@@ -40,7 +40,7 @@ class Sidebar extends Component {
           )}
         <div className="logo">
           <a
-            href="#"
+            href="/"
             className="simple-text logo-mini"
           >
             <div className="logo-img">
@@ -48,7 +48,7 @@ class Sidebar extends Component {
             </div>
           </a>
           <a
-            href="#"
+            href="/"
             className="simple-text logo-normal"
           >
           Family Ties

@@ -5,7 +5,9 @@ import Maps from "views/Maps.jsx";
 import Upgrade from "views/Upgrade.jsx";
 import Login from "views/Login.jsx";
 import Bank from "views/Bank.jsx";
-import Chat from "views/Chatroom.jsx"
+import Chat from "views/Chatroom.jsx";
+import Blackboard from "views/Blackboard.jsx";
+import Calendar from "views/Calendar.jsx";
 
 const dashboardRoutes = [
   {
@@ -23,9 +25,23 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    path: "/calendar",
+    name: "Calendar",
+    icon: "pe-7s-ribbon",
+    component: Calendar,
+    layout: "/admin"
+  },
+  {
+    path: "/blackboard",
+    name: "Blackboard",
+    icon: "pe-7s-ribbon",
+    component: Blackboard,
+    layout: "/admin"
+  },
+  {
     path: "/chatroom",
     name: "Familyroom",
-    icon: "pe-7s-cash",
+    icon: "pe-7s-chat",
     component: Chat,
     layout: "/admin"
   },
@@ -64,8 +80,7 @@ const dashboardRoutes = [
     icon: "pe-7s-rocket",
     component: Upgrade,
     layout: "/admin"
-  }, 
-  
+  }
 ];
 
 export default dashboardRoutes;
