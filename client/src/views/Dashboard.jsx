@@ -18,7 +18,7 @@ import {
   legendBar
 } from "variables/Variables.jsx";
 
-class Dashboard extends Component {
+export default  class Dashboard extends Component {
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {
@@ -46,19 +46,19 @@ class Dashboard extends Component {
             <Col lg={3} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-wallet text-success" />}
-                statsText="Revenue"
+                statsText="Current Bank Balance"
                 statsValue="$1,345"
                 statsIcon={<i className="fa fa-calendar-o" />}
-                statsIconText="Last day"
+                statsIconText="As of" //TODO: Need to integrate with pliad API to grab last known date. 
               />
             </Col>
             <Col lg={3} sm={6}>
               <StatsCard
-                bigIcon={<i className="pe-7s-graph1 text-danger" />}
-                statsText="Errors"
-                statsValue="23"
+                bigIcon={<i className="pe-7s-date text-danger" />}
+                statsText="Todays Events"
+                statsValue="23" // TODO: Need to integreate with google calendar to count number of events. Google Calendar needs to also integrate with blackboard API.
                 statsIcon={<i className="fa fa-clock-o" />}
-                statsIconText="In the last hour"
+                statsIconText="In the last hour"  // TODO: Change to next event. 
               />
             </Col>
             <Col lg={3} sm={6}>
@@ -140,6 +140,7 @@ class Dashboard extends Component {
             </Col>
 
             <Col md={6}>
+            {/* TODO: Integrate to database */}
               <Card
                 title="Tasks"
                 category="Backend development"
@@ -160,5 +161,3 @@ class Dashboard extends Component {
     );
   }
 }
-
-export default Dashboard;

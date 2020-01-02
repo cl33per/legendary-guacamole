@@ -1,5 +1,5 @@
 import React from "react";
-// react components used to create a google map
+// TODO: Add search feature to map.
 import {
   withScriptjs,
   withGoogleMap,
@@ -23,14 +23,15 @@ const CustomMap = withScriptjs(
 );
 
 function Maps({ ...prop }) {
+  const mapKey = "https://maps.googleapis.com/maps/api/js?key=" + process.env.REACT_APP_GOOGLE_KEY;
+  if (prop.invisible) return null;
   return (
     <CustomMap
-      googleMapURL="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE"
+      googleMapURL= {mapKey}
       loadingElement={<div style={{ height: `100%` }} />}
       containerElement={<div style={{ height: `100vh` }} />}
       mapElement={<div style={{ height: `100%` }} />}
     />
-  );
-}
+  )}
 
 export default Maps;

@@ -4,7 +4,7 @@ import { Grid, Row, Col, Table } from "react-bootstrap";
 import Card from "components/Card/Card.jsx";
 import { thArray, tdArray } from "variables/Variables.jsx";
 
-class TableList extends Component {
+export default class TableList extends Component {
   render() {
     return (
       <div className="content">
@@ -12,7 +12,7 @@ class TableList extends Component {
           <Row>
             <Col md={12}>
               <Card
-                title="Striped Table with Hover"
+                title="Upcoming Bills"
                 category="Here is a subtitle for this table"
                 ctTableFullWidth
                 ctTableResponsive
@@ -78,5 +78,3 @@ class TableList extends Component {
     );
   }
 }
-
-export default TableList;
