@@ -11,7 +11,7 @@
 
 .credit-card {
     animation: float 3s ease-in-out infinite;
-     width: 350px;
+     width: 100px;
 }
 
 @keyframes float {

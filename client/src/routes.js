@@ -14,6 +14,7 @@ import Kitchen from "views/Kitchen";
 
 const dashboardRoutes = [
   {
+    invisible: false,
     path: "/dashboard",
     name: "HomeBase",
     icon: "pe-7s-home",
@@ -29,6 +30,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    invisible: false,
     path: "/calendar",
     name: "Calendar",
     icon: "pe-7s-ribbon",
@@ -36,6 +38,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    invisible: false,
     path: "/blackboard",
     name: "Blackboard",
     icon: "pe-7s-ribbon",
@@ -43,6 +46,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    invisible: false,
     path: "/chatroom",
     name: "Familyroom",
     icon: "pe-7s-chat",
@@ -50,6 +54,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    invisible: false,
     path: "/table",
     name: "Home Planning",
     icon: "pe-7s-note2",
@@ -57,6 +62,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    invisible: false,
     path: "/kitchen",
     name: "Meal Planning",
     icon: "pe-7s-cart",
@@ -64,6 +70,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    invisible: false,
     path: "/maps",
     name: "Maps",
     icon: "pe-7s-map-marker",
@@ -71,6 +78,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    invisible: false,
     path: "/user",
     name: "Account",
     icon: "pe-7s-user",
@@ -78,6 +86,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   { // This is not the acutal login page using routes for testing.
+    invisible: false,
     path: "/landing",
     name: "Root Landing Page",
     icon: "pe-7s-unlock",
@@ -85,6 +94,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   { 
+    invisible: false,
     path: "/login",
     name: "Login Page",
     icon: "pe-7s-unlock",
@@ -100,6 +110,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    invisible: false,
     upgrade: true,
     path: "/upgrade",
     name: "Upgrade to PRO",

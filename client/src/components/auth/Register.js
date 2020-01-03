@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import {withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
-// import classnames from "classnames";
+import classnames from "classnames";
 import {
     Grid,
     Row,
@@ -76,28 +76,44 @@ class Register extends Component {
                                                     type: "text",
                                                     id: 'name',
                                                     bsClass: "form-control",
-                                                    placeholder: "Full Name"
+                                                    placeholder: "Full Name",
+                                                    onChange: this.onChange,
+                                                    value: this.state.name,
+                                                    error:errors.name,
+                                                    className: classnames("", {invalid: errors.name})
                                                 },
                                                 {
                                                     label: "Email",
                                                     type: "email",
                                                     id: 'email',
                                                     bsClass: "form-control",
-                                                    placeholder: "Email Address"
+                                                    placeholder: "Email Address",
+                                                    onChange: this.onChange,
+                                                    value: this.state.email,
+                                                    error: errors.email,
+                                                    className: classnames("", { invalid: errors.email })
                                                 },
                                                 {
                                                     label: "Password",
                                                     type: "password",
                                                     id: 'password',
                                                     bsClass: "form-control",
-                                                    placeholder: "Password"
+                                                    placeholder: "Password",
+                                                    onChange: this.onChange,
+                                                    value: this.state.password,
+                                                    error: errors.password,
+                                                    className: classnames("", { invalid: errors.password })
                                                 },
                                                 {
                                                     label: "Confirm Password",
                                                     type: "password",
                                                     id: "password2",
                                                     bsClass: "form-control",
-                                                    placeholder: "Confirm Password"
+                                                    placeholder: "Confirm Password",
+                                                    onChange: this.onChange,
+                                                    value: this.state.password2,
+                                                    error: errors.password2,
+                                                    className: classnames("", { invalid: errors.password2 })
                                                 }
                                             ]}
                                         />

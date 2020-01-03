@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import credit_card from "../assets/img/credit_card.png";
+import credit_card from "../assets/img/guaclogo.png";
 import {
     Grid,
     Row,
@@ -25,11 +25,9 @@ class Login extends Component {
                     <Col md={4}></Col>
                         <Col md={4}>
                             <img className="responsive-img guac-center credit-card" src={credit_card} alt="logo_image" />
-                        <h4 className="flow-text">
-                            <b>Welcome</b> to Family Ties as a {" "}
+                        <h4 className="flow-text text-center"> Welcome to Family Ties a {" "}<br />
                             <span style={{ fontFamily: "monospace" }}>MERN</span> stack
                         </h4>
-                                
                         <br />
                             <Col className="no-padding" md={6}>
                                 <Button bsStyle="primary" fill  href="/register">Register</Button>

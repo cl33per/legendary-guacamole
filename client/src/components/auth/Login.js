@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-// import classnames from "classnames";
+import classnames from "classnames";
 import {
     Grid,
     Row,
@@ -78,14 +78,22 @@ class Login extends Component {
                                                 type: "email",
                                                 id:'email',
                                                 bsClass: "form-control",
-                                                placeholder: "Email Address"
+                                                placeholder: "Email Address",
+                                                value: this.state.email,
+                                                onChange:this.onChange,
+                                                error: errors.email,
+                                                className: classnames("", { invalid: errors.email || errors.emailnotfound})
                                             },
                                             {
                                                 label: "Password",
                                                 type: "password",
                                                 id:'password',
                                                 bsClass: "form-control",
-                                                placeholder: "Password"
+                                                placeholder: "Password",
+                                                value: this.state.password,
+                                                onChange: this.onChange,
+                                                error: errors.password,
+                                                className: classnames("", { invalid: errors.password || errors.password })
                                             }
                                     ]} 
                                     />
