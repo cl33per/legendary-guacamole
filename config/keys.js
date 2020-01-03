@@ -1,4 +1,4 @@
 module.exports = {
-    mongoURI: process.env.MONGODB_URI,
+    mongoURI: "mongodb://localhost/familyties",
     secretOrKey: "secret"
 };

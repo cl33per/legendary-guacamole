@@ -124,7 +124,7 @@ export default  class UserProfile extends Component {
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Button bsStyle="info" pullRight fill type="submit">
+                    <Button bsStyle="primary" pullRight fill type="submit">
                       Update Profile
                     </Button>
                     <div className="clearfix" />

@@ -3,11 +3,14 @@ import UserProfile from "views/UserProfile.jsx";
 import TableList from "views/TableList.jsx";
 import Maps from "views/Maps.jsx";
 import Upgrade from "views/Upgrade.jsx";
-import Login from "views/Login.jsx";
+import Landing from "views/Landing.jsx";
 import Bank from "views/Bank.jsx";
 import Chat from "views/Chatroom.jsx";
 import Blackboard from "views/Blackboard.jsx";
 import Calendar from "views/Calendar.jsx";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import Kitchen from "views/Kitchen";
 
 const dashboardRoutes = [
   {
@@ -18,6 +21,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    invisible: true,
     path: "/bank",
     name: "Bank",
     icon: "pe-7s-cash",
@@ -53,6 +57,13 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+    path: "/kitchen",
+    name: "Meal Planning",
+    icon: "pe-7s-cart",
+    component: Kitchen,
+    layout: "/admin"
+  },
+  {
     path: "/maps",
     name: "Maps",
     icon: "pe-7s-map-marker",
@@ -66,11 +77,26 @@ const dashboardRoutes = [
     component: UserProfile,
     layout: "/admin"
   },
-  {
+  { // This is not the acutal login page using routes for testing.
+    path: "/landing",
+    name: "Root Landing Page",
+    icon: "pe-7s-unlock",
+    component: Landing,
+    layout: "/admin"
+  },
+  { 
     path: "/login",
-    name: "Login",
+    name: "Login Page",
     icon: "pe-7s-unlock",
     component: Login,
+    layout: "/admin"
+  },
+  {
+    invisible: false,
+    path: "/register",
+    name: "Register",
+    icon: "pe-7s-unlock",
+    component: Register,
     layout: "/admin"
   },
   {
