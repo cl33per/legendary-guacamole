@@ -11,7 +11,7 @@ export default class Bank extends Component {
     render() {
         return (
             <PlaidLink
-                clientName="Fmaily Ties"
+                clientName="Family Ties"
                 env="development"
                 product={["auth", "transactions"]}
                 publicKey={process.env.REACT_APP_PUBLIC_KEY}
