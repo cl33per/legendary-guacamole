@@ -72,7 +72,7 @@ export default  class TodoList extends Component {
           <Row>
             <Col md={8}>
               <Card
-                title="Add New Tasks"
+                title="Add New Task"
                 content={
                   <form>
                     <FormInputs
