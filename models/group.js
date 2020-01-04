@@ -22,7 +22,4 @@ var GroupSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-var Group = mongoose.model("Group", GroupSchema);
-
-// Export the Group model
-module.exports = Group;
+module.exports =  Group = mongoose.model("Group", GroupSchema);

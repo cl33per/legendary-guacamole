@@ -30,7 +30,7 @@ const profileSchema = new Schema({
     ]
 })
 
-const Proile = mongoose.model("Profile", profileSchema);
+module.exports = Proile = mongoose.model("Profile", profileSchema);
 
 //The following code is from https://mongoosejs.com/docs/schematypes.html#strings (Getters section)
 // const doc = new Profile ({ name: 'Val', picture: '/123.png' });
