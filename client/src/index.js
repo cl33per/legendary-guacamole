@@ -35,12 +35,13 @@ if (localStorage.jwtToken) {
   }
 }
 
+
 ReactDOM.render(
   <Provider store={store}>
   <BrowserRouter>
     <Switch>
-      <Route path="/" render={props => <AdminLayout {...props} />} />
-      <Redirect from="/" to="/admin/dashboard" />
+      <Route path="/admin/" render={props => <AdminLayout {...props} />} />
+        <Redirect from="/" to="/admin/dashbaord"/>
     </Switch>
   </BrowserRouter>
   </Provider>,

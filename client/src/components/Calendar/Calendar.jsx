@@ -9,8 +9,8 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const localizer = momentLocalizer(moment)
 
-class App extends Component {
-    state = {
+export class CalendarView extends Component {
+    state = { //TODO: Need to integrate with database.
         events: [
             {
                 start: new Date(),
@@ -35,4 +35,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default CalendarView;

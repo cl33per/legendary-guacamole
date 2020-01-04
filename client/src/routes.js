@@ -7,11 +7,13 @@ import Landing from "views/Landing.jsx";
 import Bank from "views/Bank.jsx";
 import Chat from "views/Chatroom.jsx";
 import Blackboard from "views/Blackboard.jsx";
-import Calendar from "views/Calendar.jsx";
-import TodoList from "views/todolist.jsx";
+// import Calendar from "views/Calendar.jsx";
+import TodoList from "views/ToDoList.jsx";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Kitchen from "views/Kitchen";
+import Vault from "views/Vault";
+import Budget from "views/Budget";
 
 const dashboardRoutes = [
   {
@@ -32,21 +34,37 @@ const dashboardRoutes = [
   },
   {
     invisible: false,
-    path: "/calendar",
-    name: "Calendar",
-    icon: "pe-7s-ribbon",
-    component: Calendar,
+    path: "/budget",
+    name: "Bills and Budget",
+    icon: "pe-7s-cash",
+    component: Budget,
     layout: "/admin"
   },
+  // {
+  //   invisible: false,
+  //   path: "/calendar",
+  //   name: "Calendar",
+  //   icon: "pe-7s-ribbon",
+  //   component: Calendar,
+  //   layout: "/admin"
+  // },
   {
     path: "/todo",
-    name: "To Do List",
+    name: "To-Do List Add View",
     icon: "pe-7s-ribbon",
     component: TodoList,
     layout: "/admin"
   },
   {
     invisible: false,
+    path: "/table",
+    name: "To-Do List View",
+    icon: "pe-7s-note2",
+    component: TableList,
+    layout: "/admin"
+  },
+  {
+    invisible: true,
     path: "/blackboard",
     name: "Blackboard",
     icon: "pe-7s-ribbon",
@@ -56,29 +74,21 @@ const dashboardRoutes = [
   {
     invisible: false,
     path: "/chatroom",
-    name: "Familyroom",
+    name: "Family Room",
     icon: "pe-7s-chat",
     component: Chat,
     layout: "/admin"
   },
   {
     invisible: false,
-    path: "/table",
-    name: "Home Planning",
-    icon: "pe-7s-note2",
-    component: TableList,
-    layout: "/admin"
-  },
-  {
-    invisible: false,
     path: "/kitchen",
-    name: "Meal Planning",
+    name: "Kitchen",
     icon: "pe-7s-cart",
     component: Kitchen,
     layout: "/admin"
   },
   {
-    invisible: false,
+    invisible: true,
     path: "/maps",
     name: "Maps",
     icon: "pe-7s-map-marker",
@@ -115,6 +125,14 @@ const dashboardRoutes = [
     name: "Register",
     icon: "pe-7s-unlock",
     component: Register,
+    layout: "/admin"
+  }, 
+  {
+    invisible: false,
+    path: "/vault",
+    name: "Vault",
+    icon: "pe-7s-copy-file",
+    component: Vault,
     layout: "/admin"
   },
   {
