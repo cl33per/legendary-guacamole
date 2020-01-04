@@ -7,11 +7,6 @@ const todoSchema = new Schema ({
     startTime: { type: Date, default: Date.now },
     endTime: { type: Date, default: Date.now().addHours(1) },
     description: { type: String }
-    
-
-
 });
 
-const Todo = mongoose.model("Todo", todoSchema);
-
-module.exports = Todo;
+module.exports = Todo = mongoose.model("Todo", todoSchema);

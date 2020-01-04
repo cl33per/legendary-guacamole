@@ -1,24 +1,103 @@
-import React, { Component } from 'react'
-import PlaidLink from 'react-plaid-link'
+import React, { Component } from "react";
+import PlaidLinkButton from "react-plaid-link-button";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../actions/authActions";
+import { getAccounts, addAccount } from "../actions/accountActions";
 
-export default class Bank extends Component {
-    handleOnSuccess(token, metadata) {
-        // send token to client server
+import Accounts from "./Accounts";
+import Spinner from "./Spinner";
+
+class Bank extends Component {
+    componentDidMount() {
+        this.props.getAccounts();
     }
-    handleOnExit() {
-        // handle the case when your user exits Link
-    }
+
+    // Logout
+    onLogoutClick = e => {
+        e.preventDefault();
+        this.props.logoutUser();
+    };
+
+    // Add account
+    handleOnSuccess = (token, metadata) => {
+        const plaidData = {
+            public_token: token,
+            metadata: metadata
+        };
+
+        this.props.addAccount(plaidData);
+    };
+
     render() {
-        return (
-            <PlaidLink
-                clientName="Fmaily Ties"
-                env="development"
-                product={["auth", "transactions"]}
-                publicKey={process.env.REACT_APP_PUBLIC_KEY}
-                onExit={this.handleOnExit}
-                onSuccess={this.handleOnSuccess}>
-                Open Link and connect your bank!
-      </PlaidLink>
-        )
+        const { user } = this.props.auth;
+        const { accounts, accountsLoading } = this.props.plaid;
+
+        let dashboardContent;
+
+        if (accounts === null || accountsLoading) {
+            dashboardContent = <Spinner />;
+        } else if (accounts.length > 0) {
+            // User has accounts linked
+            dashboardContent = <Accounts user={user} accounts={accounts} />;
+        } else {
+            // User has no accounts linked
+            dashboardContent = (
+                <div className="row">
+                    <div className="col s12 center-align">
+                        <h4>
+                            <b>Welcome,</b> {user.name.split(" ")[0]}
+                        </h4>
+                        <p className="flow-text grey-text text-darken-1">
+                            To get started, link your first bank account below
+            </p>
+                        <div>
+                            <PlaidLinkButton
+                                buttonProps={{
+                                    className:
+                                        "btn btn-large waves-effect waves-light hoverable blue accent-3 main-btn"
+                                }}
+                                plaidLinkProps={{
+                                    clientName: "YOUR_APP_NAME",
+                                    key: "c0bef89553dcc2745bf68272e31e66",
+                                    env: "sandbox",
+                                    product: ["transactions"],
+                                    onSuccess: this.handleOnSuccess
+                                }}
+                                onScriptLoad={() => this.setState({ loaded: true })}
+                            >
+                                Link Account
+              </PlaidLinkButton>
+                        </div>
+                        <button
+                            onClick={this.onLogoutClick}
+                            className="btn btn-large waves-effect waves-light hoverable red accent-3 main-btn"
+                        >
+                            Logout
+            </button>
+                    </div>
+                </div>
+            );
+        }
+
+        return <div className="container">{dashboardContent}</div>;
     }
 }
+
+Bank.propTypes = {
+    logoutUser: PropTypes.func.isRequired,
+    getAccounts: PropTypes.func.isRequired,
+    addAccount: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    plaid: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    plaid: state.plaid
+});
+
+export default connect(
+    mapStateToProps,
+    { logoutUser, getAccounts, addAccount }
+)(Bank);

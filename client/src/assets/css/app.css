@@ -1,0 +1,43 @@
+.main-btn {
+    width: 185px;
+    letter-spacing: 1.5px;
+    border-radius: 3px;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    opacity: 0.8;
+}
+
+.credit-card {
+    animation: float 3s ease-in-out infinite;
+     width: 100px;
+}
+
+@keyframes float {
+    0% {
+        transform: translatey(0px);
+    }
+
+    50% {
+        transform: translatey(-10px);
+    }
+
+    100% {
+        transform: translatey(0px);
+    }
+}
+
+.no-padding{
+    padding: 0;
+}
+.guac-center{
+   display: block;
+   margin: auto;
+}
+.guac-small{
+    width: 25px;
+}
+.login-button{
+    padding: 20px;
+}
