@@ -8,6 +8,7 @@ import Bank from "views/Bank.jsx";
 import Chat from "views/Chatroom.jsx";
 import Blackboard from "views/Blackboard.jsx";
 import Calendar from "views/Calendar.jsx";
+import TodoList from "views/todolist.jsx";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Kitchen from "views/Kitchen";
@@ -35,6 +36,13 @@ const dashboardRoutes = [
     name: "Calendar",
     icon: "pe-7s-ribbon",
     component: Calendar,
+    layout: "/admin"
+  },
+  {
+    path: "/todo",
+    name: "To Do List",
+    icon: "pe-7s-ribbon",
+    component: TodoList,
     layout: "/admin"
   },
   {
