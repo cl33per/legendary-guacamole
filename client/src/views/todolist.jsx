@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "utils/API";
 import {
   Grid,
   Row,
@@ -17,14 +18,14 @@ import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
-import API from "utils/API";
+
 
 export default  class TodoList extends Component {
     state = {
         todos: [],
-        title: " ",
-        targetDate: " ",
-        comments: " "
+        title: "",
+        targetDate: "",
+        comments: ""
     };
 
     componentDidMount(){
@@ -46,9 +47,9 @@ export default  class TodoList extends Component {
     };
 
     handleInputChange = event => {
-        const { label, value } = event.target;
+        const { name, value } = event.target;
         this.setState({
-            [label]: value
+            [name]: value
         });
     };
 
@@ -83,7 +84,7 @@ export default  class TodoList extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Title",
-                          value: this.state.title,
+                          name: "title",
                           onChange: this.handleInputChange
                         },
                         {
@@ -92,7 +93,7 @@ export default  class TodoList extends Component {
                           bsClass: "form-control",
                           placeholder: "MM/DD/YY",
                           defaultValue: Date.now(),
-                          value: this.state.targetDate,
+                          name:"targetDate",
                           onChange: this.handleInputChange
                         }
                       ]}
@@ -107,7 +108,7 @@ export default  class TodoList extends Component {
                             componentClass="textarea"
                             bsClass="form-control"
                             placeholder="Add additional details or updates!"
-                            value={this.state.comments}
+                            name="comments"
                             onChange={this.handleInputChange}
                           />
                         </FormGroup>

@@ -8,7 +8,7 @@ import Bank from "views/Bank.jsx";
 import Chat from "views/Chatroom.jsx";
 import Blackboard from "views/Blackboard.jsx";
 // import Calendar from "views/Calendar.jsx";
-import TodoList from "views/ToDoList.jsx";
+import ToDoList from "views/ToDoList.jsx";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Kitchen from "views/Kitchen";
@@ -52,7 +52,7 @@ const dashboardRoutes = [
     path: "/todo",
     name: "To-Do List Add View",
     icon: "pe-7s-ribbon",
-    component: TodoList,
+    component: ToDoList,
     layout: "/admin"
   },
   {

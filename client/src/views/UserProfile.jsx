@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import API from "utils/API"
 import {
   Grid,
   Row,
@@ -16,6 +17,65 @@ import Button from "components/CustomButton/CustomButton.jsx";
 import avatar from "assets/img/faces/face-3.jpg";
 
 export default  class UserProfile extends Component {
+  state = {
+    users: [],
+    groupName: "",
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    country: "",
+    zipCode: "",
+    aboutMe: ""
+  };
+
+  componentDidMount() {
+    this.loadProfiles();
+  }
+
+  loadProfiles = () => {
+    API.getProfiles()
+      .then(res =>
+        this.setState({ profiles: res.data, username: "", email: "", groupName: "", firstName: "", lastName: "", address: "", city: "", country: "", zipCode: "", aboutMe:"", picture: "" })
+      )
+      .catch(err => console.log(err));
+  };
+
+  deleteProfile = id => {
+    API.deleteProfile(id)
+      .then(res => this.loadProfiles())
+      .catch(err => console.log(err));
+  };
+
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.title && this.state.author) {
+      API.saveProfile({
+        username: this.state.username,
+        email: this.state.email,
+        groupName:  this.state.groupName,
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        address: this.state.address,
+        city: this.state.city,
+        country: this.state.country,
+        zipCode: this.state.zipCode,
+        aboutMe: this.state.aboutMe,
+        picture: this.state.picture
+      })
+        .then(res => this.loadProfiles())
+        .catch(err => console.log(err));
+    }
+  };
+
+
   render() {
     return (
       <div className="content">
@@ -30,25 +90,29 @@ export default  class UserProfile extends Component {
                       ncols={["col-md-5", "col-md-3", "col-md-4"]}
                       properties={[
                         {
-                          label: "Company (disabled)",
+                          label: "Group (disabled)",
                           type: "text",
                           bsClass: "form-control",
-                          placeholder: "Company",
-                          defaultValue: "Creative Code Inc.",
+                          placeholder: "Group Name",
+                          defaultValue: "Smith Family",
                           disabled: true
                         },
                         {
                           label: "Username",
+                          name: "username",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Username",
-                          defaultValue: "michael23"
+                          defaultValue: "michael23",
+                          onChange: this.handleInputChange
                         },
                         {
                           label: "Email address",
+                          name: "email",
                           type: "email",
                           bsClass: "form-control",
-                          placeholder: "Email"
+                          placeholder: "Email",
+                          onChange: this.handleInputChange
                         }
                       ]}
                     />
@@ -57,17 +121,21 @@ export default  class UserProfile extends Component {
                       properties={[
                         {
                           label: "First name",
+                          name: "firstName",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "First name",
-                          defaultValue: "Mike"
+                          defaultValue: "Mike",
+                          onChange: this.handleInputChange
                         },
                         {
                           label: "Last name",
+                          name: "lastName",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Last name",
-                          defaultValue: "Andrew"
+                          defaultValue: "Andrew",
+                          onChange: this.handleInputChange
                         }
                       ]}
                     />
@@ -76,11 +144,13 @@ export default  class UserProfile extends Component {
                       properties={[
                         {
                           label: "Adress",
+                          name: "address",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Home Adress",
                           defaultValue:
-                            "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                            "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09",
+                          onChange: this.handleInputChange
                         }
                       ]}
                     />
@@ -89,23 +159,29 @@ export default  class UserProfile extends Component {
                       properties={[
                         {
                           label: "City",
+                          name: "city",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "City",
-                          defaultValue: "Mike"
+                          defaultValue: "Mike",
+                          onChange: this.handleInputChange
                         },
                         {
                           label: "Country",
+                          name: "country",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Country",
-                          defaultValue: "Andrew"
+                          defaultValue: "Andrew",
+                          onChange: this.handleInputChange
                         },
                         {
                           label: "Postal Code",
+                          name: "zipCode",
                           type: "number",
                           bsClass: "form-control",
-                          placeholder: "ZIP Code"
+                          placeholder: "ZIP Code",
+                          onChange: this.handleInputChange
                         }
                       ]}
                     />
@@ -120,11 +196,15 @@ export default  class UserProfile extends Component {
                             bsClass="form-control"
                             placeholder="Here can be your description"
                             defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+                            onChange={this.handleInputChange}
                           />
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Button bsStyle="primary" pullRight fill type="submit">
+                    <label>Profile Picture</label>
+                    <input type="file" label="profile picture" value={this.state.picture}/>
+
+                    <Button bsStyle="primary" pullRight fill type="submit" onSubmit={this.handleFormSubmit}>
                       Update Profile
                     </Button>
                     <div className="clearfix" />
