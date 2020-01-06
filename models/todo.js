@@ -1,19 +1,5 @@
 var mongoose = require("mongoose");
 
-<<<<<<< HEAD
-const ToSchema = new Schema ({
-    name: { 
-        type: String, 
-        required: "listName is Required",
-        unique: true
-    },
-    targetDate: {
-         type: Date,
-          default: Date.now},
-    Comments: {
-         type: String
-        },
-=======
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 
@@ -25,7 +11,6 @@ var todoSchema = new Schema({
     Comments: { type: String, required: false },
     Completed: { type: Boolean, default: false },
     Archive: { type: Boolean, default: false }
->>>>>>> master
 });
 // Custom method `setFullName`
 todoSchema.methods.setFullName = function() {
@@ -44,12 +29,5 @@ todoSchema.methods.lastUpdatedDate = function() {
 };
 
 // This creates our model from the above schema, using mongoose's model method
-var Todo = mongoose.model("Todo", todoSchema);
+module.exports = Todo = mongoose.model("Todo", todoSchema);
 
-<<<<<<< HEAD
-const TodoList = mongoose.model("TodoList", ToSchema);
-module.exports = TodoList;
-=======
-// Export the User model
-module.exports = Todo;
->>>>>>> master
