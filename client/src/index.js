@@ -40,10 +40,10 @@ ReactDOM.render(
   <Provider store={store}>
   <BrowserRouter>
     <Switch>
-      <Route path="/admin/" render={props => <AdminLayout {...props} />} />
-        <Redirect from="/" to="/admin/dashbaord"/>
+      <Route path="/" render={props => <AdminLayout {...props} />} />
+        {/* <Redirect from="/" to="/admin/dashbaord"/> */}
     </Switch>
-  </BrowserRouter>
+  </BrowserRouter>,
   </Provider>,
   document.getElementById("root")
 );

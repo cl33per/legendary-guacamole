@@ -25,7 +25,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: true,
+    invisible: false,
     path: "/bank",
     name: "Bank",
     icon: "pe-7s-cash",
