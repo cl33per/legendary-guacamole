@@ -1,8 +1,9 @@
 module.exports = {
   Account: require("./account"),
-  Profile: require("./profile"),
   Group: require("./group"),
   Profile: require("./profile"),
-  // Todo: require("./todo"),
-  User:require("./user")
+  Todo: require("./todo"),
+  User: require("./user"),
+  Event: require("./event"),
+  Test: require("./test")
 };
