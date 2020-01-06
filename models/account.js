@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const AccountSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId, // how we associate each account with a user
-        ref: "users"
+        ref: "users",
+        unique: true,
     },
     accessToken: {
         type: String,

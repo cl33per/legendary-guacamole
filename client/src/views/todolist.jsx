@@ -47,9 +47,9 @@ export default  class TodoList extends Component {
     };
 
     handleInputChange = event => {
-        const { name, value } = event.target;
+        const { id, value } = event.target;
         this.setState({
-            [name]: value
+            [id]: value
         });
     };
 
@@ -75,7 +75,7 @@ export default  class TodoList extends Component {
               <Card
                 title="Add New Task"
                 content={
-                  <form>
+                  <form noValidate onSubmit={this.onSubmit}>
                     <FormInputs
                       ncols={["col-md-8", "col-md-4"]}
                       properties={[
@@ -84,7 +84,8 @@ export default  class TodoList extends Component {
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Title",
-                          name: "title",
+                          id: "title",
+                          value: this.state.title,
                           onChange: this.handleInputChange
                         },
                         {
@@ -93,7 +94,8 @@ export default  class TodoList extends Component {
                           bsClass: "form-control",
                           placeholder: "MM/DD/YY",
                           defaultValue: Date.now(),
-                          name:"targetDate",
+                          id:"targetDate",
+                          value: this.state.targetDate,
                           onChange: this.handleInputChange
                         }
                       ]}
@@ -108,7 +110,8 @@ export default  class TodoList extends Component {
                             componentClass="textarea"
                             bsClass="form-control"
                             placeholder="Add additional details or updates!"
-                            name="comments"
+                            id="comments"
+                            value={this.state.comments}
                             onChange={this.handleInputChange}
                           />
                         </FormGroup>

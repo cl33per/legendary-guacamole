@@ -1,14 +1,18 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
-var todoSchema = new Schema({
-    title: { type: String, required: true },
-    targetDate: { type: Date, default: Date.now(), required: false  },
-    Comments: { type: String, required: false },
+const todoSchema = new Schema({
+    title: { 
+      type: String,
+      unique: true,
+      required: "Title is required"
+      },
+    targetDate: { type: Date, default: Date.now()  },
+    Comments: { type: String  },
     Completed: { type: Boolean, default: false },
     Archive: { type: Boolean, default: false }
 });
