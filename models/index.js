@@ -3,6 +3,7 @@ module.exports = {
   Profile: require("./profile"),
   Group: require("./group"),
   Profile: require("./profile"),
-  // Todo: require("./todo"),
-  User:require("./user")
+  TodoList: require("./todo"),
+  User:require("./user"),
+  Test:require("./test")
 };
