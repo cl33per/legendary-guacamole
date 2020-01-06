@@ -5,7 +5,7 @@ const profileSchema = new Schema({
     username: { type: String, trim: true, required: true},
     email:  { 
         type: String,
-        unique: true,
+        // unique: true,
         match: [/.+@.+\..+/, "Please enter a valid email address"]
     },
     groupName:  { type: String },
@@ -28,9 +28,9 @@ const profileSchema = new Schema({
             ref: "Todo"
         }
     ]
-})
+});
 
-module.exports = Profiles = mongoose.model("Profile", profileSchema);
+module.exports = Profile = mongoose.model("Profile", profileSchema);
 
 //The following code is from https://mongoosejs.com/docs/schematypes.html#strings (Getters section)
 // const doc = new Profile ({ name: 'Val', picture: '/123.png' });

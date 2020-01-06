@@ -5,10 +5,14 @@ const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new GroupSchema object
 // This is similar to a Sequelize model
+<<<<<<< HEAD
 const GroupSchema = new Schema({
+=======
+const groupSchema = new Schema({
+>>>>>>> master
     name: {
     type: String,
-    unique: true
+    // unique: true
   },
   // `profiles` is an array that stores ObjectIds
   // The ref property links these ObjectIds to the profile model
@@ -22,4 +26,8 @@ const GroupSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
+<<<<<<< HEAD
 module.exports = Group = mongoose.model("Group", GroupSchema);
+=======
+module.exports =  Group = mongoose.model("Group", groupSchema);
+>>>>>>> master
