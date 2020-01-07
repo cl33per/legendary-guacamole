@@ -3,12 +3,9 @@ import {
     Grid,
     Row,
     Col,
-    FormGroup,
-    ControlLabel,
-    FormControl
-    //   Jumbotron,
-    //   List,
-    //   DeleteBtn
+    // FormGroup,
+    // ControlLabel,
+    // FormControl
 } from "react-bootstrap";
 
 import { Card } from "components/Card/Card.jsx";
@@ -19,48 +16,48 @@ import Button from "components/CustomButton/CustomButton.jsx";
 import avatar from "assets/img/faces/face-3.jpg";
 import API from "utils/API";
 
-export default class TodoList extends Component {
+export default class Budget extends Component {
     state = {
-        todos: [],
-        title: " ",
-        targetDate: " ",
-        comments: " "
+        bills: [],
+        creditor: " ",
+        amount: " ",
+        dueDate: " "
     };
 
     componentDidMount() {
-        this.loadTodos();
+        this.loadBills();
     }
 
-    loadTodos = () => {
-        API.getTodos()
+    loadBills = () => {
+        API.getBills()
             .then(res =>
-                this.setState({ todos: res.data, title: "", targetDate: "", comments: "" })
+                this.setState({ bills: res.data, creditor: "", amount: "", dueDate: "" })
             )
             .catch(err => console.log(err));
     };
 
-    deleteTodo = id => {
-        API.deleteTodo(id)
-            .then(res => this.loadTodos())
+    deleteBill = id => {
+        API.deleteBill(id)
+            .then(res => this.loadBills())
             .catch(err => console.log(err));
     };
 
     handleInputChange = event => {
-        const { label, value } = event.target;
+        const { id, value } = event.target;
         this.setState({
-            [label]: value
+            [id]: value
         });
     };
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.title) {
-            API.saveTodo({
-                title: this.state.title,
-                targetDate: this.state.targetDate,
-                comments: this.state.comments
+        if (this.state.creditor) {
+            API.saveBill({
+                creditor: this.state.creditor,
+                amount: this.state.amount,
+                dueDate: this.state.dueDate
             })
-                .then(res => this.loadTodos())
+                .then(res => this.loadBills())
                 .catch(err => console.log(err));
         }
     };
@@ -76,45 +73,41 @@ export default class TodoList extends Component {
                                 content={
                                     <form>
                                         <FormInputs
-                                            ncols={["col-md-8", "col-md-4"]}
+                                            ncols={["col-md-4", "col-md-4", "col-md-4"]}
                                             properties={[
                                                 {
-                                                    label: "Title",
+                                                    label: "Creditor",
+                                                    id: "creditor",
                                                     type: "text",
                                                     bsClass: "form-control",
-                                                    placeholder: "Title",
-                                                    value: this.state.title,
+                                                    placeholder: "Company Name",
+                                                    value: this.state.creditor,
                                                     onChange: this.handleInputChange
                                                 },
                                                 {
-                                                    label: "Target Date",
-                                                    type: "date",
+                                                    label: "Amount",
+                                                    id: "amount",
+                                                    type: "numberDecimal",
                                                     bsClass: "form-control",
-                                                    placeholder: "MM/DD/YY",
-                                                    defaultValue: Date.now(),
-                                                    value: this.state.targetDate,
+                                                    placeholder: "0.00",
+                                                    value: this.state.amount,
+                                                    onChange: this.handleInputChange
+                                                },
+                                                {
+                                                    label: "Due Date",
+                                                    id: "dueDate",
+                                                    type: "Date",
+                                                    bsClass: "form-control",
+                                                    // placeholder: "MM/YY/DD",
+                                                    value: this.state.dueDate,
                                                     onChange: this.handleInputChange
                                                 }
                                             ]}
                                         />
 
-                                        <Row>
-                                            <Col md={12}>
-                                                <FormGroup controlId="formControlsTextarea">
-                                                    <ControlLabel>Comments</ControlLabel>
-                                                    <FormControl
-                                                        rows="5"
-                                                        componentClass="textarea"
-                                                        bsClass="form-control"
-                                                        placeholder="Add additional details or updates!"
-                                                        value={this.state.comments}
-                                                        onChange={this.handleInputChange}
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                        </Row>
-                                        <Button bsStyle="info" pullRight fill type="submit" disabled={!(this.state.title)} onClick={this.handleFormSubmit}>
-                                            Add Task!
+                                      
+                                        <Button bsStyle="info" pullRight fill type="submit" disabled={!(this.state.creditor)} onClick={this.handleFormSubmit}>
+                                            Add Bill!
                     </Button>
                                         <div className="clearfix" />
                                     </form>

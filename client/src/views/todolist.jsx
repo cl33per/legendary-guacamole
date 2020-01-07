@@ -20,7 +20,7 @@ import Button from "components/CustomButton/CustomButton.jsx";
 import avatar from "assets/img/faces/face-3.jpg";
 
 
-export default  class TodoList extends Component {
+export default  class ToDoList extends Component {
     state = {
         todos: [],
         title: "",
