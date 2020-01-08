@@ -28,7 +28,7 @@ export default class chatRoom extends Component{
     }
     loadUserData = () => {
         API.userData()
-            .then(res => console.log(res)
+            .then(res => console.log(res.data)
             )
             .catch(err => console.log(err));
     };
