@@ -39,6 +39,17 @@ router.get(
     }
 );
 
+router.post(
+    "/accounts/balance/get",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        client.getBalance(ACCESS_TOKEN, (err, res) => {
+            // Handle err
+            const accounts = res.accounts;
+        });
+    }
+);
+
 // @route POST api/plaid/accounts/add
 // @desc Trades public token for access token and stores credentials in database
 // @access Private
