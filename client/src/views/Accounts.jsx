@@ -9,6 +9,11 @@ import {
 } from "../actions/accountActions";
 import { logoutUser } from "../actions/authActions";
 import MaterialTable from "material-table"; // https://mbrn.github.io/material-table/#/
+import {
+    Grid,
+    Row,
+    Col
+} from "react-bootstrap";
 
 class Accounts extends Component {
     componentDidMount() {
@@ -79,17 +84,19 @@ class Accounts extends Component {
         });
 
         return (
-            <div className="row">
-                <div className="col s12">
-                    <h4><b>Welcome!</b> </h4>
+            <div className="content">
+                <Grid fluid>
+                    <Row>
+                        <Col md={12}>
+                    <h4><b>Welcome!</b></h4>
                     <p className="grey-text text-darken-1"> Hey there, {user.name.split(" ")[0]} </p>
-                    <h5><b>Linked Accounts</b> </h5>
+                    <h5><b>Linked Accounts</b></h5>
                     <p className="grey-text text-darken-1"> Add or remove your bank accounts below</p>
                     <ul>{accountItems}
                     <PlaidLinkButton
                         buttonProps={{
                             className:
-                                "btn btn-large waves-effect waves-light hoverable blue accent-3 main-btn accounts-add-account"
+                            "btn btn-large waves-effect waves-light hoverable blue accent-3 main-btn accounts-add-account"
                         }}
                         plaidLinkProps={{
                             clientName: "YOUR_APP_NAME",
@@ -100,25 +107,13 @@ class Accounts extends Component {
                         }}
                         onScriptLoad={() => this.setState({ loaded: true })}
                     >Add Account
-          </PlaidLinkButton></ul>
+                    </PlaidLinkButton></ul>
                     <hr style={{ marginTop: "2rem", opacity: ".2" }} />
-                    <h5>
-                        <b>Transactions</b>
-                    </h5>
-                    {transactionsLoading ? (
-                        <p className="grey-text text-darken-1">Fetching transactions...</p>
-                    ) : (
-                            <>
-                                <p className="grey-text text-darken-1">
-                                    You have <b>{transactionsData.length}</b> transactions from your
-                <b> {accounts.length}</b> linked
-                {accounts.length > 1 ? (
-                                        <span> accounts </span>
-                                    ) : (
-                                            <span> account </span>
-                                        )}
-                                    from the past 30 days
-              </p>
+                    <h5><b>Transactions</b></h5>
+                    {transactionsLoading ? 
+                    (<p className="grey-text text-darken-1">Fetching transactions...</p>) : 
+                    ( <> <p className="grey-text text-darken-1">You have <b>{transactionsData.length}</b> transactions from your <b> {accounts.length}</b> 
+                    linked {accounts.length > 1 ? ( <span> accounts </span>) : (<span> account </span>)}from the past 30 days</p>
                                 <MaterialTable
                                     columns={transactionsColumns}
                                     data={transactionsData}
@@ -126,7 +121,9 @@ class Accounts extends Component {
                                 />
                             </>
                         )}
-                </div>
+                        </Col>
+                    </Row>
+                </Grid> 
             </div>
         );
     }
