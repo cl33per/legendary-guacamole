@@ -37,7 +37,7 @@ export default  class UserProfile extends Component {
   loadProfiles = () => {
     API.getProfiles()
       .then(res =>
-        this.setState({ profiles: res.data, username: "", email: "", groupName: "", firstName: "", lastName: "", address: "", city: "", country: "", zipCode: "", aboutMe:"", picture: "" })
+        this.setState({ profiles: res.data, username: "", email: "", groupName: "", firstName: "", lastName: "", address: "", city: "", country: "", zipCode: "", aboutMe:"" })
       )
       .catch(err => console.log(err));
   };
@@ -69,7 +69,7 @@ export default  class UserProfile extends Component {
         country: this.state.country,
         zipCode: this.state.zipCode,
         aboutMe: this.state.aboutMe,
-        picture: this.state.picture
+        // picture: this.state.picture
       })
         .then(res => this.loadProfiles())
         .catch(err => console.log(err));
@@ -214,14 +214,13 @@ export default  class UserProfile extends Component {
                         </FormGroup>
                       </Col>
                     </Row>
-                    <label>Profile Picture</label>
-                    <input type="file" label="profile picture" name="picture" value={this.state.picture}/>
-                      <Uploader/>
+
                     <Button bsStyle="primary" pullRight fill type="submit" onSubmit={this.handleFormSubmit}>
                       Update Profile
                     </Button>
                     <div className="clearfix" />
                   </form>
+                  
                 }
               />
             </Col>
@@ -257,7 +256,10 @@ export default  class UserProfile extends Component {
             </Col>
           </Row>
         </Grid>
+        <Uploader/>
+
       </div>
+
     );
   }
 }
