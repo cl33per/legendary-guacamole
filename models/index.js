@@ -5,5 +5,6 @@ module.exports = {
   Todo: require("./todo"),
   User: require("./user"),
   Event: require("./event"),
-  Test: require("./test")
+  Test: require("./test"),
+  Bill: require("./bill")
 };

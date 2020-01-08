@@ -1,16 +1,21 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
-var todoSchema = new Schema({
-    title: { type: String, required: true },
-    targetDate: { type: Date, default: Date.now(), required: false  },
-    Comments: { type: String, required: false },
-    Completed: { type: Boolean, default: false },
-    Archive: { type: Boolean, default: false }
+const todoSchema = new Schema({
+    task: { 
+      type: String,
+      unique: true,
+      required: "Task is required"
+      },
+    priority: { type: String },  
+    targetDate: { type: Date, default: Date.now()  },
+    comments: { type: String  },
+    completed: { type: Boolean, default: false },
+    archive: { type: Boolean, default: false }
 });
 // Custom method `setFullName`
 todoSchema.methods.setFullName = function() {

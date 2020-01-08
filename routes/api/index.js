@@ -6,6 +6,7 @@ const plaidRoutes = require("./plaid");
 const todoRoutes = require("./todos");
 const eventRoutes = require("./events");
 const testRoutes = require("./tests");
+const billRoutes = require("./bills");
 
 router.use("/profiles", profileRoutes);
 router.use("/groups", groupRoutes);
@@ -14,5 +15,6 @@ router.use("/plaid", plaidRoutes);
 router.use("/todos", todoRoutes);
 router.use("/events", eventRoutes);
 router.use("/tests", testRoutes);
+router.use("/bills", billRoutes);
 
 module.exports = router;

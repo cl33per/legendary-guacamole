@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 const GroupSchema = new Schema({
     name: {
     type: String,
-    // unique: true
+    unique: true
   },
   // `profiles` is an array that stores ObjectIds
   // The ref property links these ObjectIds to the profile model
