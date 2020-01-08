@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import {
     getTransactions,
     addAccount,
-    deleteAccount
+    deleteAccount,
+    getAccountBalance
 } from "../actions/accountActions";
 import { logoutUser } from "../actions/authActions";
 import MaterialTable from "material-table"; // https://mbrn.github.io/material-table/#/
@@ -19,6 +20,7 @@ class Accounts extends Component {
     componentDidMount() {
         const { accounts } = this.props;
         this.props.getTransactions(accounts);
+        console.log(getAccountBalance());
     }
 
     // Add account
@@ -132,6 +134,7 @@ class Accounts extends Component {
 Accounts.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     getTransactions: PropTypes.func.isRequired,
+    getAccountBalance: PropTypes.func.isRequired,
     addAccount: PropTypes.func.isRequired,
     deleteAccount: PropTypes.func.isRequired,
     accounts: PropTypes.array.isRequired,
@@ -145,5 +148,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { logoutUser, getTransactions, addAccount, deleteAccount }
+    { logoutUser, getTransactions, getAccountBalance, addAccount, deleteAccount }
 )(Accounts);

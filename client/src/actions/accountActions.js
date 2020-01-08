@@ -4,9 +4,11 @@ import {
     ADD_ACCOUNT,
     DELETE_ACCOUNT,
     GET_ACCOUNTS,
+    GET_ACCOUNTS_BALANCE,
     ACCOUNTS_LOADING,
     GET_TRANSACTIONS,
-    TRANSACTIONS_LOADING
+    TRANSACTIONS_LOADING,
+    BALANCE_LOADING
 } from "./types";
 
 // Add account
@@ -95,5 +97,29 @@ export const getTransactions = plaidData => dispatch => {
 export const setTransactionsLoading = () => {
     return {
         type: TRANSACTIONS_LOADING
+    };
+};
+
+export const getAccountBalance = plaidData => dispatch => {
+    dispatch(setAccountBalanceLoading());
+    axios
+        .post("api/plaid/accounts/balance/",plaidData)
+        .then(res => 
+            dispatch({        
+                type: GET_ACCOUNTS_BALANCE,
+                payload: res.data
+            }) 
+        )
+    .catch(err =>{
+        dispatch({
+            type: GET_ACCOUNTS_BALANCE,
+            payload:null
+        })
+    })
+};
+
+export const setAccountBalanceLoading = () => {
+    return {
+        type: BALANCE_LOADING
     };
 };
