@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import API from "../../utils/API"
 import axios from 'axios';
 const BASE_URL = 'http://localhost:5000/';
  
@@ -34,6 +35,7 @@ class Uploader extends Component {
             imageUrls: [ response.data.imageUrl, ...this.state.imageUrls ]
             });
         })
+      
     });
     
     // Once all the files are uploaded
@@ -42,6 +44,14 @@ class Uploader extends Component {
     }).catch(err => alert(err.message));
     }
     
+    // My failed attempt at writing file to files collection
+    // uploadFile = () => {
+    //     API.saveFile()
+    //       .then(res =>
+    //         this.setState({ files: res.data, fileTitle: "" })
+    //       )
+    //       .catch(err => console.log(err));
+    //   };
     render() {
         return (
         <div>
