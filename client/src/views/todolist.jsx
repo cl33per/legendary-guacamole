@@ -23,7 +23,8 @@ import avatar from "assets/img/faces/face-3.jpg";
 export default  class ToDoList extends Component {
     state = {
         todos: [],
-        title: "",
+        task: "",
+        priority: "",
         targetDate: "",
         comments: ""
     };
@@ -35,7 +36,7 @@ export default  class ToDoList extends Component {
     loadTodos = () => {
         API.getTodos()
             .then(res =>
-                this.setState({ todos: res.data, title: "", targetDate: "", comments: ""})
+                this.setState({ todos: res.data, task: "", priority: "", targetDate: "", comments: ""})
             )
             .catch(err => console.log(err));
     };
@@ -55,9 +56,10 @@ export default  class ToDoList extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.title) {
+        if (this.state.task) {
             API.saveTodo({
-                title: this.state.title,
+                title: this.state.task,
+                priority: this.state.priority,
                 targetDate: this.state.targetDate,
                 comments: this.state.comments
             })
@@ -80,12 +82,21 @@ export default  class ToDoList extends Component {
                       ncols={["col-md-8", "col-md-4"]}
                       properties={[
                         {
-                          label: "Title",
-                          type: "text",
+                          label: "Task",
+                          type: "task",
                           bsClass: "form-control",
-                          placeholder: "Title",
-                          id: "title",
-                          value: this.state.title,
+                          placeholder: "Task",
+                          id: "task",
+                          value: this.state.task,
+                          onChange: this.handleInputChange
+                        },
+                        {
+                          label: "Priority",
+                          type: "priority",
+                          bsClass: "form-control",
+                          placeholder: "Low",
+                          id: "priority",
+                          value: this.state.priority,
                           onChange: this.handleInputChange
                         },
                         {

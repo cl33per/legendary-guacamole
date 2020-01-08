@@ -6,15 +6,16 @@ const Schema = mongoose.Schema;
 // Using the Schema constructor, create a new UserSchema object
 // This is similar to a Sequelize model
 const todoSchema = new Schema({
-    title: { 
+    task: { 
       type: String,
       unique: true,
-      required: "Title is required"
+      required: "Task is required"
       },
+    priority: { type: String },  
     targetDate: { type: Date, default: Date.now()  },
-    Comments: { type: String  },
-    Completed: { type: Boolean, default: false },
-    Archive: { type: Boolean, default: false }
+    comments: { type: String  },
+    completed: { type: Boolean, default: false },
+    archive: { type: Boolean, default: false }
 });
 // Custom method `setFullName`
 todoSchema.methods.setFullName = function() {
