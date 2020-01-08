@@ -15,6 +15,7 @@ import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
+import Uploader from "../components/Uploader/Uploader.jsx";
 
 export default  class UserProfile extends Component {
   state = {
@@ -215,7 +216,7 @@ export default  class UserProfile extends Component {
                     </Row>
                     <label>Profile Picture</label>
                     <input type="file" label="profile picture" name="picture" value={this.state.picture}/>
-
+                      <Uploader/>
                     <Button bsStyle="primary" pullRight fill type="submit" onSubmit={this.handleFormSubmit}>
                       Update Profile
                     </Button>
