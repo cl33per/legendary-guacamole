@@ -38,24 +38,19 @@ class Accounts extends Component {
         this.props.deleteAccount(accountData);
     };
 
-    // Logout
-    onLogoutClick = e => {
-        e.preventDefault();
-        this.props.logoutUser();
-    };
 
     render() {
         const { user, accounts } = this.props;
         const { transactions, transactionsLoading } = this.props.plaid;
 
         let accountItems = accounts.map(account => (
-            <li key={account._id} style={{ marginTop: "1rem" }}>
+            <li className="accounts-list" key={account._id} style={{ marginTop: "1rem" }}>
                 <button
                     style={{ marginRight: "1rem" }}
                     onClick={this.onDeleteClick.bind(this, account._id)}
                     className="btn btn-small btn-floating waves-effect waves-light hoverable red accent-3"
                 >
-                    <i className="material-icons">delete</i>
+                    <i className="fa fa-eraser"></i>
                 </button>
                 <b>{account.institutionName}</b>
             </li>
@@ -86,29 +81,15 @@ class Accounts extends Component {
         return (
             <div className="row">
                 <div className="col s12">
-                    <button
-                        onClick={this.onLogoutClick}
-                        className="btn-flat waves-effect"
-                    >
-                        <i className="material-icons left">keyboard_backspace</i> Log Out
-          </button>
-                    <h4>
-                        <b>Welcome!</b>
-                    </h4>
-                    <p className="grey-text text-darken-1">
-                        Hey there, {user.name.split(" ")[0]}
-                    </p>
-                    <h5>
-                        <b>Linked Accounts</b>
-                    </h5>
-                    <p className="grey-text text-darken-1">
-                        Add or remove your bank accounts below
-          </p>
-                    <ul>{accountItems}</ul>
+                    <h4><b>Welcome!</b> </h4>
+                    <p className="grey-text text-darken-1"> Hey there, {user.name.split(" ")[0]} </p>
+                    <h5><b>Linked Accounts</b> </h5>
+                    <p className="grey-text text-darken-1"> Add or remove your bank accounts below</p>
+                    <ul>{accountItems}
                     <PlaidLinkButton
                         buttonProps={{
                             className:
-                                "btn btn-large waves-effect waves-light hoverable blue accent-3 main-btn"
+                                "btn btn-large waves-effect waves-light hoverable blue accent-3 main-btn accounts-add-account"
                         }}
                         plaidLinkProps={{
                             clientName: "YOUR_APP_NAME",
@@ -118,9 +99,8 @@ class Accounts extends Component {
                             onSuccess: this.handleOnSuccess
                         }}
                         onScriptLoad={() => this.setState({ loaded: true })}
-                    >
-                        Add Account
-          </PlaidLinkButton>
+                    >Add Account
+          </PlaidLinkButton></ul>
                     <hr style={{ marginTop: "2rem", opacity: ".2" }} />
                     <h5>
                         <b>Transactions</b>

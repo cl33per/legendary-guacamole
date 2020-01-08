@@ -41,3 +41,17 @@
 .login-button{
     padding: 20px;
 }
+.accounts-list{
+    padding: 10px;
+    list-style-type:none;
+    display: inline-block;
+}
+.accounts-list button:hover{
+    color:red;
+    border: red;
+}
+
+.accounts-add-account:hover {
+        color: green;
+        border: 1px green;
+}

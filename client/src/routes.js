@@ -96,7 +96,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: false,
+    invisible: true,
     path: "/user",
     name: "Account",
     icon: "pe-7s-user",
@@ -104,7 +104,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   { // This is not the acutal login page using routes for testing.
-    invisible: false,
+    invisible: true,
     path: "/landing",
     name: "Root Landing Page",
     icon: "pe-7s-unlock",
@@ -120,7 +120,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: false,
+    invisible: true,
     path: "/register",
     name: "Register",
     icon: "pe-7s-unlock",

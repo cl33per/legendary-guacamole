@@ -1,7 +1,18 @@
 import React, { Component } from "react";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
+import { logoutUser } from "../../actions/authActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class AdminNavbarLinks extends Component {
+
+  // Logout
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+    window.location.href = "login";
+  }
+
   render() {
     const notification = (
       <div>
@@ -62,7 +73,7 @@ class AdminNavbarLinks extends Component {
             <i className="fa fa-user" />
             Profile
           </NavItem>
-          <NavItem eventKey={3} href="#">
+          <NavItem eventKey={3} onClick={this.onLogoutClick}>
             Log out
           </NavItem>
         </Nav>
@@ -71,4 +82,16 @@ class AdminNavbarLinks extends Component {
   }
 }
 
-export default AdminNavbarLinks;
+AdminNavbarLinks.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+});
+
+export default connect(
+  mapStateToProps,
+  {logoutUser}
+)(AdminNavbarLinks);

@@ -6,6 +6,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const passport = require("passport");
 const bodyParser = require("body-parser");
+require('dotenv').config();
 
 // Bodyparser middleware
 app.use(
@@ -39,7 +40,6 @@ app.use(passport.initialize());
 
 // Passport config
 require("./config/passport")(passport);
-
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);

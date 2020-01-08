@@ -8,6 +8,7 @@
     "bootstrap": "3.4.1",
     "chartist": "0.10.1",
     "classnames": "^2.2.6",
+    "dotenv": "^8.2.0",
     "jwt-decode": "^2.2.0",
     "material-table": "^1.54.2",
     "node-sass": "4.12.0",

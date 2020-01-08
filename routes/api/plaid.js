@@ -5,11 +5,12 @@ const passport = require("passport");
 const moment = require("moment");
 const mongoose = require("mongoose");
 
+
 // Load Account and User models
 const Account = require("../../models/account");
 const User = require("../../models/user");
 
-const PLAID_CLIENT_ID = "5e0b9b151a2d810011a28bb2";
+const PLAID_CLIENT_ID = "5e0b9b151a2d810011a28bb2"
 const PLAID_SECRET = "d2aac1f67e5845df6e5117cbc65794";
 const PLAID_PUBLIC_KEY = "c0bef89553dcc2745bf68272e31e66";
 
@@ -18,7 +19,7 @@ const client = new plaid.Client(
     PLAID_SECRET,
     PLAID_PUBLIC_KEY,
     plaid.environments.sandbox,
-    { version: "2018-05-22" }
+    { version: "2019-05-29" }
 );
 
 var PUBLIC_TOKEN = null;
