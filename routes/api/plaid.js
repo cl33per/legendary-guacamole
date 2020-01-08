@@ -4,15 +4,15 @@ const router = express.Router();
 const passport = require("passport");
 const moment = require("moment");
 const mongoose = require("mongoose");
-
+require('dotenv').config();
 
 // Load Account and User models
 const Account = require("../../models/account");
 const User = require("../../models/user");
 
-const PLAID_CLIENT_ID = "5e0b9b151a2d810011a28bb2"
-const PLAID_SECRET = "d2aac1f67e5845df6e5117cbc65794";
-const PLAID_PUBLIC_KEY = "c0bef89553dcc2745bf68272e31e66";
+const PLAID_CLIENT_ID = process.env.REACT_APP_PLAID_CLIENT_ID;
+const PLAID_SECRET = process.env.REACT_APP_PLAID_SECRET_SANDBOX;
+const PLAID_PUBLIC_KEY = process.env.REACT_APP_PLAID_PUBLIC_KEY;
 
 const client = new plaid.Client(
     PLAID_CLIENT_ID,

@@ -6,5 +6,6 @@ module.exports = {
   User: require("./user"),
   Event: require("./event"),
   Test: require("./test"),
-  Bill: require("./bill")
+  Bill: require("./bill"),
+  File: require("./file"),
 };
