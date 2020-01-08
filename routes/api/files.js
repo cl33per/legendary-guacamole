@@ -1,33 +1,17 @@
-const express = require('express');
-const multer = require('multer');
-const cors = require('cors');
-const app = express();
+const router = require("express").Router();
+const filesController = require("../../controllers/filesController");
 
-app.use(express.static('public'))
+// TODO: Need to configure and understand routes to DB and how each realationsip. 
+// Matches with "/api/profiles"
+router.route("/")
+    .get(filesController.findAll)
+    .post(filesController.create);
 
-// Multer Upload
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/images/uploads')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-});
-const upload = multer({ storage })
+// Matches with "/api/files/:id"
+router
+    .route("/:id")
+    .get(filesController.findById)
+    .put(filesController.update)
+    .delete(filesController.remove);
 
-app.use(cors());
-
-app.post('/upload', upload.single('image'), (req, res) => {
-    if (req.file)
-        res.json({
-            imageUrl: `images/uploads/${req.file.filename}`
-        });
-    else
-        res.status("409").json("No Files to Upload.");
-});
-
-const PORT = 5000;
-
-app.listen(PORT);
-console.log('api runnging on port: ' + PORT);
+module.exports = router;
