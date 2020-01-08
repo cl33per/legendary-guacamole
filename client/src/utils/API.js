@@ -83,4 +83,8 @@ export default {
     saveBill: function (billData) {
         return axios.post("/api/bills", billData);
     },
+    // Saves a bill to the database
+    userData: function (userData) {
+        return axios.get("/api/users", userData);
+    },
 };

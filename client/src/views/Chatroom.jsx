@@ -1,35 +1,42 @@
-import React from 'react';
-import { Chat, Channel, ChannelList, Window } from 'stream-chat-react';
-import { ChannelHeader, MessageList } from 'stream-chat-react';
-import { MessageInput, Thread } from 'stream-chat-react';
+import React, { Component } from 'react';
+import { Chat, Channel, ChannelHeader, Thread, Window } from 'stream-chat-react';
+import { MessageList, MessageInput } from 'stream-chat-react';
 import { StreamChat } from 'stream-chat';
-
+import API from "utils/API";
 import 'stream-chat-react/dist/css/index.css';
 
-const chatClient = new StreamChat('q248zfvps3kj');
-const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoic3VwZXItY2hlcnJ5LTYifQ.dgGf8HzOOGb8hdeUo_CSSgtR7HMoVabaiaFn9jKWphI';
-
-// TODO: Need to integrate with user databsase.
+const chatClient = new StreamChat('dng8nyary62h');
+const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiaGlkZGVuLXRydXRoLTMifQ.mNwLvjjiot46wV_DwcZgZKGzS6PE3FAx_BO1TeVopio';
 chatClient.setUser(
     {
-        id: 'super-cherry-6',
-        name: 'Super cherry',
-        image: 'https://getstream.io/random_svg/?id=super-cherry-6&name=Super+cherry'
+        id: 'hidden-truth-3',
+        name: 'Hidden truth',
+        image: 'https://getstream.io/random_svg/?id=hidden-truth-3&name=Hidden+truth'
     },
     userToken,
 );
 
-const filters = { type: 'messaging' };
-const sort = { last_message_at: -1 };
-// const channels = chatClient.queryChannels(filters, sort); TODO: Commented out since there are no addtional chatrooms currently, need to conffigure.
+const channel = chatClient.channel('messaging', 'godevs', {
+    // add as many custom fields as you'd like
+    image: 'https://cdn.chrisshort.net/testing-certificate-chains-in-go/GOPHER_MIC_DROP.png',
+    name: 'Talk about Go',
+});
 
-const ChatRooom = () => (
+export default class chatRoom extends Component{
+    componentDidMount() {
+        this.loadUserData();
+    }
+    loadUserData = () => {
+        API.userData()
+            .then(res => console.log(res.data)
+            )
+            .catch(err => console.log(err));
+    };
+
+render() {
+    return(
     <Chat client={chatClient} theme={'messaging light'}>
-        <ChannelList
-            filters={filters}
-            sort={sort}
-        />
-        <Channel>
+        <Channel channel={channel}>
             <Window>
                 <ChannelHeader />
                 <MessageList />
@@ -38,6 +45,6 @@ const ChatRooom = () => (
             <Thread />
         </Channel>
     </Chat>
-);
-
-export default ChatRooom; 
+        )
+    }
+};
