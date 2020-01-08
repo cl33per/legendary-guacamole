@@ -8,6 +8,7 @@ const eventRoutes = require("./events");
 const testRoutes = require("./tests");
 const billRoutes = require("./bills");
 const filesRoutes = require('./files')
+const usersRoutes = require("./users");
 
 router.use("/profiles", profileRoutes);
 router.use("/groups", groupRoutes);
@@ -18,5 +19,6 @@ router.use("/events", eventRoutes);
 router.use("/tests", testRoutes);
 router.use("/bills", billRoutes);
 router.use("/files",filesRoutes);
+router.use("/users",usersRoutes);
 
 module.exports = router;
