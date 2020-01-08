@@ -20,10 +20,11 @@ import Button from "components/CustomButton/CustomButton.jsx";
 import avatar from "assets/img/faces/face-3.jpg";
 
 
-export default  class TodoList extends Component {
+export default  class ToDoList extends Component {
     state = {
         todos: [],
-        title: "",
+        task: "",
+        priority: "",
         targetDate: "",
         comments: ""
     };
@@ -35,7 +36,7 @@ export default  class TodoList extends Component {
     loadTodos = () => {
         API.getTodos()
             .then(res =>
-                this.setState({ todos: res.data, title: "", targetDate: "", comments: ""})
+                this.setState({ todos: res.data, task: "", priority: "", targetDate: "", comments: ""})
             )
             .catch(err => console.log(err));
     };
@@ -47,17 +48,18 @@ export default  class TodoList extends Component {
     };
 
     handleInputChange = event => {
-        const { name, value } = event.target;
+        const { id, value } = event.target;
         this.setState({
-            [name]: value
+            [id]: value
         });
     };
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.title) {
+        if (this.state.task) {
             API.saveTodo({
-                title: this.state.title,
+                title: this.state.task,
+                priority: this.state.priority,
                 targetDate: this.state.targetDate,
                 comments: this.state.comments
             })
@@ -75,16 +77,26 @@ export default  class TodoList extends Component {
               <Card
                 title="Add New Task"
                 content={
-                  <form>
+                  <form noValidate onSubmit={this.onSubmit}>
                     <FormInputs
                       ncols={["col-md-8", "col-md-4"]}
                       properties={[
                         {
-                          label: "Title",
-                          type: "text",
+                          label: "Task",
+                          type: "task",
                           bsClass: "form-control",
-                          placeholder: "Title",
-                          name: "title",
+                          placeholder: "Task",
+                          id: "task",
+                          value: this.state.task,
+                          onChange: this.handleInputChange
+                        },
+                        {
+                          label: "Priority",
+                          type: "priority",
+                          bsClass: "form-control",
+                          placeholder: "Low",
+                          id: "priority",
+                          value: this.state.priority,
                           onChange: this.handleInputChange
                         },
                         {
@@ -93,7 +105,8 @@ export default  class TodoList extends Component {
                           bsClass: "form-control",
                           placeholder: "MM/DD/YY",
                           defaultValue: Date.now(),
-                          name:"targetDate",
+                          id:"targetDate",
+                          value: this.state.targetDate,
                           onChange: this.handleInputChange
                         }
                       ]}
@@ -108,7 +121,8 @@ export default  class TodoList extends Component {
                             componentClass="textarea"
                             bsClass="form-control"
                             placeholder="Add additional details or updates!"
-                            name="comments"
+                            id="comments"
+                            value={this.state.comments}
                             onChange={this.handleInputChange}
                           />
                         </FormGroup>

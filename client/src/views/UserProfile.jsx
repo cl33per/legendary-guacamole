@@ -91,10 +91,12 @@ export default  class UserProfile extends Component {
                       properties={[
                         {
                           label: "Group (disabled)",
+                          name: "groupName",
                           type: "text",
                           bsClass: "form-control",
                           placeholder: "Group Name",
                           defaultValue: "Smith Family",
+                          value: this.state.groupName,
                           disabled: true
                         },
                         {
@@ -104,6 +106,7 @@ export default  class UserProfile extends Component {
                           bsClass: "form-control",
                           placeholder: "Username",
                           defaultValue: "michael23",
+                          value: this.state.username,
                           onChange: this.handleInputChange
                         },
                         {
@@ -112,6 +115,7 @@ export default  class UserProfile extends Component {
                           type: "email",
                           bsClass: "form-control",
                           placeholder: "Email",
+                          value: this.state.email,
                           onChange: this.handleInputChange
                         }
                       ]}
@@ -126,6 +130,7 @@ export default  class UserProfile extends Component {
                           bsClass: "form-control",
                           placeholder: "First name",
                           defaultValue: "Mike",
+                          value: this.state.firstName,
                           onChange: this.handleInputChange
                         },
                         {
@@ -135,6 +140,7 @@ export default  class UserProfile extends Component {
                           bsClass: "form-control",
                           placeholder: "Last name",
                           defaultValue: "Andrew",
+                          value: this.state.lastName,
                           onChange: this.handleInputChange
                         }
                       ]}
@@ -150,6 +156,7 @@ export default  class UserProfile extends Component {
                           placeholder: "Home Adress",
                           defaultValue:
                             "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09",
+                          value: this.state.address,
                           onChange: this.handleInputChange
                         }
                       ]}
@@ -164,6 +171,7 @@ export default  class UserProfile extends Component {
                           bsClass: "form-control",
                           placeholder: "City",
                           defaultValue: "Mike",
+                          value: this.state.city,
                           onChange: this.handleInputChange
                         },
                         {
@@ -173,6 +181,7 @@ export default  class UserProfile extends Component {
                           bsClass: "form-control",
                           placeholder: "Country",
                           defaultValue: "Andrew",
+                          value: this.state.country,
                           onChange: this.handleInputChange
                         },
                         {
@@ -181,6 +190,7 @@ export default  class UserProfile extends Component {
                           type: "number",
                           bsClass: "form-control",
                           placeholder: "ZIP Code",
+                          value: this.state.zipCode,
                           onChange: this.handleInputChange
                         }
                       ]}
@@ -196,13 +206,15 @@ export default  class UserProfile extends Component {
                             bsClass="form-control"
                             placeholder="Here can be your description"
                             defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+                            name="aboutMe"
+                            value={this.state.aboutMe}
                             onChange={this.handleInputChange}
                           />
                         </FormGroup>
                       </Col>
                     </Row>
                     <label>Profile Picture</label>
-                    <input type="file" label="profile picture" value={this.state.picture}/>
+                    <input type="file" label="profile picture" name="picture" value={this.state.picture}/>
 
                     <Button bsStyle="primary" pullRight fill type="submit" onSubmit={this.handleFormSubmit}>
                       Update Profile
