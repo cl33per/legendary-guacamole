@@ -13,8 +13,7 @@ import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
 import "./assets/css/demo.css";
 import "./assets/css/pe-icon-7-stroke.css";
 import "./assets/css/app.css";
-
-import AdminLayout from "layouts/Admin.jsx";
+import AdminLayout from "layouts/Admin";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -31,7 +30,7 @@ if (localStorage.jwtToken) {
     // Logout user
     store.dispatch(logoutUser());
     // Redirect to login
-    window.location.href = "/login";
+    window.location.href = "admin/login";
   }
 }
 
@@ -40,8 +39,8 @@ ReactDOM.render(
   <Provider store={store}>
   <BrowserRouter>
     <Switch>
-      <Route path="/" render={props => <AdminLayout {...props} />} />
-        {/* <Redirect from="/" to="/admin/dashbaord"/> */}
+        <Route path="/admin/" render={props => <AdminLayout {...props} />} />
+        <Redirect from="/" to="/admin/dashbaord"/>
     </Switch>
   </BrowserRouter>,
   </Provider>,
