@@ -104,7 +104,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   { // This is not the acutal login page using routes for testing.
-    invisible: true,
+    invisible: false,
     path: "/landing",
     name: "Root Landing Page",
     icon: "pe-7s-unlock",
@@ -120,7 +120,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: true,
+    invisible: false,
     path: "/register",
     name: "Register",
     icon: "pe-7s-unlock",
