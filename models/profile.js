@@ -27,6 +27,12 @@ const profileSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Todo"
         }
+    ],
+    files: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "File"
+        }
     ]
 });
 
