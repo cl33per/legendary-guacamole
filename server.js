@@ -6,6 +6,10 @@ const PORT = process.env.PORT || 3001;
 const passport = require("passport");
 const bodyParser = require("body-parser");
 require('dotenv').config();
+const cors = require("cors");
+const multer = require("multer");
+
+
 
 // Bodyparser middleware
 app.use(
@@ -33,6 +37,28 @@ mongoose.set('useUnifiedTopology', true );
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/familyties")
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));;
+
+  // Multer Upload
+var storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+  cb(null, 'public/images/uploads')
+},
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + '-' + file.originalname)
+}
+});
+const upload = multer({ storage })
+
+app.use(cors());
+
+app.post('/upload', upload.single('image'), (req, res) => {
+if (req.file)
+  res.json({
+    imageUrl: `images/uploads/${req.file.filename}`
+});
+else
+  res.status("409").json("No Files to Upload.");
+});
 
 // Passport middleware
 app.use(passport.initialize());
