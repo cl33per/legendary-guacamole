@@ -30,10 +30,10 @@ class Login extends Component {
                         </h4>
                         <br />
                             <Col className="no-padding" md={6}>
-                                <Button bsStyle="primary" fill  href="/register">Register</Button>
+                                <Button bsStyle="primary" fill  href="register">Register</Button>
                             </Col>
                             <Col className="no-padding" md={6}>
-                                <Button bsStyle="primary" pullRight fill   href="/login">Login</Button>
+                                <Button bsStyle="primary" pullRight fill   href="login">Login</Button>
                              </Col>
                         </Col>
                     </Row>
