@@ -20,9 +20,9 @@ export class CalendarView extends Component {
         }
     };
 
-    componentDidMount(){
-        this.loadEventsData()
-    };
+    // componentDidMount(){
+    //     this.loadEventsData()
+    // };
 
     loadEventsData = () => {
         API.getEvents().then(res => {

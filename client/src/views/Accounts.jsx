@@ -20,9 +20,9 @@ class Accounts extends Component {
     componentDidMount() {
         const { accounts } = this.props;
         this.props.getTransactions(accounts);
-        console.log(getAccountBalance());
+        this.props.getAccountBalance(accounts.userId);
     }
-
+    
     // Add account
     handleOnSuccess = (token, metadata) => {
         const { accounts } = this.props;
@@ -31,7 +31,6 @@ class Accounts extends Component {
             metadata: metadata,
             accounts: accounts
         };
-
         this.props.addAccount(plaidData);
     };
 
