@@ -14,6 +14,7 @@ import Login from "./components/auth/Login";
 import Kitchen from "views/Kitchen";
 import Vault from "views/Vault";
 import Budget from "views/Budget";
+import Uploader from "views/Uploader";
 
 const dashboardRoutes = [
   {
@@ -125,6 +126,14 @@ const dashboardRoutes = [
     name: "Register",
     icon: "pe-7s-unlock",
     component: Register,
+    layout: "/admin"
+  }, 
+  {
+    invisible: false,
+    path: "/upload",
+    name: "Profile Image",
+    icon: "pe-7s-unlock",
+    component: Uploader,
     layout: "/admin"
   }, 
   {
