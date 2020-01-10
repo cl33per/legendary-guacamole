@@ -48,9 +48,9 @@ export default  class ToDoList extends Component {
     };
 
     handleInputChange = event => {
-        const { id, value } = event.target;
+        const { name, value } = event.target;
         this.setState({
-            [id]: value
+            [name]: value
         });
     };
 
@@ -86,7 +86,7 @@ export default  class ToDoList extends Component {
                           type: "task",
                           bsClass: "form-control",
                           placeholder: "Task",
-                          id: "task",
+                          name: "task",
                           value: this.state.task,
                           onChange: this.handleInputChange
                         },
@@ -95,7 +95,7 @@ export default  class ToDoList extends Component {
                           type: "priority",
                           bsClass: "form-control",
                           placeholder: "Low",
-                          id: "priority",
+                          name: "priority",
                           value: this.state.priority,
                           onChange: this.handleInputChange
                         },
@@ -105,7 +105,7 @@ export default  class ToDoList extends Component {
                           bsClass: "form-control",
                           placeholder: "MM/DD/YY",
                           defaultValue: Date.now(),
-                          id:"targetDate",
+                          name:"targetDate",
                           value: this.state.targetDate,
                           onChange: this.handleInputChange
                         }
@@ -121,14 +121,14 @@ export default  class ToDoList extends Component {
                             componentClass="textarea"
                             bsClass="form-control"
                             placeholder="Add additional details or updates!"
-                            id="comments"
+                            name="comments"
                             value={this.state.comments}
                             onChange={this.handleInputChange}
                           />
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Button bsStyle="info" pullRight fill type="submit" disabled={!(this.state.title)} onClick={this.handleFormSubmit}>
+                    <Button bsStyle="info" pullRight fill type="submit" disabled={!(this.state.task)} onClick={this.handleFormSubmit}>
                       Add Task!
                     </Button>
                     <div className="clearfix" />
