@@ -8,7 +8,7 @@ import Bank from "views/Bank.jsx";
 import Chat from "views/Chatroom.jsx";
 import Blackboard from "views/Blackboard.jsx";
 // import Calendar from "views/Calendar.jsx";
-import ToDoList from "views/ToDoList.jsx";
+import ToDoList from "views/ToDoListTwo.jsx";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Kitchen from "views/Kitchen";
