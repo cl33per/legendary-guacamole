@@ -1,25 +1,4 @@
-import {Component } from "react";
-import API from "../../utils/API";
-
 const now = new Date()
-
-export class Events extends Component{
-
-componentDidMount(){
-    this.loadEventsData()
-};
-
-loadEventsData = () => {
-    API.getEvents().then(res => {
-        var events = res.data
-        console.log(events)
-    })
-        .catch(err => console.log(err));
-};
-render(){
-    return(this.loadEventsData())
-}
-}
 
 export default[
     {

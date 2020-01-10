@@ -102,5 +102,5 @@ export default {
     // Saves a user to the database
     userData: function (userData) {
         return axios.get("/api/users", userData);
-    },
+    }
 };

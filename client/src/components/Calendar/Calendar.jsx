@@ -7,7 +7,6 @@ import moment from "moment";
 import API from "../../utils/API";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import _ from "lodash"
-// import events from "./events"
 
 const localizer = momentLocalizer(moment)
 export class CalendarView extends Component {
@@ -26,27 +25,52 @@ export class CalendarView extends Component {
 
     loadEventsData = () => {
         API.getEvents().then(res => {
-            this.setState({ events: res.data, title: "", start: "", end: "", allday: "" }) 
-            console.log("Added Event:")})
-            .catch(err => console.log(err));
+            let events = _.cloneDeep(res.data)
+            _.forEach(events, function (value) { 
+                let startDate =_.get(value,'start');
+                let endDate = _.get(value, 'end');
+             _.set(value, 'start', new Date(startDate))
+            _.set(value, 'end', new Date(endDate))
+            });
+            this.setState({ events: events}) 
+        }).catch(err => console.log(err));
     };
   
 
 
 
+    onSelectEvent = event => {
+        const r = window.confirm("Would you like to remove this event?")
+        if (r === true) {
+            console.log(event._id)
+            API.deleteEvent(event._id)
+                .then(res => this.loadEventsData())
+                .catch(err => console.log(err));
+        }else{
+            alert(event.title)
+        }
+    }
     handleSelect = ({ start, end }) => {
         const title = window.prompt('New Event name')
-        if (title) {
-            API.saveEvent({
-                title: this.state.title,
-                start: this.state.start,
-                end: this.state.end,
-                allday: this.state.allday
+        if (title) 
+            this.setState({
+                events: [
+                    ...this.state.events,
+                    {
+                        start,
+                        end,
+                        title,
+                    },
+                ],
             })
-            .then(res => this.loadEventsData())
+            API.saveEvent(
+                {
+                title:title,
+                start:start,
+                end: end,
+            }).then(res => this.loadEventsData())
             .catch(err => console.log(err));
-        }
-    };
+    }
 
     render() {
         return (
@@ -55,9 +79,9 @@ export class CalendarView extends Component {
                     selectable
                     localizer={localizer}
                     defaultDate={new Date()}
-                    defaultView="week"
+                    defaultView="month" 
                     events={this.state.events}
-                    onSelectEvent={event => alert(event.title)}
+                    onSelectEvent={event => this.onSelectEvent(event)}
                     style={{ height: "100vh" }}
                     onSelectSlot={this.handleSelect}
                     dayLayoutAlgorithm={this.state.dayLayoutAlgorithm}

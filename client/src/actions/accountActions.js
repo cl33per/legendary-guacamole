@@ -53,7 +53,7 @@ export const getAccounts = () => dispatch => {
     dispatch(setAccountsLoading());
     axios
         .get("/api/plaid/accounts")
-        .then(res =>
+        .then(res => 
             dispatch({
                 type: GET_ACCOUNTS,
                 payload: res.data
@@ -103,19 +103,19 @@ export const setTransactionsLoading = () => {
 export const getAccountBalance = plaidData => dispatch => {
     dispatch(setAccountBalanceLoading());
     axios
-        .post("api/plaid/accounts/balance/",plaidData)
-        .then(res => 
+        .post("/api/plaid/accounts/balance", plaidData)
+        .then(res =>
             dispatch({        
                 type: GET_ACCOUNTS_BALANCE,
                 payload: res.data
-            }) 
+             }) 
         )
-    .catch(err =>{
+    .catch(err =>
         dispatch({
             type: GET_ACCOUNTS_BALANCE,
             payload:null
         })
-    })
+    );
 };
 
 export const setAccountBalanceLoading = () => {
