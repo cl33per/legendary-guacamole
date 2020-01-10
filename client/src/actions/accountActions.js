@@ -101,15 +101,15 @@ export const setTransactionsLoading = () => {
 };
 
 export const getAccountBalance = plaidData => dispatch => {
-    dispatch(setAccountBalanceLoading());
+    // dispatch(setAccountBalanceLoading());
     axios
-        .post("api/plaid/accounts/balance/",plaidData)
-        .then(res => console.log(res.config.data)
+        .post("/api/plaid/accounts/balance", plaidData)
+        .then(res => {
+            console.log(res)
             // dispatch({        
             //     type: GET_ACCOUNTS_BALANCE,
             //     payload: res.data
-            // }) 
-            )
+             }) 
     .catch(err =>{
         dispatch({
             type: GET_ACCOUNTS_BALANCE,

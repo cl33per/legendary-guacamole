@@ -101,16 +101,29 @@ router.post(
             });
         }
         );
-    router.post (
-        "/accounts/balance",
-        passport.authenticate("jwt",{session:false}),
-        (req, res) =>{
-            const accounts = res.accounts;
-            client.getBalance(ACCESS_TOKEN, (req, res)
-            .then(res => console.log(accounts)
-            )
-    )
-        });
+router.post(
+    "/accounts/balance/",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        let accountBalance = [];
+        const accounts = req.body;
+
+        if (accounts) {
+            accounts.forEach(function (account) {
+                ACCESS_TOKEN = account.accessToken;
+                const institutionName = account.institutionName;
+                client.getBalance(ACCESS_TOKEN)
+                    .then(res => {
+                        console.log(res.accounts)
+                        accountBalance.push({
+                            accountBal: institutionName,
+                            balance: res.accounts
+                        })
+                    }).catch(err => console.log(err))
+            });
+        }
+    }
+);
         // @route POST api/plaid/accounts/transactions
         // @desc Fetch transactions from past 30 days from all linked accounts
         // @access Private
