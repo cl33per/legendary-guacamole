@@ -25,13 +25,12 @@ export class CalendarView extends Component {
     loadEventsData = () => {
         API.getEvents().then(res => {
             let events = _.cloneDeep(res.data)
-            _.forEach(events, function (value) {
-            // _.set(value, 'start',moment().format("YYYY-MM-DD"))
-            // _.set(value, 'end',moment().format("YYYY-MM-DD"))
+            _.forEach(events, function (value) { 
+                let startDate =_.get(value,'start');
+                let endDate = _.get(value, 'end');
+                _.set(value, 'start', new Date(startDate))
+            _.set(value, 'end', new Date(endDate))
             });
-            // console.log(_.get(value,))
-            // let testing = res.data[3].start
-            // console.log(moment(testing).format("YYYY-MM-DD"));
             this.setState({ events: events}) 
         }).catch(err => console.log(err));
     };
