@@ -28,13 +28,24 @@ export class CalendarView extends Component {
             _.forEach(events, function (value) { 
                 let startDate =_.get(value,'start');
                 let endDate = _.get(value, 'end');
-                _.set(value, 'start', new Date(startDate))
+             _.set(value, 'start', new Date(startDate))
             _.set(value, 'end', new Date(endDate))
             });
             this.setState({ events: events}) 
         }).catch(err => console.log(err));
     };
 
+    onSelectEvent = event => {
+        const r = window.confirm("Would you like to remove this event?")
+        if (r === true) {
+            console.log(event._id)
+            API.deleteEvent(event._id)
+                .then(res => this.loadEventsData())
+                .catch(err => console.log(err));
+        }else{
+            alert(event.title)
+        }
+    }
     handleSelect = ({ start, end }) => {
         const title = window.prompt('New Event name')
         if (title) 
@@ -64,9 +75,9 @@ export class CalendarView extends Component {
                     selectable
                     localizer={localizer}
                     defaultDate={new Date()}
-                    defaultView="week"
+                    defaultView="month" 
                     events={this.state.events}
-                    onSelectEvent={event => alert(event.title)}
+                    onSelectEvent={event => this.onSelectEvent(event)}
                     style={{ height: "100vh" }}
                     onSelectSlot={this.handleSelect}
                     dayLayoutAlgorithm={this.state.dayLayoutAlgorithm}
