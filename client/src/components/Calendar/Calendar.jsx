@@ -7,15 +7,13 @@ import moment from "moment";
 import API from "../../utils/API";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import _ from "lodash"
-// import events from "../../assets/events"
-import events from "./events"
 
 const localizer = momentLocalizer(moment)
 export class CalendarView extends Component {
     constructor(...args) {
         super(...args)
         this.state = {
-            events: _.cloneDeep(events),
+            events: _.cloneDeep([]),
             dayLayoutAlgorithm: 'no-overlap',
         }
     };
@@ -26,14 +24,21 @@ export class CalendarView extends Component {
 
     loadEventsData = () => {
         API.getEvents().then(res => {
-            var events = res.data
-            console.log(events)})
-            .catch(err => console.log(err));
+            let events = _.cloneDeep(res.data)
+            _.forEach(events, function (value) {
+            // _.set(value, 'start',moment().format("YYYY-MM-DD"))
+            // _.set(value, 'end',moment().format("YYYY-MM-DD"))
+            });
+            // console.log(_.get(value,))
+            // let testing = res.data[3].start
+            // console.log(moment(testing).format("YYYY-MM-DD"));
+            this.setState({ events: events}) 
+        }).catch(err => console.log(err));
     };
 
     handleSelect = ({ start, end }) => {
         const title = window.prompt('New Event name')
-        if (title)
+        if (title) 
             this.setState({
                 events: [
                     ...this.state.events,
@@ -44,6 +49,13 @@ export class CalendarView extends Component {
                     },
                 ],
             })
+            API.saveEvent(
+                {
+                title:title,
+                start:start,
+                end: end,
+            }).then(res => this.loadEventsData())
+            .catch(err => console.log(err));
     }
 
     render() {

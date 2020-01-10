@@ -4,7 +4,9 @@ import {
     GET_ACCOUNTS,
     ACCOUNTS_LOADING,
     GET_TRANSACTIONS,
-    TRANSACTIONS_LOADING
+    TRANSACTIONS_LOADING,
+    GET_ACCOUNTS_BALANCE,
+    BALANCE_LOADING
 } from "../actions/types";
 
 const initialState = {
@@ -49,6 +51,17 @@ export default function (state = initialState, action) {
                 ...state,
                 transactions: action.payload,
                 transactionsLoading: false
+            };
+        case GET_ACCOUNTS_BALANCE:
+            return {
+                ...state,
+                balance: action.payload,
+                balanaceLoading: false
+            };
+        case BALANCE_LOADING:
+            return {
+                ...state,
+                balanaceLoading: true
             };
         default:
             return state;

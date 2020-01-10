@@ -83,8 +83,24 @@ export default {
     saveBill: function (billData) {
         return axios.post("/api/bills", billData);
     },
+    // Gets all bills
+    getFiles: function () {
+        return axios.get("/api/files");
+    },
+    // Gets the bill with the given id
+    getFile: function (id) {
+        return axios.get("/api/files/" + id);
+    },
+    // Deletes the bill with the given id
+    deleteFile: function (id) {
+        return axios.delete("/api/files/" + id);
+    },
     // Saves a bill to the database
+    saveFile: function (fileData) {
+        return axios.post("/api/files", fileData);
+    },
+    // Saves a user to the database
     userData: function (userData) {
         return axios.get("/api/users", userData);
-    },
+    }
 };

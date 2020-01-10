@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import API from "utils/API"
+import API from "utils/API";
+import axios from 'axios';
 import {
   Grid,
   Row,
@@ -15,6 +16,9 @@ import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
+// import Uploader from "../components/Uploader/Uploader.jsx";
+
+const BASE_URL = 'http://localhost:5000/';
 
 export default  class UserProfile extends Component {
   state = {
@@ -26,7 +30,13 @@ export default  class UserProfile extends Component {
     city: "",
     country: "",
     zipCode: "",
-    aboutMe: ""
+    aboutMe: "",
+
+    // for image posts
+    images: [],
+    imageUrls: [],
+    message: '',
+    // fileTitle: ""
   };
 
   componentDidMount() {
@@ -36,7 +46,7 @@ export default  class UserProfile extends Component {
   loadProfiles = () => {
     API.getProfiles()
       .then(res =>
-        this.setState({ profiles: res.data, username: "", email: "", groupName: "", firstName: "", lastName: "", address: "", city: "", country: "", zipCode: "", aboutMe:"", picture: "" })
+        this.setState({ profiles: res.data, username: "", email: "", groupName: "", firstName: "", lastName: "", address: "", city: "", country: "", zipCode: "", aboutMe:"" })
       )
       .catch(err => console.log(err));
   };
@@ -68,13 +78,48 @@ export default  class UserProfile extends Component {
         country: this.state.country,
         zipCode: this.state.zipCode,
         aboutMe: this.state.aboutMe,
-        picture: this.state.picture
+        // picture: this.state.picture
       })
         .then(res => this.loadProfiles())
         .catch(err => console.log(err));
     }
   };
 
+  selectImages = (event) => {
+    let images = []
+    for (var i = 0; i < event.target.files.length; i++) {
+        images[i] = event.target.files.item(i);
+    }
+    images = images.filter(image => image.name.match(/\.(jpg|jpeg|png|gif)$/))
+    let message = `${images.length} valid image(s) selected`
+    this.setState({ images, message })
+}
+
+uploadImages = () => {
+    const uploaders = this.state.images.map(image => {
+    const data = new FormData();
+    data.append("image", image, image.name);
+
+    // Make an AJAX upload request using Axios
+    return axios.post(BASE_URL + 'upload', data)
+    .then(response => {
+        this.setState({
+        imageUrls: [ response.data.imageUrl, ...this.state.imageUrls ]
+        });
+    })
+  //   API.saveFile({
+  //     username: this.state.fileTitle,
+  //     })
+  //     .then(res => this.loadProfiles())
+  //     .catch(err => console.log(err));
+  // }
+});
+
+// Once all the files are uploaded
+axios.all(uploaders).then(() => {
+    console.log('done');
+}).catch(err => alert(err.message));
+}
 
   render() {
     return (
@@ -213,16 +258,39 @@ export default  class UserProfile extends Component {
                         </FormGroup>
                       </Col>
                     </Row>
-                    <label>Profile Picture</label>
-                    <input type="file" label="profile picture" name="picture" value={this.state.picture}/>
 
                     <Button bsStyle="primary" pullRight fill type="submit" onSubmit={this.handleFormSubmit}>
                       Update Profile
                     </Button>
                     <div className="clearfix" />
                   </form>
+                  
                 }
               />
+            <div>
+            <div className="col-sm-12">
+                <h1>Image Uploader</h1><hr/>
+                <div className="col-sm-4">
+                    <input className="form-control " type="file" onChange={this.selectImages} multiple/>
+                </div>
+                <p className="text-info">{this.state.message}</p>
+                <br/><br/><br/>
+                <div className="col-sm-4">
+                    <button className="btn btn-primary" value="Submit" onClick={this.uploadImages}>Submit</button>
+                </div>
+            </div>
+
+
+            <div className="row col-lg-12">
+                {
+                this.state.imageUrls.map((url, i) => (
+                <div className="col-lg-2" key={i}>
+                    <img src={BASE_URL + url} className="img-rounded img-responsive" alt="not available"/><br/>
+                </div>
+                ))
+                }
+            </div>
+        </div>
             </Col>
             <Col md={4}>
               <UserCard
@@ -257,6 +325,7 @@ export default  class UserProfile extends Component {
           </Row>
         </Grid>
       </div>
+
     );
   }
 }
