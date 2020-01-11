@@ -55,3 +55,15 @@
         color: green;
         border: 1px green;
 }
+
+.about-page-list li {
+    list-style: none;
+};
+
+.about-page-list li:before {
+    content: '';
+    display: inline-block;
+    height: 10px;
+    width: 10px;
+    background-image: url(../img/guaclogo.png);
+};

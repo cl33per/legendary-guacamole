@@ -20,7 +20,7 @@ class Accounts extends Component {
     componentDidMount() {
         const { accounts } = this.props;
         this.props.getTransactions(accounts);
-        // this.props.getAccountBalance(accounts);
+        this.props.getAccountBalance(accounts);
     }
     
     // Add account

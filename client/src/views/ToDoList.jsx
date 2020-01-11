@@ -7,9 +7,6 @@ import {
   FormGroup,
   ControlLabel,
   FormControl
-//   Jumbotron,
-//   List,
-//   DeleteBtn
 } from "react-bootstrap";
 
 import { Card } from "components/Card/Card.jsx";
@@ -21,22 +18,25 @@ import avatar from "assets/img/faces/face-3.jpg";
 
 
 export default  class ToDoList extends Component {
-    state = {
+  constructor(){
+    super();
+    this.state = {
         todos: [],
         task: "",
         priority: "",
-        targetDate: "",
         comments: ""
     };
-
+  };
     componentDidMount(){
         this.loadTodos();
     }
 
     loadTodos = () => {
+      console.log("PAGE LOADED")
         API.getTodos()
-            .then(res =>
+            .then(res => { console.log("THEN LOADED")
                 this.setState({ todos: res.data, task: "", priority: "", targetDate: "", comments: ""})
+            }
             )
             .catch(err => console.log(err));
     };
@@ -48,24 +48,23 @@ export default  class ToDoList extends Component {
     };
 
     handleInputChange = event => {
-        const { id, value } = event.target;
+        const { name, value } = event.target;
         this.setState({
-            [id]: value
+            [name]: value
         });
     };
 
-    handleFormSubmit = event => {
-        event.preventDefault();
-        if (this.state.task) {
+  handleFormSubmit = state => {
+    state.preventDefault();
             API.saveTodo({
-                title: this.state.task,
+                task: this.state.task,
                 priority: this.state.priority,
-                targetDate: this.state.targetDate,
+                // targetDate: this.state.targetDate,
                 comments: this.state.comments
-            })
-            .then(res => this.loadTodos())
+            }).then(res => {
+              console.log(res)
+              this.loadTodos()})
             .catch(err => console.log(err));
-        }
     };
 
   render() {
@@ -77,7 +76,7 @@ export default  class ToDoList extends Component {
               <Card
                 title="Add New Task"
                 content={
-                  <form noValidate onSubmit={this.onSubmit}>
+                  <form noValidate onSubmit={this.handleFormSubmit}>
                     <FormInputs
                       ncols={["col-md-8", "col-md-4"]}
                       properties={[
@@ -86,7 +85,7 @@ export default  class ToDoList extends Component {
                           type: "task",
                           bsClass: "form-control",
                           placeholder: "Task",
-                          id: "task",
+                          name: "task",
                           value: this.state.task,
                           onChange: this.handleInputChange
                         },
@@ -95,7 +94,7 @@ export default  class ToDoList extends Component {
                           type: "priority",
                           bsClass: "form-control",
                           placeholder: "Low",
-                          id: "priority",
+                          name: "priority",
                           value: this.state.priority,
                           onChange: this.handleInputChange
                         },
@@ -105,13 +104,12 @@ export default  class ToDoList extends Component {
                           bsClass: "form-control",
                           placeholder: "MM/DD/YY",
                           defaultValue: Date.now(),
-                          id:"targetDate",
+                          name:"targetDate",
                           value: this.state.targetDate,
                           onChange: this.handleInputChange
                         }
                       ]}
                     />
-
                     <Row>
                       <Col md={12}>
                         <FormGroup controlId="formControlsTextarea">
@@ -121,14 +119,14 @@ export default  class ToDoList extends Component {
                             componentClass="textarea"
                             bsClass="form-control"
                             placeholder="Add additional details or updates!"
-                            id="comments"
+                            name="comments"
                             value={this.state.comments}
                             onChange={this.handleInputChange}
                           />
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Button bsStyle="info" pullRight fill type="submit" disabled={!(this.state.title)} onClick={this.handleFormSubmit}>
+                    <Button bsStyle="info" pullRight fill type="submit">
                       Add Task!
                     </Button>
                     <div className="clearfix" />
@@ -169,7 +167,6 @@ export default  class ToDoList extends Component {
           </Row>
         </Grid>
         </div>
-
     );
   }
 }

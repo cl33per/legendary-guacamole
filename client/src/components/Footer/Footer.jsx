@@ -7,23 +7,16 @@ class Footer extends Component {
     return (
       <footer className="footer">
         <Grid fluid>
-        {/* TODO: Not used.  */}
-          {/* <nav className="pull-left">
+          <nav className="pull-left">
             <ul>
               <li>
-                <a href="#pablo">Home</a>
+                <a href="https://github.com/cl33per/legendary-guacamole">Github Repo</a>
               </li>
               <li>
-                <a href="#pablo">Company</a>
-              </li>
-              <li>
-                <a href="#pablo">Portfolio</a>
-              </li>
-              <li>
-                <a href="#pablo">Blog</a>
+                <a href="company">About Family ties</a>
               </li>
             </ul>
-          </nav> */}
+          </nav>
           <p className="copyright pull-right">
             &copy; {new Date().getFullYear()}{" "}
             <a href="https://github.com/cl33per/legendary-guacamole">

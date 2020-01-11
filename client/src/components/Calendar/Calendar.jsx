@@ -32,20 +32,21 @@ export class CalendarView extends Component {
             _.set(value, 'end', new Date(endDate))
             });
             this.setState({ events: events}) 
-        }).catch(err => console.log(err));
+        })
+        .catch(err => console.log(err));
     };
 
     onSelectEvent = event => {
         const r = window.confirm("Would you like to remove this event?")
         if (r === true) {
-            console.log(event._id)
             API.deleteEvent(event._id)
                 .then(res => this.loadEventsData())
                 .catch(err => console.log(err));
         }else{
             alert(event.title)
         }
-    }
+    };
+
     handleSelect = ({ start, end }) => {
         const title = window.prompt('New Event name')
         if (title) 
@@ -59,14 +60,14 @@ export class CalendarView extends Component {
                     },
                 ],
             })
-            API.saveEvent(
-                {
+            API.saveEvent({
                 title:title,
                 start:start,
                 end: end,
-            }).then(res => this.loadEventsData())
+            })
+            .then(res => this.loadEventsData())
             .catch(err => console.log(err));
-    }
+    };
 
     render() {
         return (
@@ -85,7 +86,7 @@ export class CalendarView extends Component {
             </div>
         );
     }
-}
+};
 
 export default CalendarView;
 
