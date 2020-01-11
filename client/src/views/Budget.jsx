@@ -20,11 +20,14 @@ import avatar from "assets/img/faces/face-3.jpg";
 import API from "utils/API";
 
 export default class Budget extends Component {
-    state = {
+    constructor(){
+        super()
+        this.state = {
         bills: [],
         creditor: " ",
         amount: " ",
         dueDate: " "
+    };
     };
 
     componentDidMount() {
@@ -54,7 +57,6 @@ export default class Budget extends Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.creditor) {
             API.saveBill({
                 creditor: this.state.creditor,
                 amount: this.state.amount,
@@ -62,7 +64,6 @@ export default class Budget extends Component {
             })
                 .then(res => this.loadBills())
                 .catch(err => console.log(err));
-        }
     };
 
     render() {
@@ -74,7 +75,7 @@ export default class Budget extends Component {
                             <Card
                                 title="Add New Bill"
                                 content={
-                                    <form>
+                                    <form onSubmit={this.handleFormSubmit}>
                                         <FormInputs
                                             ncols={["col-md-4", "col-md-4", "col-md-4"]}
                                             properties={[
@@ -101,15 +102,13 @@ export default class Budget extends Component {
                                                     id: "dueDate",
                                                     type: "Date",
                                                     bsClass: "form-control",
-                                                    // placeholder: "MM/YY/DD",
+                                                    placeholder: "MM/DD/YYY",
                                                     value: this.state.dueDate,
                                                     onChange: this.handleInputChange
                                                 }
                                             ]}
-                                        />
-
-                                      
-                                        <Button bsStyle="info" pullRight fill type="submit" disabled={!(this.state.creditor)} onClick={this.handleFormSubmit}>
+                                        />            
+                                        <Button bsStyle="info" pullRight fill type="submit" disabled={!(this.state.creditor)}>
                                             Add Bill!
                     </Button>
                                         <div className="clearfix" />
