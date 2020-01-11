@@ -6,16 +6,17 @@ import {
   Col,
   FormGroup,
   ControlLabel,
-  FormControl
-//   Jumbotron,
-//   List,
-//   DeleteBtn
+  FormControl,
+  ListGroup,
+  ListGroupItem
 } from "react-bootstrap";
+import { Link } from "react-router-dom"
 
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
+// import { thArray } from "variables/Variables.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
 
@@ -167,9 +168,43 @@ export default  class ToDoList extends Component {
               />
             </Col>
           </Row>
+          <Row>
+            <Col md={12}>
+            <Grid fluid>
+                    <Row>
+                                    
+                        <Col md={12}>
+                            <Card
+                                plain
+                                title="Striped Table with Hover"
+                                category="Here is a subtitle for this table"
+                                ctTableFullWidth
+                                ctTableResponsive
+                                content=
+                                  { this.state.todos.length ? (
+                                    <ListGroup>
+                                      {this.state.todos.map(todo => (
+                                        <ListGroupItem key={todo._id}>
+                                          <Link to={"api/todos/" + todo._id}>
+                                            <strong>
+                                             Task:  {todo.task} Priority:  {todo.priority}
+                                            </strong>
+                                          </Link>
+                                          <Button placeholder="Delete" onClick={() => this.deleteTodo(todo._id)} />
+                                        </ListGroupItem>
+                                      ))}
+                                    </ListGroup>
+                                  ) : (
+                                    <h3>No Results to Display</h3>
+                                  )}
+                            />
+                        </Col>
+                      </Row>
+                </Grid>
+            </Col>
+          </Row>
         </Grid>
         </div>
-
     );
   }
 }

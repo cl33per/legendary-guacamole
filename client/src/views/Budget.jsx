@@ -5,8 +5,11 @@ import {
     Col,
     // FormGroup,
     // ControlLabel,
-    // FormControl
+    // FormControl,
+    ListGroup,
+    ListGroupItem
 } from "react-bootstrap";
+import { Link } from "react-router-dom"
 
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
@@ -146,6 +149,41 @@ export default class Budget extends Component {
                         </Col>
                     </Row>
                 </Grid>
+                <Row>
+            <Col md={12}>
+            <Grid fluid>
+                    <Row>
+                                    
+                        <Col md={12}>
+                            <Card
+                                plain
+                                title="Striped Table with Hover"
+                                category="Here is a subtitle for this table"
+                                ctTableFullWidth
+                                ctTableResponsive
+                                content=
+                                  { this.state.bills.length ? (
+                                    <ListGroup>
+                                      {this.state.bills.map(bill => (
+                                        <ListGroupItem key={bill._id}>
+                                          <Link to={"api/bills/" + bill._id}>
+                                            <strong>
+                                             Task:  {bill.creditor} Amount:  {bill.amount} Due Date: {bill.dueDate}
+                                            </strong>
+                                          </Link>
+                                          <Button placeholder="Delete" onClick={() => this.deleteBill(bill._id)} />
+                                        </ListGroupItem>
+                                      ))}
+                                    </ListGroup>
+                                  ) : (
+                                    <h3>No Results to Display</h3>
+                                  )}
+                            />
+                        </Col>
+                      </Row>
+                </Grid>
+                </Col>
+             </Row>
             </div>
 
         );
