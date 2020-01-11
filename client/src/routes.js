@@ -7,14 +7,14 @@ import Landing from "views/Landing.jsx";
 import Bank from "views/Bank.jsx";
 import Chat from "views/Chatroom.jsx";
 import Blackboard from "views/Blackboard.jsx";
-// import Calendar from "views/Calendar.jsx";
-import ToDoList from "views/ToDoListTwo.jsx";
+import Calendar from "./components/Calendar/Calendar.jsx";
+import ToDoList from "views/ToDoList.jsx";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Kitchen from "views/Kitchen";
 import Vault from "views/Vault";
 import Budget from "views/Budget";
-import Uploader from "views/Uploader";
+import Company from "views/Company";
 
 const dashboardRoutes = [
   {
@@ -41,14 +41,14 @@ const dashboardRoutes = [
     component: Budget,
     layout: "/admin"
   },
-  // {
-  //   invisible: false,
-  //   path: "/calendar",
-  //   name: "Calendar",
-  //   icon: "pe-7s-ribbon",
-  //   component: Calendar,
-  //   layout: "/admin"
-  // },
+  {
+    invisible: true,
+    path: "/calendar",
+    name: "Calendar",
+    icon: "pe-7s-ribbon",
+    component: Calendar,
+    layout: "/admin"
+  },
   {
     path: "/todo",
     name: "To-Do List Add View",
@@ -81,7 +81,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: false,
+    invisible: true,
     path: "/kitchen",
     name: "Kitchen",
     icon: "pe-7s-cart",
@@ -105,7 +105,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   { // This is not the acutal login page using routes for testing.
-    invisible: false,
+    invisible: true,
     path: "/landing",
     name: "Root Landing Page",
     icon: "pe-7s-unlock",
@@ -113,7 +113,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   { 
-    invisible: false,
+    invisible: true,
     path: "/login",
     name: "Login Page",
     icon: "pe-7s-unlock",
@@ -121,7 +121,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: false,
+    invisible: true,
     path: "/register",
     name: "Register",
     icon: "pe-7s-unlock",
@@ -151,6 +151,14 @@ const dashboardRoutes = [
     name: "Upgrade to PRO",
     icon: "pe-7s-rocket",
     component: Upgrade,
+    layout: "/admin"
+  },
+  {
+    invisible: true,
+    path: "/company",
+    name: "About Us",
+    icon: "pe-7s-rocket",
+    component: Company,
     layout: "/admin"
   }
 ];

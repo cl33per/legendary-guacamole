@@ -15,22 +15,14 @@ export default  class Dashboard extends Component {
       legend.push(json["names"][i]);
     }
     return legend;
-  }
+  };
+
   render() {
     return (
       <div className="content">
         <Grid fluid>
           <Row>
-            <Col lg={3} sm={6}>
-              <StatsCard
-                bigIcon={<i className="pe-7s-server text-warning" />}
-                statsText="Today's Recipie"
-                statsValue="105GB"
-                statsIcon={<i className="fa fa-refresh" />}
-                statsIconText="Updated now" //TODO: Need to integrate with bigover api. and database.
-              />
-            </Col>
-            <Col lg={3} sm={6}>
+            <Col lg={4} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-wallet text-success" />}
                 statsText="Current Bank Balance"
@@ -39,7 +31,7 @@ export default  class Dashboard extends Component {
                 statsIconText="As of" //TODO: Need to integrate with pliad API to grab last known date. 
               />
             </Col>
-            <Col lg={3} sm={6}>
+            <Col lg={4} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-date text-danger" />}
                 statsText="Upcoming Bills"
@@ -48,7 +40,7 @@ export default  class Dashboard extends Component {
                 statsIconText="In the last hour"  // TODO: Change to next event. 
               />
             </Col>
-            <Col lg={3} sm={6}>
+            <Col lg={4} sm={6}>
               <StatsCard
                 bigIcon={<i className="fa fa-twitter text-info" />}
                 statsText="Add To-Do Item"
@@ -61,26 +53,6 @@ export default  class Dashboard extends Component {
           <Row>
             <Col md={8}>
               <CalendarView/>
-              {/* <Card
-                statsIcon="fa fa-history"
-                id="chartHours"
-                title="Calendar"
-                category="24 Hours performance"
-                stats="Updated 3 minutes ago"
-                content={
-                  <div className="ct-chart">
-                    <ChartistGraph
-                      data={dataSales}
-                      type="Line"
-                      options={optionsSales}
-                      responsiveOptions={responsiveSales}
-                    />
-                  </div>
-                }
-                legend={
-                  <div className="legend">{this.createLegend(legendSales)}</div>
-                }
-              /> */}
             </Col>
 
             <Col md={4}>

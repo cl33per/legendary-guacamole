@@ -99,7 +99,7 @@ export const setTransactionsLoading = () => {
         type: TRANSACTIONS_LOADING
     };
 };
-
+// Account Balance
 export const getAccountBalance = plaidData => dispatch => {
     dispatch(setAccountBalanceLoading());
     axios
@@ -117,7 +117,7 @@ export const getAccountBalance = plaidData => dispatch => {
         })
     );
 };
-
+// Accounts Loading
 export const setAccountBalanceLoading = () => {
     return {
         type: BALANCE_LOADING

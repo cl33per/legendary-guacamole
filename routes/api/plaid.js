@@ -101,6 +101,8 @@ router.post(
             });
         }
         );
+// @route POST api/plaid/accounts/balance
+// @desc Fetch all accounts and thier balance
 router.post(
     "/accounts/balance/",
     passport.authenticate("jwt", { session: false }),
@@ -114,11 +116,11 @@ router.post(
                 const institutionName = account.institutionName;
                 client.getBalance(ACCESS_TOKEN)
                     .then(res => {
-                        console.log(res.accounts)
                         accountBalance.push({
                             accountBal: institutionName,
                             balance: res.accounts
                         })
+                        console.log(res.accounts)
                     }).catch(err => console.log(err))
             });
         }
