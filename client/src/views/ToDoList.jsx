@@ -6,15 +6,16 @@ import {
   Col,
   FormGroup,
   ControlLabel,
-  FormControl
+  FormControl,
+  ListGroup,
+  ListGroupItem
 } from "react-bootstrap";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-// import { thArray } from "variables/Variables.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
 
@@ -167,7 +168,8 @@ export default  class ToDoList extends Component {
               />
             </Col>
           </Row>
-          <Row>
+        </Grid>
+        <Row>
             <Col md={12}>
             <Grid fluid>
                     <Row>
@@ -186,7 +188,7 @@ export default  class ToDoList extends Component {
                                         <ListGroupItem key={todo._id}>
                                           <Link to={"api/todos/" + todo._id}>
                                             <strong>
-                                             Task:  {todo.task} Priority:  {todo.priority}
+                                             Task:  {todo.task} Priority:  {todo.priority} Comments: {todo.comments}
                                             </strong>
                                           </Link>
                                           <Button placeholder="Delete" onClick={() => this.deleteTodo(todo._id)} />
@@ -200,9 +202,8 @@ export default  class ToDoList extends Component {
                         </Col>
                       </Row>
                 </Grid>
-            </Col>
-          </Row>
-        </Grid>
+                </Col>
+             </Row>
         </div>
     );
   }

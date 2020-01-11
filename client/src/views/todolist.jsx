@@ -6,8 +6,11 @@ import {
   Col,
   FormGroup,
   ControlLabel,
-  FormControl
+  FormControl,
+  ListGroup,
+  ListGroupItem
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
@@ -166,6 +169,41 @@ export default  class ToDoList extends Component {
             </Col>
           </Row>
         </Grid>
+        <Row>
+            <Col md={12}>
+            <Grid fluid>
+                    <Row>
+                                    
+                        <Col md={12}>
+                            <Card
+                                plain
+                                title="Striped Table with Hover"
+                                category="Here is a subtitle for this table"
+                                ctTableFullWidth
+                                ctTableResponsive
+                                content=
+                                  { this.state.todos.length ? (
+                                    <ListGroup>
+                                      {this.state.todos.map(todo => (
+                                        <ListGroupItem key={todo._id}>
+                                          <Link to={"api/todos/" + todo._id}>
+                                            <strong>
+                                             Task:  {todo.task} Priority:  {todo.priority} Comments: {todo.comments}
+                                            </strong>
+                                          </Link>
+                                          <Button placeholder="Delete" onClick={() => this.deleteTodo(todo._id)} />
+                                        </ListGroupItem>
+                                      ))}
+                                    </ListGroup>
+                                  ) : (
+                                    <h3>No Results to Display</h3>
+                                  )}
+                            />
+                        </Col>
+                      </Row>
+                </Grid>
+                </Col>
+             </Row>
         </div>
     );
   }
