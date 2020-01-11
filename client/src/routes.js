@@ -130,14 +130,6 @@ const dashboardRoutes = [
   }, 
   {
     invisible: false,
-    path: "/upload",
-    name: "Profile Image",
-    icon: "pe-7s-unlock",
-    component: Uploader,
-    layout: "/admin"
-  }, 
-  {
-    invisible: false,
     path: "/vault",
     name: "Vault",
     icon: "pe-7s-copy-file",
