@@ -4,8 +4,20 @@ import { CalendarView } from "components/Calendar/Calendar.jsx"
 import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { Tasks } from "components/Tasks/Tasks.jsx";
-
-export default  class Dashboard extends Component {
+import API from "../utils/API";
+import {getAccountBalance} from "../actions/accountActions"
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import _ from "lodash"
+class Dashboard extends Component {
+  constructor(){
+    super()
+      this.state={
+        bills: "",
+        balance:"",
+        tasks: ""
+    }
+  }
   createLegend(json) {
     var legend = [];
     for (var i = 0; i < json["names"].length; i++) {
@@ -15,6 +27,32 @@ export default  class Dashboard extends Component {
       legend.push(json["names"][i]);
     }
     return legend;
+  };
+  componentDidMount(){
+    // const { accounts } = this.props;
+    // this.props.getAccountBalance(accounts)
+    this.updateUpcomingBills()
+    this.updateCurrentEvents()
+  };
+
+  // updateBankBalance = () => {
+  //   API.getBalance().then(res => {
+  //     console.log("Bills:" + res)
+  //   }).catch(err => console.log(err))
+  // };
+
+  updateUpcomingBills = () => {
+    API.getBills().then(res => {
+        let bills = _.size(res.data)
+        this.setState({bills:bills})
+    }).catch(err => console.log(err))
+  };
+
+  updateCurrentEvents = () => {
+    API.getEvents().then(res =>{
+      let tasks = _.size(res.data)
+      this.setState({ tasks: tasks })
+    }).catch(err => console.log(err))
   };
 
   render() {
@@ -35,7 +73,7 @@ export default  class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-date text-danger" />}
                 statsText="Upcoming Bills"
-                statsValue="23" // TODO: Need to integreate with bills to-do list. 
+                statsValue={this.state.bills} // TODO: Need to integreate with bills to-do list. 
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"  // TODO: Change to next event. 
               />
@@ -44,7 +82,7 @@ export default  class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="fa fa-twitter text-info" />}
                 statsText="Add To-Do Item"
-                statsValue="+45"
+                statsValue={this.state.tasks}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now" // TODO: Need to inegrate with To-do list.
               />
@@ -76,4 +114,17 @@ export default  class Dashboard extends Component {
       </div>
     );
   }
-}
+};
+
+Dashboard.propTypes = {
+  getAccountBalance: PropTypes.func.isRequired, 
+  plaid: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  plaid: state.plaid
+}); 
+
+export default connect( mapStateToProps,
+  {getAccountBalance}
+  )(Dashboard)
