@@ -76,7 +76,7 @@ export default  class ToDoList extends Component {
               <Card
                 title="Add New Task"
                 content={
-                  <form noValidate onSubmit={this.handleFormSubmit}>
+                  <form onSubmit={this.handleFormSubmit}>
                     <FormInputs
                       ncols={["col-md-8", "col-md-4"]}
                       properties={[
@@ -126,7 +126,7 @@ export default  class ToDoList extends Component {
                         </FormGroup>
                       </Col>
                     </Row>
-                    <Button bsStyle="info" pullRight fill type="submit">
+                    <Button bsStyle="info" pullRight fill type="submit" disabled={!(this.state.task)}>
                       Add Task!
                     </Button>
                     <div className="clearfix" />
