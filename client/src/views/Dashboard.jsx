@@ -97,7 +97,7 @@ class Dashboard extends Component {
             {/* TODO: Integrate to database */}
               <Card
                 title="Tasks"
-                category="Backend development"
+                // category="Backend development"
                 stats="Updated 3 minutes ago"
                 statsIcon="fa fa-history"
                 content={

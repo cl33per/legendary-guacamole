@@ -7,8 +7,7 @@ import {
   FormGroup,
   ControlLabel,
   FormControl,
-  ListGroup,
-  ListGroupItem
+  Table
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -183,18 +182,33 @@ export default  class ToDoList extends Component {
                                 ctTableResponsive
                                 content=
                                   { this.state.todos.length ? (
-                                    <ListGroup>
+                                    <Table>
+                                      <tr>
+                                        <th>Task</th>
+                                        <th>Priority</th>
+                                        <th>Comments</th>
+                                        <th></th>
+                                      </tr>
+                                      <tr></tr>
                                       {this.state.todos.map(todo => (
-                                        <ListGroupItem key={todo._id}>
-                                          <Link to={"api/todos/" + todo._id}>
-                                            <strong>
-                                             Task:  {todo.task} Priority:  {todo.priority} Comments: {todo.comments}
-                                            </strong>
-                                          </Link>
-                                          <Button placeholder="Delete" onClick={() => this.deleteTodo(todo._id)} />
-                                        </ListGroupItem>
+                                        <tr key={todo._id}>
+                                          <td>
+                                            <Link to={"api/todos/" + todo._id}>
+                                              {todo.task}
+                                            </Link>
+                                          </td>
+                                          <td>
+                                            {todo.priority}
+                                          </td>
+                                          <td>
+                                            {todo.comments}
+                                          </td>
+                                          <td>
+                                            <Button bsStyle="danger" placeholder="Delete" onClick={() => this.deleteTodo(todo._id)}>Delete</Button>
+                                          </td>
+                                        </tr>
                                       ))}
-                                    </ListGroup>
+                                    </Table>
                                   ) : (
                                     <h3>No Results to Display</h3>
                                   )}

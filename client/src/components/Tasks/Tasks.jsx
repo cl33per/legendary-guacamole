@@ -3,7 +3,7 @@ import API from "utils/API";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import Checkbox from "components/CustomCheckbox/CustomCheckbox.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 export class Tasks extends Component {
   constructor(){
     super();

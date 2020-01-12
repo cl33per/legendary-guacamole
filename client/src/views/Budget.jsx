@@ -6,8 +6,7 @@ import {
     // FormGroup,
     // ControlLabel,
     // FormControl,
-    ListGroup,
-    ListGroupItem
+    Table
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -162,18 +161,35 @@ export default class Budget extends Component {
                                 ctTableResponsive
                                 content=
                                   { this.state.bills.length ? (
-                                    <ListGroup>
+                                    <Table>
+                                       <tr>
+                                        <th>Creditor</th>
+                                        <th>Amount</th>
+                                        <th>Due Date</th>
+                                        <th></th>
+                                      </tr>
+                                      <tr></tr>  
                                       {this.state.bills.map(bill => (
-                                        <ListGroupItem key={bill._id}>
-                                          <Link to={"api/bills/" + bill._id}>
-                                            <strong>
-                                             Task:  {bill.creditor} Amount:  {bill.amount} Due Date: {bill.dueDate}
-                                            </strong>
-                                          </Link>
-                                          <Button placeholder="Delete" onClick={() => this.deleteBill(bill._id)} />
-                                        </ListGroupItem>
+                                        <tr key={bill._id}>
+                                            <td>
+                                                <Link to={"api/bills/" + bill._id}>
+                                                <strong>
+                                                    {bill.creditor}
+                                                </strong>
+                                                </Link>
+                                            </td>
+                                            <td>
+                                             {bill.amount}
+                                            </td>
+                                            <td>
+                                             {bill.dueDate}
+                                            </td>
+                                            <td>
+                                              <Button bsStyle="danger" placeholder="Delete" onClick={() => this.deleteBill(bill._id)}>Delete</Button>
+                                            </td>
+                                        </tr>
                                       ))}
-                                    </ListGroup>
+                                    </Table>
                                   ) : (
                                     <h3>No Results to Display</h3>
                                   )}
