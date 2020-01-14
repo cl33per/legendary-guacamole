@@ -80,7 +80,7 @@ class Dashboard extends Component {
             </Col>
             <Col lg={4} sm={6}>
               <StatsCard
-                bigIcon={<i className="fa fa-twitter text-info" />}
+                bigIcon={<i className="pe-7s-check text-info" />}
                 statsText="Add To-Do Item"
                 statsValue={this.state.tasks}
                 statsIcon={<i className="fa fa-refresh" />}
