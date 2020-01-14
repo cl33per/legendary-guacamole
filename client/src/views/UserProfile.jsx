@@ -21,26 +21,31 @@ import avatar from "assets/img/faces/face-3.jpg";
 const BASE_URL = 'http://localhost:5000/';
 
 export default  class UserProfile extends Component {
-  state = {
-    users: [],
-    groupName: "",
-    firstName: "",
-    lastName: "",
-    address: "",
-    city: "",
-    country: "",
-    zipCode: "",
-    aboutMe: "",
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [],
+      groupName: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      city: "",
+      country: "",
+      zipCode: "",
+      aboutMe: "",
+  
+      // for image posts
+      images: [],
+      imageUrls: [],
+      message: '',
+      // fileTitle: ""
+    };
 
-    // for image posts
-    images: [],
-    imageUrls: [],
-    message: '',
-    // fileTitle: ""
-  };
+  }
 
   componentDidMount() {
     this.loadProfiles();
+    this.loadFiles()
   }
 
   loadProfiles = () => {
@@ -50,7 +55,13 @@ export default  class UserProfile extends Component {
       )
       .catch(err => console.log(err));
   };
-
+  loadFiles = () => {
+    API.getFiles()
+      .then(res =>
+        this.setState({ files: res.data, imageUrl: "" })
+      )
+      .catch(err => console.log(err));
+  };
   deleteProfile = id => {
     API.deleteProfile(id)
       .then(res => this.loadProfiles())
@@ -101,25 +112,30 @@ uploadImages = () => {
     data.append("image", image, image.name);
 
     // Make an AJAX upload request using Axios
-    return axios.post(BASE_URL + 'upload', data)
+    return axios.post("/api/files", data)
     .then(response => {
         this.setState({
         imageUrls: [ response.data.imageUrl, ...this.state.imageUrls ]
         });
     })
-  //   API.saveFile({
-  //     username: this.state.fileTitle,
-  //     })
-  //     .then(res => this.loadProfiles())
-  //     .catch(err => console.log(err));
-  // }
+   
+  
 });
 
 // Once all the files are uploaded
-axios.all(uploaders).then(() => {
-    console.log('done');
-}).catch(err => alert(err.message));
+  axios.all(uploaders).then(() => {
+      console.log('done');
+  }).catch(err => alert(err.message));
 }
+
+// handleImageSubmit = () => {
+//   API.saveFile({
+//     fileTitle: this.state.fileTitle,
+//     })
+//     .then(res => this.loadFiles())
+//     .catch(err => console.log(err));
+
+// }
 
   render() {
     return (

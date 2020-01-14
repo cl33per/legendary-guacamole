@@ -49,7 +49,7 @@ class Dashboard extends Component {
   };
 
   updateCurrentEvents = () => {
-    API.getEvents().then(res =>{
+    API.getTodos().then(res =>{
       let tasks = _.size(res.data)
       this.setState({ tasks: tasks })
     }).catch(err => console.log(err))
@@ -81,7 +81,7 @@ class Dashboard extends Component {
             <Col lg={4} sm={6}>
               <StatsCard
                 bigIcon={<i className="pe-7s-check text-info" />}
-                statsText="Add To-Do Item"
+                statsText="Total To-Do Items"
                 statsValue={this.state.tasks}
                 statsIcon={<i className="fa fa-refresh" />}
                 statsIconText="Updated now" // TODO: Need to inegrate with To-do list.
@@ -97,7 +97,7 @@ class Dashboard extends Component {
             {/* TODO: Integrate to database */}
               <Card
                 title="Tasks"
-                category="Backend development"
+                // category="Backend development"
                 stats="Updated 3 minutes ago"
                 statsIcon="fa fa-history"
                 content={

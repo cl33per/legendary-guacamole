@@ -12,6 +12,7 @@ const localizer = momentLocalizer(moment)
 export class CalendarView extends Component {
     constructor(...args) {
         super(...args)
+        // const eventsData = this.loadEventsData()
         this.state = {
             events: _.cloneDeep([]),
             dayLayoutAlgorithm: 'no-overlap',
@@ -19,7 +20,7 @@ export class CalendarView extends Component {
     };
 
     componentDidMount(){
-        this.loadEventsData()
+    this.loadEventsData()
     };
 
     loadEventsData = () => {
@@ -35,6 +36,9 @@ export class CalendarView extends Component {
         })
         .catch(err => console.log(err));
     };
+  
+
+
 
     onSelectEvent = event => {
         const r = window.confirm("Would you like to remove this event?")
