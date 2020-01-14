@@ -5,8 +5,10 @@ import {
     Col,
     // FormGroup,
     // ControlLabel,
-    // FormControl
+    // FormControl,
+    Table
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
@@ -145,6 +147,58 @@ export default class Budget extends Component {
                         </Col>
                     </Row>
                 </Grid>
+                <Row>
+            <Col md={12}>
+            <Grid fluid>
+                    <Row>
+                                    
+                        <Col md={12}>
+                            <Card
+                                plain
+                                title="Striped Table with Hover"
+                                category="Here is a subtitle for this table"
+                                ctTableFullWidth
+                                ctTableResponsive
+                                content=
+                                  { this.state.bills.length ? (
+                                    <Table>
+                                       <tr>
+                                        <th>Creditor</th>
+                                        <th>Amount</th>
+                                        <th>Due Date</th>
+                                        <th></th>
+                                      </tr>
+                                      <tr></tr>  
+                                      {this.state.bills.map(bill => (
+                                        <tr key={bill._id}>
+                                            <td>
+                                                <Link to={"api/bills/" + bill._id}>
+                                                <strong>
+                                                    {bill.creditor}
+                                                </strong>
+                                                </Link>
+                                            </td>
+                                            <td>
+                                             {bill.amount}
+                                            </td>
+                                            <td>
+                                             {bill.dueDate}
+                                            </td>
+                                            <td>
+                                              <Button bsStyle="danger" placeholder="Delete" onClick={() => this.deleteBill(bill._id)}>Delete</Button>
+                                            </td>
+                                        </tr>
+                                      ))}
+                                    </Table>
+                                  ) : (
+                                    <h3>No Results to Display</h3>
+                                  )}
+                            />
+                        </Col>
+                      </Row>
+                </Grid>
+                </Col>
+             </Row>
             </div>
 
         );

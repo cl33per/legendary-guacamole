@@ -6,8 +6,10 @@ import {
   Col,
   FormGroup,
   ControlLabel,
-  FormControl
+  FormControl,
+  Table
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
@@ -166,6 +168,56 @@ export default  class ToDoList extends Component {
             </Col>
           </Row>
         </Grid>
+        <Row>
+            <Col md={12}>
+            <Grid fluid>
+                    <Row>
+                                    
+                        <Col md={12}>
+                            <Card
+                                plain
+                                title="Striped Table with Hover"
+                                category="Here is a subtitle for this table"
+                                ctTableFullWidth
+                                ctTableResponsive
+                                content=
+                                  { this.state.todos.length ? (
+                                    <Table>
+                                      <tr>
+                                        <th>Task</th>
+                                        <th>Priority</th>
+                                        <th>Comments</th>
+                                        <th></th>
+                                      </tr>
+                                      <tr></tr>
+                                      {this.state.todos.map(todo => (
+                                        <tr key={todo._id}>
+                                          <td>
+                                            <Link to={"api/todos/" + todo._id}>
+                                              {todo.task}
+                                            </Link>
+                                          </td>
+                                          <td>
+                                            {todo.priority}
+                                          </td>
+                                          <td>
+                                            {todo.comments}
+                                          </td>
+                                          <td>
+                                            <Button bsStyle="danger" placeholder="Delete" onClick={() => this.deleteTodo(todo._id)}>Delete</Button>
+                                          </td>
+                                        </tr>
+                                      ))}
+                                    </Table>
+                                  ) : (
+                                    <h3>No Results to Display</h3>
+                                  )}
+                            />
+                        </Col>
+                      </Row>
+                </Grid>
+                </Col>
+             </Row>
         </div>
     );
   }
