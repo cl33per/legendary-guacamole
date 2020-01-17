@@ -8,19 +8,22 @@ const profileSchema = new Schema({
         unique: true,
         match: [/.+@.+\..+/, "Please enter a valid email address"]
     },
-    groupName:  { type: String },
+    // groupName:  { type: String },
     firstName: { type: String },
     lastName: { type: String },
-    address: { type: String },
-    city: { type: String },
-    country: { type: String },
-    zipCode: { type: Number },
+    // address: { type: String },
+    // city: { type: String },
+    // country: { type: String },
+    // zipCode: { type: Number },
+    phoneNumber: { type: Number },
+    birthday: { type: Date },
+    role: { type: String },
     aboutMe: { type: String },
     //Placeholder for a picture stored as a relative path
-    picture: { 
-        type: String,
-        get: v => `${root}${v}`
-    },
+    // picture: { 
+    //     type: String,
+    //     get: v => `${root}${v}`
+    // },
     //The allows us to populate the profile with associated to-do items.
     todos: [
         {
