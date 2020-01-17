@@ -14,7 +14,7 @@ import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-import UploaderB from "components/Uploader/Uploader copy.jsx";
+
 
 import avatar from "assets/img/faces/face-3.jpg";
 
@@ -235,7 +235,6 @@ export default  class UserProfile extends Component {
               />
             </Col>
           </Row>
-          <UploaderB/>
         </Grid>
       </div>
 
