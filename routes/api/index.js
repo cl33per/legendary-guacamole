@@ -9,6 +9,7 @@ const testRoutes = require("./tests");
 const billRoutes = require("./bills");
 const filesRoutes = require('./files')
 const usersRoutes = require("./users");
+const uploadRoutes = require("./upload");
 
 router.use("/profiles", profileRoutes);
 router.use("/groups", groupRoutes);
@@ -20,5 +21,6 @@ router.use("/tests", testRoutes);
 router.use("/bills", billRoutes);
 router.use("/files",filesRoutes);
 router.use("/users",usersRoutes);
+router.use("/upload",uploadRoutes);
 
 module.exports = router;
