@@ -30,6 +30,7 @@ export default  class UserProfile extends Component {
       birthday: "",
       role: "",
       aboutMe: "",
+      imageUrls:""
     }
   }
   componentDidMount() {
@@ -39,7 +40,7 @@ export default  class UserProfile extends Component {
   loadProfiles = () => {
     API.getProfiles()
       .then(res =>
-        this.setState({ profiles: res.data, username: "", email: "", firstName: "", lastName: "", phoneNumber: "", birthday: "", role: "", aboutMe:"" })
+        this.setState({ profiles: res.data, username: "", email: "", firstName: "", lastName: "", phoneNumber: "", birthday: "", role: "", aboutMe: "", imageUrls: "" })
       )
       .catch(err => console.log(err));
   };
@@ -68,7 +69,7 @@ export default  class UserProfile extends Component {
         birthday: this.state.birthday,
         role: this.state.role,
         aboutMe: this.state.aboutMe,
-        // picture: this.state.picture
+        // imageUrls: this.state.imageUrls
       })
         .then(res => this.loadProfiles())
         .catch(err => console.log(err));
@@ -156,11 +157,11 @@ export default  class UserProfile extends Component {
                       properties={[
                         {
                           label: "Birthday",
-                          name: "Birthday",
-                          type: "date",
+                          name: "birthday",
+                          type: "Date",
                           bsClass: "form-control",
-                          placeholder: "01/01/00",
-                          defaultValue: "01/01/00",
+                          placeholder: "MM/DD/YY",
+                          defaultValue: "01/01/20",
                           value: this.state.birthday,
                           onChange: this.handleInputChange
                         },
