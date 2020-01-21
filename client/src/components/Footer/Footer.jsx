@@ -13,7 +13,7 @@ class Footer extends Component {
                 <a href="https://github.com/cl33per/legendary-guacamole">Github Repo</a>
               </li>
               <li>
-                <a href="company">About Family ties</a>
+                <a href="company">About Family Ties</a>
               </li>
             </ul>
           </nav>

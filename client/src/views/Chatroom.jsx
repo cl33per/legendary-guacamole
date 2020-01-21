@@ -7,6 +7,7 @@ import 'stream-chat-react/dist/css/index.css';
 
 const chatClient = new StreamChat('dng8nyary62h');
 const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiaGlkZGVuLXRydXRoLTMifQ.mNwLvjjiot46wV_DwcZgZKGzS6PE3FAx_BO1TeVopio';
+
 chatClient.setUser(
     {
         id: 'hidden-truth-3',

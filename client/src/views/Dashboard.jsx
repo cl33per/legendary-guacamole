@@ -73,7 +73,7 @@ class Dashboard extends Component {
               <StatsCard
                 bigIcon={<i className="pe-7s-date text-danger" />}
                 statsText="Upcoming Bills"
-                statsValue={this.state.bills} // TODO: Need to integreate with bills to-do list. 
+                statsValue={this.state.bills}
                 statsIcon={<i className="fa fa-clock-o" />}
                 statsIconText="In the last hour"  // TODO: Change to next event. 
               />
@@ -94,10 +94,8 @@ class Dashboard extends Component {
             </Col>
 
             <Col md={4}>
-            {/* TODO: Integrate to database */}
               <Card
                 title="Tasks"
-                // category="Backend development"
                 stats="Updated 3 minutes ago"
                 statsIcon="fa fa-history"
                 content={

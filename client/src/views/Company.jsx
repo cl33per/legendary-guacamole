@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import credit_card from "../assets/img/guaclogo.png";
 import {
     Grid,
     Row,
-    Col
+    Col,
+    Image
 } from "react-bootstrap";
-
+import GIF from "assets/img/Family-Ties-GIF.gif"
+import { UserCard } from "components/UserCard/UserCard.jsx";
+import Button from "components/CustomButton/CustomButton.jsx";
+import avatarCody from "assets/img/faces/avatarCody.jpg";
+import avatarKate from "assets/img/faces/avatarKate.jpg";
+import avatarAaron from "assets/img/faces/avatarAaron.jpeg";
+import backgroundImage from "assets/img/livingroom.jpg"
 class Login extends Component {
     render() {
         return (
@@ -15,32 +21,80 @@ class Login extends Component {
                 <Grid fluid>
                     <Row>
                         <Col md={12}>
-                            <img className="responsive-img guac-center credit-card" src={credit_card} alt="logo_image" />
-                            <h4 className="flow-text text-center"> Welcome to Family Ties a {" "}<br />
-                                <span style={{ fontFamily: "monospace" }}>MERN</span> stack
-                        </h4>
+                            <Image src={GIF} className="responsive-img guac-center"/>
                             <br />
                             <Col md={6}>
                                 <h4 className="flow-text text-center" >About Family Ties</h4>
-                                <p>Family Ties - an app designed by the team legendary-guacamole - is intended to function as a one-stop shop for family organization. It will have the following functionalities:
+                                <p>We know that it’s frustrating to try and wrangle the minutiae of daily life. There’s an app for everything now! Calendars, to-do lists, banking and bills and budgets, grocery lists – they all have their own apps. But ours is special. It’s all of those things wrapped into one – plus more! 
                                     </p>
-                                    <ul>
-                                    <li>A calendar which will keep track of family events;</li> 
-                                    <li>Family profiles for each member of the family;</li>
-                                    <li>A to-do list function which will have the ability to generate multiple lists;</li>
-                                    <li>A meal-planning function which will also generate grocery lists;</li>
-                                    <li>A record function, which will allow for the uploading and storing of images; and</li>
-                                    <li>A chat function which will allow members of the group to talk each other, as well as members of other groups using the app.</li>
-                                    </ul>
-                                
+                                <p>Family Ties is a one-stop shop for household organization. Need a calendar to track family events? We’ve got one! Need a to-do list to track tasks? We’ve got one! We’ve got banking and bills, we’ve got grocery lists, AND we have a family chat room! Each user will have their own profile, and each user will be able to chat with other users in the family room.</p>   
+                                <p>And that’s not all! We’ve also got the family vault. Need a place to store tax documents? Marriage certificates? Birth certificates? We’ve got you covered. Our family vault will store any images you want to upload, including those priceless photos of grandma as a young girl.</p>                             
                             </Col>
-                            <Col md={6}>
-                                <h4 className="flow-text text-center">Collaborators</h4>
-                                <ul className="about-page-list">
-                                    <li>Cody Leeper</li>
-                                    <li>Aaron Mckoy</li>
-                                    <li>Kate Laney</li>
-                                </ul>
+                            <Col md={2}>
+                                <UserCard
+                                    bgImage={backgroundImage}
+                                    avatar={avatarCody}
+                                    name="Cody Leeper"
+                                    userName="cl33per"
+                                    description={
+                                    <span>Frontend Developement</span> 
+                                    }
+                                    socials={
+                                        <div>
+                                            <Button simple href="https://www.facebook.com/cl33per">
+                                                <i className="fa fa-facebook-square" />
+                                            </Button>
+                                            <Button simple href="https://www.linkedin.com/in/cleeper92/">
+                                                <i className="fa fa-linkedin" />
+                                            </Button>
+                                            <Button simple href="https://www.github.com/cl33per">
+                                                <i className="fa fa-github"/>
+                                            </Button>
+                                        </div>
+                                    }
+                                />
+                            </Col>
+                            <Col md={2}>
+                                <UserCard
+                                    bgImage={backgroundImage}
+                                    avatar={avatarKate}
+                                    name="Kate Laney"
+                                    userName="KateALaney"
+                                    description={
+                                        <span>Project Management</span>
+                                    }
+                                    socials={
+                                        <div>
+                                            <Button simple href="https://www.linkedin.com/in/katealaney/">
+                                                <i className="fa fa-linkedin" />
+                                            </Button>
+                                            <Button simple href="https://github.com/KateALaney" >
+                                                <i className="fa fa-github"/>
+                                            </Button>
+                                        </div>
+                                    }
+                                />
+                            </Col>
+                            <Col md={2}>
+                                <UserCard
+                                    bgImage={backgroundImage}
+                                    avatar={avatarAaron}
+                                    name="Aaron McKoy"
+                                    userName="ArMc8234"
+                                    description={
+                                        <span>Backend Development</span>
+                                    }
+                                    socials={
+                                        <div>
+                                            <Button simple href="https://www.linkedin.com/in/aaron-mckoy/">
+                                                <i className="fa fa-linkedin" />
+                                            </Button>
+                                            <Button simple href="https://github.com/ArMc8234">
+                                                <i className="fa fa-github" />
+                                            </Button>
+                                        </div>
+                                    }
+                                />
                             </Col>
                         </Col>
                     </Row>
