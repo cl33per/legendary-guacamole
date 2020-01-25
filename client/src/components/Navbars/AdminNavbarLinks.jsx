@@ -12,24 +12,6 @@ class AdminNavbarLinks extends Component {
     window.location.href = "/";
   }
 
-  //href link solutions...not perfect
-  navBarLinksClick = id => {
-    switch(id){
-      case "register": window.location.href = "register"
-      break;
-      case "login": window.location.href = "login"
-      break;
-      case "landing": window.location.href = "landing"
-      break;
-      case "calendar": window.location.href = "calendar"
-      break;
-      case "profile": window.location.href = "user"
-      break;
-      default:
-    }
-  
-  }
-
   render() {
     const notification = (
       <div>
@@ -52,13 +34,13 @@ class AdminNavbarLinks extends Component {
           </NavDropdown>
         </Nav>
         <Nav pullRight>
-          <NavDropdown eventKey={2} title="Helpful Links" id="basic-nav-dropdown-right">
-            <MenuItem id="register" eventKey={2.1} onClick={() => this.navBarLinksClick("register")}>Register</MenuItem>
-            <MenuItem id="login" eventKey={2.2} onClick={() => this.navBarLinksClick("login")}>Login</MenuItem>
-            <MenuItem id="landing" eventKey={2.3} onClick={() => this.navBarLinksClick("landing")}>Landing Page</MenuItem>
-            <MenuItem id="calendar" eventKey={2.4} onClick={() => this.navBarLinksClick("calendar")}>Calendar</MenuItem>
+          <NavDropdown eventKey={2} title="Helpful Links" id="basic-nav-dropdown-right">           
+            <MenuItem href="register" eventKey={2.1}>Register</MenuItem>
+            <MenuItem href="login" eventKey={2.2}>Login</MenuItem>
+            <MenuItem href="landing" eventKey={2.3}>Landing Page</MenuItem>
+            <MenuItem href="calendar " eventKey={2.4}>Calendar</MenuItem>
           </NavDropdown>
-          <NavItem id="profile" eventKey={3} onClick={() => this.navBarLinksClick("profile")}><i className="fa fa-user" />Profile</NavItem>
+          <NavItem eventKey={3} href="user"><i className="fa fa-user" />Profile</NavItem>
           <NavItem id="logout" eventKey={3} onClick={this.onLogoutClick}>Log out</NavItem>
         </Nav>
       </div>
