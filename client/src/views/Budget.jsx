@@ -171,7 +171,8 @@ export default class Budget extends Component {
                     ctTableResponsive
                     content={
                       this.state.bills.length ? (
-                        <Table>
+                        <Table hover>
+                          <thead>
                           <tr>
                             <th>Creditor</th>
                             <th>Amount</th>
@@ -179,6 +180,8 @@ export default class Budget extends Component {
                             <th></th>
                           </tr>
                           <tr></tr>
+                          </thead>
+                          <tbody>
                           {this.state.bills.map(bill => (
                             <tr key={bill._id}>
                               <td>
@@ -191,14 +194,15 @@ export default class Budget extends Component {
                               <td>
                                 <Button
                                   bsStyle="danger"
-                                  placeholder="Delete"
+                                  simple type="button" bsSize="xs"
                                   onClick={() => this.deleteBill(bill._id)}
                                 >
-                                  Delete
+                                <i className="fa fa-times" />
                                 </Button>
                               </td>
                             </tr>
                           ))}
+                          </tbody>
                         </Table>
                       ) : (
                         <h3>No Results to Display</h3>
