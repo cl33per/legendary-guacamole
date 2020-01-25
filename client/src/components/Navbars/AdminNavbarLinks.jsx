@@ -36,10 +36,10 @@ class AdminNavbarLinks extends Component {
         </Nav>
         <Nav pullRight>
           <NavDropdown eventKey={2} title="Helpful Links" id="basic-nav-dropdown-right">
-            <Link to="register" role="MenuItem">Register</Link>
-            <Link to="login" role="MenuItem">Login</Link>
-            <Link to="landing" role="MenuItem">Landing Page</Link>
-            <Link to="calendar" role="MenuItem">Calendar</Link>
+            <Link to="register"><MenuItem eventKey={2.1}>Register</MenuItem></Link>
+            <Link to="login"><MenuItem eventKey={2.1}>Login</MenuItem></Link>
+            <Link to="landing"><MenuItem eventKey={2.1}>RegisCalendarter</MenuItem></Link>
+            <Link to="calendar"><MenuItem eventKey={2.1}>Calendar</MenuItem></Link>
           </NavDropdown>
           <Link to="user"><i className="fa fa-user"/>Profile</Link>
           <NavItem id="logout" eventKey={3} onClick={this.onLogoutClick}>Log out</NavItem>
