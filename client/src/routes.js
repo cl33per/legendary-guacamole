@@ -20,20 +20,20 @@ import Uploader from "views/Uploader";
 const dashboardRoutes = [
   {
     invisible: false,
-    path: "/uploader",
-    name: "Photo Upload",
-    icon: "pe-7s-home",
-    component: Uploader,
-    layout: "/admin"
-  },
-  {
-    invisible: false,
     path: "/dashboard",
     name: "HomeBase",
     icon: "pe-7s-home",
     component: Dashboard,
     layout: "/admin"
   },
+      {
+        invisible: false,
+        path: "/uploader",
+        name: "Photo Upload",
+        icon: "pe-7s-home",
+        component: Uploader,
+        layout: "/admin"
+      },
   {
     invisible: false,
     path: "/bank",
@@ -66,7 +66,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: false,
+    invisible: true,
     path: "/table",
     name: "To-Do List View",
     icon: "pe-7s-note2",
@@ -98,7 +98,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: true,
+    invisible: false,
     path: "/maps",
     name: "Maps",
     icon: "pe-7s-map-marker",
@@ -130,7 +130,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: true,
+    invisible: false,
     path: "/register",
     name: "Register",
     icon: "pe-7s-unlock",

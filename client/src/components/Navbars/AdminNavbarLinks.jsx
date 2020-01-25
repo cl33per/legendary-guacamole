@@ -3,7 +3,7 @@ import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 import { logoutUser } from "../../actions/authActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-
+import { Link } from "react-router-dom";
 class AdminNavbarLinks extends Component {
 
   // Logout
@@ -36,7 +36,7 @@ class AdminNavbarLinks extends Component {
         </Nav>
         <Nav pullRight>
           <NavDropdown eventKey={2} title="Helpful Links" id="basic-nav-dropdown-right">
-            <MenuItem href="register" eventKey={2.1}>Register</MenuItem>
+            <Link to="register" role="MenuItem">Register</Link>
             <MenuItem href="login" eventKey={2.2}>Login</MenuItem>
             <MenuItem href="landing" eventKey={2.3}>Landing Page</MenuItem>
             <MenuItem href="calendar " eventKey={2.4}>Calendar</MenuItem>
