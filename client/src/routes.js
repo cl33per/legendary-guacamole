@@ -26,14 +26,14 @@ const dashboardRoutes = [
     component: Dashboard,
     layout: "/admin"
   },
-      {
-        invisible: false,
-        path: "/uploader",
-        name: "Photo Upload",
-        icon: "pe-7s-home",
-        component: Uploader,
-        layout: "/admin"
-      },
+  {
+    invisible: false,
+    path: "/uploader",
+    name: "Photo Upload",
+    icon: "pe-7s-home",
+    component: Uploader,
+    layout: "/admin"
+  },
   {
     invisible: false,
     path: "/bank",

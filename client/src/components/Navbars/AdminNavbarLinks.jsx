@@ -3,7 +3,6 @@ import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
 import { logoutUser } from "../../actions/authActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 class AdminNavbarLinks extends Component {
 
   // Logout
@@ -11,6 +10,24 @@ class AdminNavbarLinks extends Component {
     e.preventDefault();
     this.props.logoutUser();  
     window.location.href = "/";
+  }
+
+  //href link solutions...not perfect
+  navBarLinksClick = id => {
+    switch(id){
+      case "register": window.location.href = "register"
+      break;
+      case "login": window.location.href = "login"
+      break;
+      case "landing": window.location.href = "landing"
+      break;
+      case "calendar": window.location.href = "calendar"
+      break;
+      case "profile": window.location.href = "user"
+      break;
+      default:
+    }
+  
   }
 
   render() {
@@ -36,12 +53,12 @@ class AdminNavbarLinks extends Component {
         </Nav>
         <Nav pullRight>
           <NavDropdown eventKey={2} title="Helpful Links" id="basic-nav-dropdown-right">
-            <MenuItem eventKey={2.1}><Link to="register">Register</Link></MenuItem>
-            <MenuItem eventKey={2.2}><Link to="login">Login</Link></MenuItem>
-            <MenuItem eventKey={2.3}><Link to="landing">Landing Page</Link> </MenuItem>
-            <MenuItem eventKey={2.4}><Link to="calendar">Calendar</Link></MenuItem>
+            <MenuItem id="register" eventKey={2.1} onClick={() => this.navBarLinksClick("register")}>Register</MenuItem>
+            <MenuItem id="login" eventKey={2.2} onClick={() => this.navBarLinksClick("login")}>Login</MenuItem>
+            <MenuItem id="landing" eventKey={2.3} onClick={() => this.navBarLinksClick("landing")}>Landing Page</MenuItem>
+            <MenuItem id="calendar" eventKey={2.4} onClick={() => this.navBarLinksClick("calendar")}>Calendar</MenuItem>
           </NavDropdown>
-          <NavItem eventKey={3} href="user"><i className="fa fa-user" />Profile</NavItem>
+          <NavItem id="profile" eventKey={3} onClick={() => this.navBarLinksClick("profile")}><i className="fa fa-user" />Profile</NavItem>
           <NavItem id="logout" eventKey={3} onClick={this.onLogoutClick}>Log out</NavItem>
         </Nav>
       </div>
