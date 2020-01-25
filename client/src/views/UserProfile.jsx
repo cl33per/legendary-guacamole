@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "utils/API";
-import axios from 'axios';
+
 import {
   Grid,
   Row,
@@ -15,53 +15,36 @@ import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
-import avatar from "assets/img/faces/face-3.jpg";
-// import Uploader from "../components/Uploader/Uploader.jsx";
 
-const BASE_URL = 'http://localhost:5000/';
+import avatar from "assets/img/faces/face-3.jpg";
 
 export default  class UserProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
-      groupName: "",
+      username: "",
       firstName: "",
       lastName: "",
-      address: "",
-      city: "",
-      country: "",
-      zipCode: "",
+      phoneNumber: "",
+      birthday: "",
+      role: "",
       aboutMe: "",
-  
-      // for image posts
-      images: [],
-      imageUrls: [],
-      message: '',
-      // fileTitle: ""
-    };
-
+      imageUrls:""
+    }
   }
-
   componentDidMount() {
     this.loadProfiles();
-    this.loadFiles()
   }
 
   loadProfiles = () => {
     API.getProfiles()
       .then(res =>
-        this.setState({ profiles: res.data, username: "", email: "", groupName: "", firstName: "", lastName: "", address: "", city: "", country: "", zipCode: "", aboutMe:"" })
+        this.setState({ profiles: res.data, username: "", email: "", firstName: "", lastName: "", phoneNumber: "", birthday: "", role: "", aboutMe: "", imageUrls: "" })
       )
       .catch(err => console.log(err));
   };
-  loadFiles = () => {
-    API.getFiles()
-      .then(res =>
-        this.setState({ files: res.data, imageUrl: "" })
-      )
-      .catch(err => console.log(err));
-  };
+
   deleteProfile = id => {
     API.deleteProfile(id)
       .then(res => this.loadProfiles())
@@ -75,68 +58,25 @@ export default  class UserProfile extends Component {
     });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.title && this.state.author) {
+  handleFormSubmit = state => {
+    state.preventDefault();
       API.saveProfile({
         username: this.state.username,
         email: this.state.email,
-        groupName:  this.state.groupName,
         firstName: this.state.firstName,
         lastName: this.state.lastName,
-        address: this.state.address,
-        city: this.state.city,
-        country: this.state.country,
-        zipCode: this.state.zipCode,
+        phoneNumber: this.state.phoneNumber,
+        birthday: this.state.birthday,
+        role: this.state.role,
         aboutMe: this.state.aboutMe,
-        // picture: this.state.picture
+        // imageUrls: this.state.imageUrls
       })
         .then(res => this.loadProfiles())
         .catch(err => console.log(err));
-    }
+    
   };
 
-  selectImages = (event) => {
-    let images = []
-    for (var i = 0; i < event.target.files.length; i++) {
-        images[i] = event.target.files.item(i);
-    }
-    images = images.filter(image => image.name.match(/\.(jpg|jpeg|png|gif)$/))
-    let message = `${images.length} valid image(s) selected`
-    this.setState({ images, message })
-}
-
-uploadImages = () => {
-    const uploaders = this.state.images.map(image => {
-    const data = new FormData();
-    data.append("image", image, image.name);
-
-    // Make an AJAX upload request using Axios
-    return axios.post("/api/files", data)
-    .then(response => {
-        this.setState({
-        imageUrls: [ response.data.imageUrl, ...this.state.imageUrls ]
-        });
-    })
-   
   
-});
-
-// Once all the files are uploaded
-  axios.all(uploaders).then(() => {
-      console.log('done');
-  }).catch(err => alert(err.message));
-}
-
-// handleImageSubmit = () => {
-//   API.saveFile({
-//     fileTitle: this.state.fileTitle,
-//     })
-//     .then(res => this.loadFiles())
-//     .catch(err => console.log(err));
-
-// }
-
   render() {
     return (
       <div className="content">
@@ -146,20 +86,10 @@ uploadImages = () => {
               <Card
                 title="Edit Profile"
                 content={
-                  <form>
+                  <form onSubmit={this.handleFormSubmit}>
                     <FormInputs
-                      ncols={["col-md-5", "col-md-3", "col-md-4"]}
+                      ncols={["col-md-6", "col-md-6"]}
                       properties={[
-                        {
-                          label: "Group (disabled)",
-                          name: "groupName",
-                          type: "text",
-                          bsClass: "form-control",
-                          placeholder: "Group Name",
-                          defaultValue: "Smith Family",
-                          value: this.state.groupName,
-                          disabled: true
-                        },
                         {
                           label: "Username",
                           name: "username",
@@ -210,103 +140,70 @@ uploadImages = () => {
                       ncols={["col-md-12"]}
                       properties={[
                         {
-                          label: "Adress",
-                          name: "address",
-                          type: "text",
+                          label: "Phone Number",
+                          name: "phoneNumber",
+                          type: "number",
                           bsClass: "form-control",
-                          placeholder: "Home Adress",
+                          placeholder: "8002225555",
                           defaultValue:
-                            "Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09",
-                          value: this.state.address,
+                            "null",
+                          value: this.state.phoneNumber,
                           onChange: this.handleInputChange
                         }
                       ]}
                     />
                     <FormInputs
-                      ncols={["col-md-4", "col-md-4", "col-md-4"]}
+                      ncols={["col-md-6", "col-md-6"]}
                       properties={[
                         {
-                          label: "City",
-                          name: "city",
-                          type: "text",
+                          label: "Birthday",
+                          name: "birthday",
+                          type: "Date",
                           bsClass: "form-control",
-                          placeholder: "City",
-                          defaultValue: "Mike",
-                          value: this.state.city,
+                          placeholder: "MM/DD/YY",
+                          defaultValue: "01/01/20",
+                          value: this.state.birthday,
                           onChange: this.handleInputChange
                         },
                         {
-                          label: "Country",
-                          name: "country",
+                          label: "Role",
+                          name: "role",
                           type: "text",
                           bsClass: "form-control",
-                          placeholder: "Country",
-                          defaultValue: "Andrew",
-                          value: this.state.country,
-                          onChange: this.handleInputChange
-                        },
-                        {
-                          label: "Postal Code",
-                          name: "zipCode",
-                          type: "number",
-                          bsClass: "form-control",
-                          placeholder: "ZIP Code",
-                          value: this.state.zipCode,
+                          placeholder: "role",
+                          defaultValue: "parent",
+                          value: this.state.role,
                           onChange: this.handleInputChange
                         }
                       ]}
                     />
 
-                    <Row>
-                      <Col md={12}>
-                        <FormGroup controlId="formControlsTextarea">
-                          <ControlLabel>About Me</ControlLabel>
-                          <FormControl
-                            rows="5"
-                            componentClass="textarea"
-                            bsClass="form-control"
-                            placeholder="Here can be your description"
-                            defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                            name="aboutMe"
-                            value={this.state.aboutMe}
-                            onChange={this.handleInputChange}
-                          />
-                        </FormGroup>
-                      </Col>
-                    </Row>
+                      <Row>
+                          <Col md={12}>
+                            <FormGroup controlId="formControlsTextarea">
+                              <ControlLabel>About Me (Favorites, Dislikes, Notes )</ControlLabel>
+                              <FormControl
+                                rows="5"
+                                componentClass="textarea"
+                                bsClass="form-control"
+                                placeholder="Here can be your description"
+                                defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
+                                name="aboutMe"
+                                value={this.state.aboutMe}
+                                onChange={this.handleInputChange}
+                              />
+                            </FormGroup>
+                          </Col>
+                      </Row>
 
-                    <Button bsStyle="primary" pullRight fill type="submit" onSubmit={this.handleFormSubmit}>
-                      Update Profile
-                    </Button>
-                    <div className="clearfix" />
+                          <Button bsStyle="primary" pullRight fill type="submit" >
+                            Update Profile
+                          </Button>
+                        <div className="clearfix" />
                   </form>
-                  
                 }
               />
-            <div>
-            <div className="col-sm-12">
-                <h1>Image Uploader</h1><hr/>
-                <div className="col-sm-4">
-                    <input className="form-control " type="file" onChange={this.selectImages} multiple/>
-                </div>
-                <p className="text-info">{this.state.message}</p>
-                <br/><br/><br/>
-                <div className="col-sm-4">
-                    <button className="btn btn-primary" value="Submit" onClick={this.uploadImages}>Submit</button>
-                </div>
-            </div>
-
-
-            <div className="row col-lg-12">
-                {
-                this.state.imageUrls.map((url, i) => (
-                <div className="col-lg-2" key={i}>
-                    <img src={BASE_URL + url} className="img-rounded img-responsive" alt="not available"/><br/>
-                </div>
-                ))
-                }
-            </div>
-        </div>
+                      
             </Col>
             <Col md={4}>
               <UserCard
