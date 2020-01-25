@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavItem, Nav, NavDropdown, MenuItem } from "react-bootstrap";
-import { logoutUser } from "../../../actions/authActions";
+import { logoutUser } from "../../actions/authActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
