@@ -11,15 +11,9 @@ import {
 
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import { UserCard } from "components/UserCard/UserCard.jsx";
-// import { Tooltip, OverlayTrigger } from "react-bootstrap";
-// import Checkbox from "components/CustomCheckbox/CustomCheckbox.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-
-import avatar from "assets/img/faces/face-3.jpg";
 
 
 export default  class ToDoList extends Component {
@@ -100,7 +94,7 @@ export default  class ToDoList extends Component {
       <div className="content">
         <Grid fluid>
           <Row>
-            <Col md={8}>
+            <Col md={12}>
               <Card
                 title="Add New Task"
                 content={
@@ -159,36 +153,6 @@ export default  class ToDoList extends Component {
                     </Button>
                     <div className="clearfix" />
                   </form>
-                }
-              />
-            </Col>
-            <Col md={4}>
-              <UserCard
-                bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
-                avatar={avatar}
-                name="Mike Andrew"
-                userName="michael24"
-                description={
-                  <span>
-                    "Lamborghini Mercy
-                    <br />
-                    Your chick she so thirsty
-                    <br />
-                    I'm in that two seat Lambo"
-                  </span>
-                }
-                socials={
-                  <div>
-                    <Button simple>
-                      <i className="fa fa-facebook-square" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-twitter" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-google-plus-square" />
-                    </Button>
-                  </div>
                 }
               />
             </Col>
