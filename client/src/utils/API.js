@@ -50,6 +50,10 @@ export default {
     saveTodo: function (todoData) {
         return axios.post("/api/todos", todoData);
     },
+    //Updates a todo
+    updateTodo: function (todoData) {
+        return axios.put("/api/todos", todoData);
+    },
 
     // Gets all events
     getEvents: function () {

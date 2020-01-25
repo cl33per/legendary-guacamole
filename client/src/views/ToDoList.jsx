@@ -8,12 +8,15 @@ import {
   ControlLabel,
   FormControl,
   Table
+
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import { UserCard } from "components/UserCard/UserCard.jsx";
+// import { Tooltip, OverlayTrigger } from "react-bootstrap";
+// import Checkbox from "components/CustomCheckbox/CustomCheckbox.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 
 import avatar from "assets/img/faces/face-3.jpg";
@@ -26,7 +29,7 @@ export default  class ToDoList extends Component {
         todos: [],
         task: "",
         priority: "",
-        comments: ""
+        comments: ""   
     };
   };
     componentDidMount(){
@@ -42,6 +45,29 @@ export default  class ToDoList extends Component {
             )
             .catch(err => console.log(err));
     };
+    editTodos = (e) => {
+      // this.showModal();
+      // (todoEdit).empty();
+      // var thisId = this.state.id;
+      // API.getTodos(id)
+      //   .then(res => { console.log("retrieve todo")
+      //     this.setState({ todos: res.data, task: "", priority: "", targetDate: "", comments: ""})
+      // })
+
+      // const editedTodo = {
+      //   task: this.state.task,
+      //   priority: this.state.priority,
+      //   targetDate: this.state.targetDate,
+      //   comments: this.state.comments,
+      // }
+      //   API.updateTodo(editedTodo)
+      //       .then(res => { console.log("THEN LOADED")
+      //           this.setState({ todos: res.data, task: "", priority: "", targetDate: "", comments: ""})
+      //       }
+      //       )
+      //       .catch(err => console.log(err));
+    };
+
 
     deleteTodo = id => {
         API.deleteTodo(id)
@@ -182,14 +208,17 @@ export default  class ToDoList extends Component {
                                 ctTableResponsive
                                 content=
                                   { this.state.todos.length ? (
-                                    <Table>
-                                      <tr>
-                                        <th>Task</th>
-                                        <th>Priority</th>
-                                        <th>Comments</th>
-                                        <th></th>
-                                      </tr>
-                                      <tr></tr>
+                                    <Table hover>
+                                      <thead>
+                                        <tr>
+                                          <th>Task</th>
+                                          <th>Priority</th>
+                                          <th>Comments</th>
+                                          <th></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+
                                       {this.state.todos.map(todo => (
                                         <tr key={todo._id}>
                                           <td>
@@ -204,10 +233,16 @@ export default  class ToDoList extends Component {
                                             {todo.comments}
                                           </td>
                                           <td>
-                                            <Button bsStyle="danger" placeholder="Delete" onClick={() => this.deleteTodo(todo._id)}>Delete</Button>
+                                        {/* <Button b    sStyle="info" simple type="button" bsSize="xs"  class="toggle-button" id="centered-toggle-button" onClick={e => {this.showModal(e);}}> */}
+                                              {/* <i className="fa fa-edit" />
+                                            </Button> */}
+                                           
+                                            <Button bsStyle="danger" simple type="button" bsSize="xs"  onClick={() => this.deleteTodo(todo._id)}><i className="fa fa-times" /></Button>
+         
                                           </td>
                                         </tr>
                                       ))}
+                                      </tbody>
                                     </Table>
                                   ) : (
                                     <h3>No Results to Display</h3>

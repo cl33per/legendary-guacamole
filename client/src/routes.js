@@ -15,8 +15,17 @@ import Kitchen from "views/Kitchen";
 import Vault from "views/Vault";
 import Budget from "views/Budget";
 import Company from "views/Company";
+import Uploader from "views/Uploader";
 
 const dashboardRoutes = [
+  {
+    invisible: false,
+    path: "/uploader",
+    name: "Photo Upload",
+    icon: "pe-7s-home",
+    component: Uploader,
+    layout: "/admin"
+  },
   {
     invisible: false,
     path: "/dashboard",

@@ -31,6 +31,7 @@ class Uploader extends Component {
         // Make an AJAX upload request using Axios
         return axios.post(BASE_URL + 'upload', data)
         .then(response => {
+            console.log("uploadImages res:", response);
             this.setState({
             imageUrls: [ response.data.imageUrl, ...this.state.imageUrls ]
             });

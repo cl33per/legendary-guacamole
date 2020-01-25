@@ -34,6 +34,13 @@ export class Tasks extends Component {
             .catch(err => console.log(err));
     };
 
+    // updateTodo = id => {
+    //   API.getTodos(id)
+    //   .then(res =>
+    //     //toggle modal with todo or create an input field within the same section?
+    //     )
+    // }
+
   handleCheckbox = event => {
     const target = event.target;
     console.log(event.target);
@@ -56,6 +63,7 @@ export class Tasks extends Component {
     var number;
     for (var i = 0; i < this.state.todos.length; i++) {
       let todoTask = this.state.todos[i].task;
+      let todoID = this.state.todos[i]._id;
       console.log("Todos for table: ", this.state.todos.length);
       number = "checkbox" + i;
       tasks.push(
@@ -69,13 +77,13 @@ export class Tasks extends Component {
           <td>{todoTask}</td>
           <td className="td-actions text-right">
             <OverlayTrigger placement="top" overlay={edit}>
-              <Button bsStyle="info" simple type="button" bsSize="xs">
+              <Button bsStyle="info" simple type="button" bsSize="xs"  data-toggle="modal" data-target="#editToDo">
                 <i className="fa fa-edit" />
               </Button>
             </OverlayTrigger>
 
             <OverlayTrigger placement="top" overlay={remove}>
-              <Button bsStyle="danger" simple type="button" bsSize="xs">
+              <Button bsStyle="danger" simple type="button" bsSize="xs" onClick={() => this.deleteTodo(todoID)}>
                 <i className="fa fa-times" />
               </Button>
             </OverlayTrigger>
@@ -84,6 +92,28 @@ export class Tasks extends Component {
         console.log("Tasks:", todoTask),
       );
     }
+    
+    //     // <!-- Modal for Notes-->
+    //     <div className="modal fade" id="editToDo" role="dialog">
+    //       <div className="modal-dialog">
+    
+    //         {/* <!-- Modal content--> */}
+    //         <div className="modal-content">
+    //           <div className="modal-header" id="todo-title">
+    //             {/* <h2 className="modal-title" id="note-title"><strong></strong></h2> */}
+    //           </div>
+    //           <div className="modal-body">
+    //             <input type="text" id="note-title"></input>
+    //             <textarea id="note-body" ></textarea> id="note-body">
+    //           </div>
+    //           <div className="modal-footer" id="note-footer">
+    //             <button type="button" className="btn btn-default" id="editToDoClose" data-dismiss="modal">Close</button>
+    //           </div>
+    //         </div>
+    
+    //       </div>
+    //     </div>
+    // // <!--modal end point-->
     return <tbody>{tasks}</tbody>;
   }
 }
