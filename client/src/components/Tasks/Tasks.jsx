@@ -3,7 +3,6 @@ import API from "utils/API";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 import Checkbox from "components/CustomCheckbox/CustomCheckbox.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-// import { Link } from "react-router-dom";
 export class Tasks extends Component {
   constructor(){
     super();
@@ -19,14 +18,16 @@ export class Tasks extends Component {
     }
 
     loadTodos = () => {
-      console.log("PAGE LOADED")
-        API.getTodos()
-            .then(res => { console.log("THEN LOADED")
-                this.setState({ todos: res.data, task: "", priority: "", targetDate: "", comments: ""})
-            }
-            )
-            .catch(err => console.log(err));
-    };
+        API.getTodos().then(res => {
+          this.setState({ 
+            todos: res.data,
+            task: "",
+            priority: "",
+            targetDate: "",
+            comments: ""
+          })
+        }).catch(err => console.log(err));
+      };
 
     deleteTodo = id => {
         API.deleteTodo(id)

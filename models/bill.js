@@ -23,7 +23,7 @@ const billSchema = new Schema({
     // }
 
     
-});
+}, { versionKey: false });
 
 module.exports = Bill = mongoose.model("Bill", billSchema);
 

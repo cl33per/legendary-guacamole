@@ -15,12 +15,48 @@ import {
     Row,
     Col
 } from "react-bootstrap";
+// Added for Material Table ICONS
+import { forwardRef } from 'react';
+import AddBox from '@material-ui/icons/AddBox';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import Check from '@material-ui/icons/Check';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import Clear from '@material-ui/icons/Clear';
+import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import Edit from '@material-ui/icons/Edit';
+import FilterList from '@material-ui/icons/FilterList';
+import FirstPage from '@material-ui/icons/FirstPage';
+import LastPage from '@material-ui/icons/LastPage';
+import Remove from '@material-ui/icons/Remove';
+import SaveAlt from '@material-ui/icons/SaveAlt';
+import Search from '@material-ui/icons/Search';
+import ViewColumn from '@material-ui/icons/ViewColumn';
+const tableIcons = {
+    Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+    Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+    Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
+    DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+    Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+    Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+    FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+    LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+    NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
+    PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
+    ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+    Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+    SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
+    ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
+    ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
+};
 
 class Accounts extends Component {
     componentDidMount() {
         const { accounts } = this.props;
         this.props.getTransactions(accounts);
-        this.props.getAccountBalance(accounts);
+        // this.props.getAccountBalance(accounts);
     }
     
     // Add account
@@ -43,7 +79,6 @@ class Accounts extends Component {
         };
         this.props.deleteAccount(accountData);
     };
-
 
     render() {
         const { user, accounts } = this.props;
@@ -79,12 +114,12 @@ class Accounts extends Component {
                     date: transaction.date,
                     category: transaction.category[0],
                     name: transaction.name,
-                    amount: transaction.amount
+                    amount: "$"+transaction.amount
                 });
             });
         });
-
         return (
+            
             <div className="content">
                 <Grid fluid>
                     <Row>
@@ -115,7 +150,8 @@ class Accounts extends Component {
                     (<p className="grey-text text-darken-1">Fetching transactions...</p>) : 
                     ( <> <p className="grey-text text-darken-1">You have <b>{transactionsData.length}</b> transactions from your <b> {accounts.length}</b> 
                     linked {accounts.length > 1 ? ( <span> accounts </span>) : (<span> account </span>)}from the past 30 days</p>
-                                <MaterialTable
+                                <MaterialTable 
+                                    icons={tableIcons}
                                     columns={transactionsColumns}
                                     data={transactionsData}
                                     title="Search Transactions"
@@ -133,7 +169,7 @@ class Accounts extends Component {
 Accounts.propTypes = {
     logoutUser: PropTypes.func.isRequired,
     getTransactions: PropTypes.func.isRequired,
-    getAccountBalance: PropTypes.func.isRequired,
+    // getAccountBalance: PropTypes.func.isRequired,
     addAccount: PropTypes.func.isRequired,
     deleteAccount: PropTypes.func.isRequired,
     accounts: PropTypes.array.isRequired,

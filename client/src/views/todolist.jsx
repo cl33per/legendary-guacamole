@@ -31,13 +31,15 @@ export default  class ToDoList extends Component {
     }
 
     loadTodos = () => {
-      console.log("PAGE LOADED")
-        API.getTodos()
-            .then(res => { console.log("THEN LOADED")
-                this.setState({ todos: res.data, task: "", priority: "", targetDate: "", comments: ""})
-            }
-            )
-            .catch(err => console.log(err));
+        API.getTodos().then(res => {
+          this.setState({ 
+              todos: res.data, 
+              task: "", 
+              priority: "",
+              targetDate: "", 
+              comments: ""
+            })
+          }).catch(err => console.log(err));
     };
     editTodos = (e) => {
       // this.showModal();

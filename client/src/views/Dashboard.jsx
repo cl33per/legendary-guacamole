@@ -5,10 +5,9 @@ import { Card } from "components/Card/Card.jsx";
 import { StatsCard } from "components/StatsCard/StatsCard.jsx";
 import { Tasks } from "components/Tasks/Tasks.jsx";
 import API from "../utils/API";
-import {getAccountBalance} from "../actions/accountActions"
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import _ from "lodash"
+import _ from "lodash";
 class Dashboard extends Component {
   constructor(){
     super()
@@ -29,8 +28,6 @@ class Dashboard extends Component {
     return legend;
   };
   componentDidMount(){
-    // const { accounts } = this.props;
-    // this.props.getAccountBalance(accounts)
     this.updateUpcomingBills()
     this.updateCurrentEvents()
   };
@@ -115,7 +112,6 @@ class Dashboard extends Component {
 };
 
 Dashboard.propTypes = {
-  getAccountBalance: PropTypes.func.isRequired, 
   plaid: PropTypes.object.isRequired,
 };
 
@@ -124,5 +120,4 @@ const mapStateToProps = state => ({
 }); 
 
 export default connect( mapStateToProps,
-  {getAccountBalance}
   )(Dashboard)

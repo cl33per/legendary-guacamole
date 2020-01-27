@@ -101,6 +101,7 @@ router.post(
             });
         }
         );
+
 // @route POST api/plaid/accounts/balance
 // @desc Fetch all accounts and thier balance
 router.post(
@@ -109,7 +110,6 @@ router.post(
     (req, res) => {
         let accountBalance = [];
         const accounts = req.body;
-
         if (accounts) {
             accounts.forEach(function (account) {
                 ACCESS_TOKEN = account.accessToken;
@@ -120,7 +120,8 @@ router.post(
                             accountBal: institutionName,
                             balance: res.accounts
                         })
-                        console.log(res.accounts)
+                        let currentBalance = (res.accounts[0].balances.current);
+                        console.log(currentBalance)
                     }).catch(err => console.log(err))
             });
         }

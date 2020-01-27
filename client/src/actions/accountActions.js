@@ -99,6 +99,7 @@ export const setTransactionsLoading = () => {
         type: TRANSACTIONS_LOADING
     };
 };
+
 // Account Balance
 export const getAccountBalance = plaidData => dispatch => {
     dispatch(setAccountBalanceLoading());

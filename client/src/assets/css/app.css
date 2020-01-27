@@ -60,6 +60,7 @@
     list-style: none;
 };
 
+
 .about-page-list li:before {
     content: '';
     display: inline-block;
