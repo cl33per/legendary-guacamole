@@ -25,23 +25,14 @@ class AdminNavbarLinks extends Component {
     
     return (
       <div>
-        <Nav>
-          <NavDropdown eventKey={2} title={notification} noCaret id="basic-nav-dropdown">
-            <MenuItem eventKey={2.1}>Notification 1</MenuItem>
-            <MenuItem eventKey={2.2}>Notification 2</MenuItem>
-            <MenuItem eventKey={2.3}>Notification 3</MenuItem>
-            <MenuItem eventKey={2.4}>Notification 4</MenuItem>
-            <MenuItem eventKey={2.5}>Another notifications</MenuItem>
-          </NavDropdown>
-        </Nav>
         <Nav pullRight>
           <NavDropdown eventKey={2} title="Helpful Links" id="basic-nav-dropdown-right">           
             <MenuItem eventKey={2.1}><Link to="register">Register</Link></MenuItem>
-            <MenuItem href="login" eventKey={2.2}>Login</MenuItem>
-            <MenuItem href="landing" eventKey={2.3}>Landing Page</MenuItem>
-            <MenuItem href="calendar " eventKey={2.4}>Calendar</MenuItem>
+            <MenuItem eventKey={2.2}><Link to="Login">Register</Link></MenuItem>
+            <MenuItem eventKey={2.3}><Link to="landing">Landing Page</Link></MenuItem>
+            <MenuItem eventKey={2.4}><Link to="calendar">Calendar</Link>Calendar</MenuItem>
           </NavDropdown>
-          <NavItem eventKey={3} href="user"><i className="fa fa-user" />Profile</NavItem>
+          <NavItem eventKey={3}><i className="fa fa-user" /><Link to="user">Profile</Link></NavItem>
           <NavItem id="logout" eventKey={3} onClick={this.onLogoutClick}>Logout</NavItem>
         </Nav>
       </div>

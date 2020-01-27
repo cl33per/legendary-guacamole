@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Grid } from "react-bootstrap";
 import logo from "assets/img/guaclogo.png";
-
+import Link from "react-router-dom";
 class Footer extends Component {
   render() {
     return (
@@ -13,7 +13,7 @@ class Footer extends Component {
                 <a href="https://github.com/cl33per/legendary-guacamole">Github Repo</a>
               </li>
               <li>
-                <a href="company">About Family Ties</a>
+                <Link to="company">About Family Ties</Link>
               </li>
             </ul>
           </nav>
