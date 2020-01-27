@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Grid } from "react-bootstrap";
 import logo from "assets/img/guaclogo.png";
-import Link from "react-router-dom";
+import { Link } from "react-router-dom";
 class Footer extends Component {
   render() {
     return (

@@ -11,6 +11,7 @@ import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
 import API from "utils/API";
+import moment from "moment";
 
 export default class Budget extends Component {
   constructor() {
@@ -26,7 +27,6 @@ export default class Budget extends Component {
   componentDidMount() {
     this.loadBills();
   }
-
   loadBills = () => {
     API.getBills()
       .then(res =>
@@ -152,8 +152,8 @@ export default class Budget extends Component {
                                   <strong>{bill.creditor}</strong>
                                 </Link>
                               </td>
-                              <td>{bill.amount}</td>
-                              <td>{bill.dueDate}</td>
+                              <td>{"$"+bill.amount}</td>
+                              <td>{moment(bill.dueDate).format("MMM Do YYYY")}</td>
                               <td>
                                 <Button
                                   bsStyle="danger"
