@@ -166,8 +166,7 @@ export default  class ToDoList extends Component {
                         <Col md={12}>
                             <Card
                                 plain
-                                title="Striped Table with Hover"
-                                category="Here is a subtitle for this table"
+                                title="To-Do List"
                                 ctTableFullWidth
                                 ctTableResponsive
                                 content=
@@ -197,10 +196,6 @@ export default  class ToDoList extends Component {
                                             {todo.comments}
                                           </td>
                                           <td>
-                                        {/* <Button b    sStyle="info" simple type="button" bsSize="xs"  class="toggle-button" id="centered-toggle-button" onClick={e => {this.showModal(e);}}> */}
-                                              {/* <i className="fa fa-edit" />
-                                            </Button> */}
-                                           
                                             <Button bsStyle="danger" simple type="button" bsSize="xs"  onClick={() => this.deleteTodo(todo._id)}><i className="fa fa-times" /></Button>
          
                                           </td>

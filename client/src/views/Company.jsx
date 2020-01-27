@@ -25,10 +25,9 @@ class Login extends Component {
                             <br />
                             <Col md={6}>
                                 <h4 className="flow-text text-center" >About Family Ties</h4>
-                                <p>We know that it’s frustrating to try and wrangle the minutiae of daily life. There’s an app for everything now! Calendars, to-do lists, banking and bills and budgets, grocery lists – they all have their own apps. But ours is special. It’s all of those things wrapped into one – plus more! 
-                                    </p>
-                                <p>Family Ties is a one-stop shop for household organization. Need a calendar to track family events? We’ve got one! Need a to-do list to track tasks? We’ve got one! We’ve got banking and bills, we’ve got grocery lists, AND we have a family chat room! Each user will have their own profile, and each user will be able to chat with other users in the family room.</p>   
-                                <p>And that’s not all! We’ve also got the family vault. Need a place to store tax documents? Marriage certificates? Birth certificates? We’ve got you covered. Our family vault will store any images you want to upload, including those priceless photos of grandma as a young girl.</p>                             
+                                <p>Family Ties is a one-stop shop for household organization. Need a calendar to track family events? We’ve got one! Need a to-do list to track tasks? We’ve got one! We’ve also got banking, and bills, AND we have a family chat room!</p>
+                                <p> We know that it’s frustrating to try and wrangle the minutiae of daily life. There’s an app for everything now! Calendars, to-do lists, banking and bills, chats – they all have their own apps. But ours is special. It’s all of those things wrapped into one – plus more! </p>
+                                <p>And that’s not all! Be on the lookout for the pro version.  You'll be able to customize your profiles with all sorts of details, like favorites, dislikes, meds, and other notes.  We'll have a family vault, where you can store pictures of important documents, like tax documents, marriage certificates, birth certificates - our vault will hold any image you want to upload!  We'll also have a kitchen, where you'll be able to plan meals, pull down new and exciting recipes, and make grocery lists.  And there will be that all-important map function, which will help you get wherever you need to go.</p> 
                             </Col>
                             <Col md={2}>
                                 <UserCard

@@ -3,19 +3,13 @@ import {
   Grid,
   Row,
   Col,
-  // FormGroup,
-  // ControlLabel,
-  // FormControl,
   Table
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import { Card } from "components/Card/Card.jsx";
 import { FormInputs } from "components/FormInputs/FormInputs.jsx";
-import { UserCard } from "components/UserCard/UserCard.jsx";
 import Button from "components/CustomButton/CustomButton.jsx";
-
-import avatar from "assets/img/faces/face-3.jpg";
 import API from "utils/API";
 
 export default class Budget extends Component {
@@ -75,7 +69,7 @@ export default class Budget extends Component {
       <div className="content">
         <Grid fluid>
           <Row>
-            <Col md={8}>
+            <Col md={12}>
               <Card
                 title="Add New Bill"
                 content={
@@ -126,36 +120,6 @@ export default class Budget extends Component {
                 }
               />
             </Col>
-            <Col md={4}>
-              <UserCard
-                bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
-                avatar={avatar}
-                name="Mike Andrew"
-                userName="michael24"
-                description={
-                  <span>
-                    "Lamborghini Mercy
-                    <br />
-                    Your chick she so thirsty
-                    <br />
-                    I'm in that two seat Lambo"
-                  </span>
-                }
-                socials={
-                  <div>
-                    <Button simple>
-                      <i className="fa fa-facebook-square" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-twitter" />
-                    </Button>
-                    <Button simple>
-                      <i className="fa fa-google-plus-square" />
-                    </Button>
-                  </div>
-                }
-              />
-            </Col>
           </Row>
         </Grid>
         <Row>
@@ -165,8 +129,7 @@ export default class Budget extends Component {
                 <Col md={12}>
                   <Card
                     plain
-                    title="Striped Table with Hover"
-                    category="Here is a subtitle for this table"
+                    title="Upcomming Bills"
                     ctTableFullWidth
                     ctTableResponsive
                     content={

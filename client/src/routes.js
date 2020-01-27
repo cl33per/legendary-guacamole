@@ -27,7 +27,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: false,
+    invisible: true,
     path: "/uploader",
     name: "Photo Upload",
     icon: "pe-7s-home",
@@ -45,7 +45,7 @@ const dashboardRoutes = [
   {
     invisible: false,
     path: "/budget",
-    name: "Bills and Budget",
+    name: "Bills",
     icon: "pe-7s-cash",
     component: Budget,
     layout: "/admin"
@@ -60,7 +60,7 @@ const dashboardRoutes = [
   },
   {
     path: "/todo",
-    name: "To-Do List Add View",
+    name: "To-Do List",
     icon: "pe-7s-ribbon",
     component: ToDoList,
     layout: "/admin"
@@ -68,7 +68,7 @@ const dashboardRoutes = [
   {
     invisible: true,
     path: "/table",
-    name: "To-Do List View",
+    name: "TableList",
     icon: "pe-7s-note2",
     component: TableList,
     layout: "/admin"
@@ -98,7 +98,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: false,
+    invisible: true,
     path: "/maps",
     name: "Maps",
     icon: "pe-7s-map-marker",
@@ -130,7 +130,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    invisible: false,
+    invisible: true,
     path: "/register",
     name: "Register",
     icon: "pe-7s-unlock",
@@ -138,7 +138,7 @@ const dashboardRoutes = [
     layout: "/admin"
   }, 
   {
-    invisible: false,
+    invisible: true,
     path: "/vault",
     name: "Vault",
     icon: "pe-7s-copy-file",
