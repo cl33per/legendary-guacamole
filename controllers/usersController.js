@@ -5,13 +5,7 @@ const keys = require("../config/keys");
 // Load input validation
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
-require("dotenv").config();
-const StreamChat = require('stream-chat').StreamChat;
-const clientchatId = process.env.REACT_APP_STREAM_CHAT_ID;
-const clientchatKey = process.env.REACT_APP_STREAM_CHAT_KEY;
-const client = new StreamChat(clientchatKey, clientchatId);
 
-// console.log(client)
 // User: This is a good start for an idea on how the current API routes are configured for the User route.
 // Defining methods for the UsersController
 module.exports = {
@@ -76,8 +70,6 @@ module.exports = {
                         id: user.id,
                         name: user.name
                     };
-                    const userToken = chatClient.createToken(playload.name);
-                    console.log(userToken)
                     // Sign token  
                     jwt.sign(
                         payload,
