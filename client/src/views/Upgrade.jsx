@@ -30,22 +30,22 @@ export default class Icons extends Component {
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Components</td>
-                        <td>30</td>
-                        <td>60</td>
+                        <td>Google Seach Map</td>
+                        <td><i className="fa fa-times text-danger" /></td>
+                        <td><i className="fa fa-check text-success" /></td>
                       </tr>
                       <tr>
-                        <td>Plugins</td>
-                        <td>3</td>
-                        <td>13</td>
+                        <td>Encrptyed File Vault</td>
+                        <td><i className="fa fa-times text-danger" /></td>
+                        <td><i className="fa fa-check text-success" /></td>
                       </tr>
                       <tr>
-                        <td>Example Pages</td>
-                        <td>7</td>
-                        <td>24</td>
+                        <td>Blackboard Integration</td>
+                        <td><i className="fa fa-times text-danger" /></td>
+                        <td><i className="fa fa-check text-success" /></td>
                       </tr>
                       <tr>
-                        <td>Login/Register/Lock Pages</td>
+                        <td>Kichten API Integration</td>
                         <td>
                           <i className="fa fa-times text-danger" />
                         </td>
@@ -65,7 +65,7 @@ export default class Icons extends Component {
                       <tr>
                         <td />
                         <td>Free</td>
-                        <td>Just $49</td>
+                        <td>Just $79.99/mo</td>
                       </tr>
                       <tr>
                         <td />
