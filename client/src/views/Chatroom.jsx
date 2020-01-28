@@ -1,31 +1,34 @@
 import React, { Component } from 'react';
-import { Chat, Channel, ChannelHeader, Thread, Window } from 'stream-chat-react';
-import { MessageList, MessageInput } from 'stream-chat-react';
+import { Chat, Channel, ChannelHeader, Thread, Window, MessageList, MessageInput } from 'stream-chat-react';
 import { StreamChat } from 'stream-chat';
-import API from "utils/API";
 import 'stream-chat-react/dist/css/index.css';
+import API from '../utils/API'
 
-const chatClient = new StreamChat('dng8nyary62h');
-const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiaGlkZGVuLXRydXRoLTMifQ.mNwLvjjiot46wV_DwcZgZKGzS6PE3FAx_BO1TeVopio';
+const clientchatId = process.env.REACT_APP_STREAM_CHAT_ID;
+const clientchatKey = process.env.REACT_APP_STREAM_CHAT_KEY;
+const chatClient = new StreamChat(clientchatKey, clientchatId);
+
+// const userToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiaGlkZGVuLXRydXRoLTMifQ.mNwLvjjiot46wV_DwcZgZKGzS6PE3FAx_BO1TeVopio';
+
 
 chatClient.setUser(
     {
-        id: 'hidden-truth-3',
-        name: 'Hidden truth',
-        image: 'https://getstream.io/random_svg/?id=hidden-truth-3&name=Hidden+truth'
+        id: 'jlahey',
+        name: 'Jim Lahey',
+        image: 'https://i.imgur.com/fR9Jz14.png',
     },
-    userToken,
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiamxhaGV5In0.OEJe2Q3Z-J_KYhBgoEUuiDy14BrkbMOd0TUWWxB1jvQ",
 );
 
 const channel = chatClient.channel('messaging', 'godevs', {
-    // add as many custom fields as you'd like
-    image: 'https://cdn.chrisshort.net/testing-certificate-chains-in-go/GOPHER_MIC_DROP.png',
-    name: 'Talk about Go',
+    mage: '../../src/assets/img/guaclogo.png',
+    name: 'Family Room',
 });
+
 
 export default class chatRoom extends Component{
     componentDidMount() {
-        this.loadUserData();
+        // this.loadUserData();
     }
     loadUserData = () => {
         API.userData()
@@ -33,6 +36,9 @@ export default class chatRoom extends Component{
             )
             .catch(err => console.log(err));
     };
+    assignUser = () =>{
+
+    }
 
 render() {
     return(

@@ -23,17 +23,6 @@ export class CalendarView extends Component {
     };
 
     loadEventsData = () => {
-        API.getBills().then(res => {
-            let bills = _.cloneDeep(res.data)
-            _.forEach(bills,function(value){
-                let startDate = _.get(value,'dueDate');
-                let endDate = _.get(value, 'dueDate');
-                _.set(value, 'dueDate', new Date(startDate))
-                _.set(value, 'dueDate', new Date(endDate))
-                console.log(bills)
-            });
-            this.setState({ events: bills }) 
-        }).catch(err => console.log(err));
     
         API.getEvents().then(res => {
             let events = _.cloneDeep(res.data)
@@ -44,6 +33,20 @@ export class CalendarView extends Component {
             _.set(value, 'end', new Date(endDate))
             });
             this.setState({ events: events}) 
+        }).catch(err => console.log(err));
+    };
+
+    loadBillsData = () => {
+        API.getBills().then(res => {
+            let bills = _.cloneDeep(res.data)
+            _.forEach(bills,function(value){
+                let startDate = _.get(value,'dueDate');
+                let endDate = _.get(value, 'dueDate');
+                _.set(value, 'dueDate', new Date(startDate))
+                _.set(value, 'dueDate', new Date(endDate))
+                console.log(bills)
+            });
+            this.setState({ events: bills }) 
         }).catch(err => console.log(err));
     };
     
