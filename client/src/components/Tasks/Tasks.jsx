@@ -65,7 +65,6 @@ export class Tasks extends Component {
     for (var i = 0; i < this.state.todos.length; i++) {
       let todoTask = this.state.todos[i].task;
       let todoID = this.state.todos[i]._id;
-      console.log("Todos for table: ", this.state.todos.length);
       number = "checkbox" + i;
       tasks.push(
         <tr key={i}>
@@ -89,8 +88,7 @@ export class Tasks extends Component {
               </Button>
             </OverlayTrigger>
           </td>
-        </tr>,
-        console.log("Tasks:", todoTask),
+        </tr>
       );
     }
     

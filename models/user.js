@@ -1,16 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Email = new Schema({
-    address: { 
-        type: String, 
-        lowercase: true, 
-        required: [true, "can't be blank"], 
-        match: [/\S+@\S+\.\S+/, 'is invalid'], index: true },
-    validated: { 
-        type: Boolean, 
-        default: false }
-});
 const UserSchema = new Schema({
 
     username: { 
@@ -24,8 +14,11 @@ const UserSchema = new Schema({
         type: String,
         required: true },
     email: {
-        type: Email,
-        required: true },
+        type: String,
+        lowercase: true,
+        required: [true, "can't be blank"],
+        match: [/\S+@\S+\.\S+/, 'is invalid'], index: true
+    },
     profile: {
         firstName: String,
         lastName: String,
@@ -37,12 +30,10 @@ const UserSchema = new Schema({
             city: String,
             state: String,
             country: String,
-            zip: String
+            zipcode: String
         }
     },
     active: { type: Boolean, default: true }
-}, {
-    timestamps: true
 });
 
 module.exports = User = mongoose.model("User", UserSchema);

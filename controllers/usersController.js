@@ -9,34 +9,33 @@ module.exports = {
     // @route POST api/users/register
     // @desc Register user
     // @access Public
-    register: (req, res) => {
-        let bodyData = req.body
+    register: (req, res) => {       
         // Form validation
-        const { errors, isValid } = validateRegisterInput(bodyData);
+        const { errors, isValid } = validateRegisterInput(req.body);
         // Check validation
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        User.findOne({ email: bodyData.email }).then(user => {
+        User.findOne({ email: req.body.email }).then(user => {
             if (user) {
                 return res.status(400).json({ email: "Email already exists" });
             } else {
                 const newUser = new User({
-                    username: bodyData.username,
-                    password: bodyData.password,
-                    email: bodyData.email,
+                    username: req.body.username,
+                    password: req.body.password,
+                    email: req.body.email,
                     profile: {
-                        firstName: bodyData.profile.firstName,
-                        lastName: bodyData.profile.lastName,
-                        avatar: bodyData.profile.avatar,
-                        bio: bodyData.profile.bio,
+                        firstName: req.body.profile.firstName,
+                        lastName: req.body.profile.lastName,
+                        // avatar: req.body.profile.avatar,
+                        // bio: req.body.profile.bio,
                         address: {
-                            streetOne: bodyData.profile.address.streetOne,
-                            streetTwo: bodyData.profile.address.streetTwo,
-                            city: bodyData.profile.address.city,
-                            state: bodyData.profile.address.state,
-                            country: bodyData.profile.address.country,
-                            zip: bodyData.profile.address.zip
+                            streetOne: req.body.profile.address.streetOne,
+                            streetTwo: req.body.profile.address.streetTwo,
+                            city: req.body.profile.address.city,
+                            state: req.body.profile.address.addressState,
+                            country: req.body.profile.address.country,
+                            zipcode: req.body.profile.address.zipcode
                             }
                         },
                     active: true
@@ -59,15 +58,14 @@ module.exports = {
     // @desc Login user and return JWT token
     // @access Public
     login: (req, res) => {
-        let bodyData = req.body
         // Form validation
-        const { errors, isValid } = validateLoginInput(bodyData);
+        const { errors, isValid } = validateLoginInput(req.body);
         // Check validation
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        const email = bodyData.email;
-        const password = bodyData.password;
+        const email = req.body.email;
+        const password = req.body.password;
         // Find user by email
         User.findOne({ email }).then(user => {
             // Check if user exists

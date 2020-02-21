@@ -40,7 +40,18 @@ export default  class UserProfile extends Component {
   loadProfiles = () => {
     API.getProfiles()
       .then(res =>
-        this.setState({ profiles: res.data, username: "", email: "", firstName: "", lastName: "", phoneNumber: "", birthday: "", role: "", aboutMe: "", imageUrls: "" })
+        this.setState({ 
+          profiles: res.data, 
+          username: "",
+          email: "",
+          firstName: "",
+          lastName: "", 
+          phoneNumber: "", 
+          birthday: "", 
+          role: "", 
+          aboutMe: "", 
+          imageUrls: "" 
+        })
       )
       .catch(err => console.log(err));
   };
@@ -145,8 +156,7 @@ export default  class UserProfile extends Component {
                           type: "number",
                           bsClass: "form-control",
                           placeholder: "8002225555",
-                          defaultValue:
-                            "null",
+                          defaultValue: "null",
                           value: this.state.phoneNumber,
                           onChange: this.handleInputChange
                         }
