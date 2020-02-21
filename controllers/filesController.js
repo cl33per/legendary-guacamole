@@ -2,8 +2,6 @@ const db = require("../models");
 const multer = require('multer');
 const cors = require('cors');
 
-// TODO: This is a good start for an idea on how the current API routes are configured for the File route.
-// Defining methods for the FilesController
 module.exports = {
     findAll: function (req, res) {
         db.File
@@ -38,9 +36,9 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     }
 };
-//================================================//
 
-// // Multer Upload
+//? Need to create ticket for fileUpload
+// Multer Upload
 // var storage = multer.diskStorage({
 //     destination: (req, file, cb) => {
 //         cb(null, 'public/images/uploads')

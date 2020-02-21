@@ -2,12 +2,9 @@ const db = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
-// Load input validation
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
-// User: This is a good start for an idea on how the current API routes are configured for the User route.
-// Defining methods for the UsersController
 module.exports = {
     // @route POST api/users/register
     // @desc Register user
