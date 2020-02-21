@@ -10,22 +10,37 @@ module.exports = {
     // @desc Register user
     // @access Public
     register: (req, res) => {
+        let bodyData = req.body
         // Form validation
-        const { errors, isValid } = validateRegisterInput(req.body);
+        const { errors, isValid } = validateRegisterInput(bodyData);
         // Check validation
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        User.findOne({ email: req.body.email }).then(user => {
+        User.findOne({ email: bodyData.email }).then(user => {
             if (user) {
                 return res.status(400).json({ email: "Email already exists" });
             } else {
                 const newUser = new User({
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: req.body.password
-                });
-
+                    username: bodyData.username,
+                    password: bodyData.password,
+                    email: bodyData.email,
+                    profile: {
+                        firstName: bodyData.profile.firstName,
+                        lastName: bodyData.profile.lastName,
+                        avatar: bodyData.profile.avatar,
+                        bio: bodyData.profile.bio,
+                        address: {
+                            streetOne: bodyData.profile.address.streetOne,
+                            streetTwo: bodyData.profile.address.streetTwo,
+                            city: bodyData.profile.address.city,
+                            state: bodyData.profile.address.state,
+                            country: bodyData.profile.address.country,
+                            zip: bodyData.profile.address.zip
+                            }
+                        },
+                    active: true
+                    });
                 // Hash password before saving in database
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -44,14 +59,15 @@ module.exports = {
     // @desc Login user and return JWT token
     // @access Public
     login: (req, res) => {
+        let bodyData = req.body
         // Form validation
-        const { errors, isValid } = validateLoginInput(req.body);
+        const { errors, isValid } = validateLoginInput(bodyData);
         // Check validation
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        const email = req.body.email;
-        const password = req.body.password;
+        const email = bodyData.email;
+        const password = bodyData.password;
         // Find user by email
         User.findOne({ email }).then(user => {
             // Check if user exists

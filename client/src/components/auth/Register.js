@@ -17,10 +17,10 @@ class Register extends Component {
     constructor() {
         super();
         this.state = {
-            name: "",
+            username:"",
             email: "",
             password: "",
-            password2: "",
+            passwordConfirm: "",
             errors: {}
         };
     }
@@ -51,7 +51,7 @@ class Register extends Component {
             name: this.state.name,
             email: this.state.email,
             password: this.state.password,
-            password2: this.state.password2
+            passwordConfirm: this.state.passwordConfirm
         };
 
         this.props.registerUser(newUser, this.props.history);
@@ -107,13 +107,13 @@ class Register extends Component {
                                                 {
                                                     label: "Confirm Password",
                                                     type: "password",
-                                                    id: "password2",
+                                                    id: "passwordConfirm",
                                                     bsClass: "form-control",
                                                     placeholder: "Confirm Password",
                                                     onChange: this.onChange,
-                                                    value: this.state.password2,
-                                                    error: errors.password2,
-                                                    className: classnames("", { invalid: errors.password2 })
+                                                    value: this.state.passwordConfirm,
+                                                    error: errors.passwordConfirm,
+                                                    className: classnames("", { invalid: errors.passwordConfirm })
                                                 }
                                             ]}
                                         />

@@ -11,19 +11,6 @@ const Email = new Schema({
         type: Boolean, 
         default: false }
 });
-
-const Point = new Schema({
-    type: {
-        type: String,
-        enum: ['Point'],
-        required: true
-    },
-    coordinates: {
-        type: [Number],
-        required: true
-    }
-});
-
 const UserSchema = new Schema({
 
     username: { 
@@ -45,16 +32,12 @@ const UserSchema = new Schema({
         avatar: String,
         bio: String,
         address: {
-            street1: String,
-            street2: String,
+            streetOne: String,
+            streetTwo: String,
             city: String,
             state: String,
             country: String,
-            zip: String,
-            location: {
-                type: Point,
-                required: false
-            }
+            zip: String
         }
     },
     active: { type: Boolean, default: true }
@@ -62,23 +45,9 @@ const UserSchema = new Schema({
     timestamps: true
 });
 
-UserSchema.plugin(uniqueValidator, { message: 'is already taken.' });
-
-UserSchema.pre("save", function (next) {
-    if (!this.isModified("password")) {
-        return next();
-    }
-    this.password = bcrypt.hashSync(this.password, 10);
-    next();
-});
-
-UserSchema.methods.comparePassword = function (plaintext, callback) {
-    return callback(null, bcrypt.compareSync(plaintext, this.password));
-};
-
 module.exports = User = mongoose.model("User", UserSchema);
 
-//! Develop/t78-refctoring-data-schema
+//! Develop/t78-refctoring-data-schema/user
 // const UserSchema = new Schema({
 //     name: {
 //         type: String,
