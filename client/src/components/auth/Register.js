@@ -18,8 +18,9 @@ class Register extends Component {
         super();
         this.state = {
             username: "",
-            password: "",
             email: "",
+            password: "",
+            passwordConfirm: "",
             profile: {
                 firstName: "",
                 lastName: "",
@@ -36,7 +37,6 @@ class Register extends Component {
                     zipcode: ""
                 }
             },
-            passwordConfirm: "",
             errors: {}
         }
     }
@@ -65,8 +65,9 @@ class Register extends Component {
 
         const newUser = {
             username: this.state.username,
-            password: this.state.password,
             email: this.state.email,
+            password: this.state.password,
+            passwordConfirm: this.state.passwordConfirm,
             profile: {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
@@ -82,8 +83,7 @@ class Register extends Component {
                     country: this.state.country,
                     zipcode: this.state.zipcode
                 }
-            },
-            passwordConfirm: this.state.passwordConfirm
+            }
         }
         this.props.registerUser(newUser, this.props.history);
     }
@@ -99,16 +99,17 @@ class Register extends Component {
                             <Card
                                 title="New Account Registration"
                                 content={
-                                    <form noValidate onSubmit={this.onSubmit}>
+                                    <form onSubmit={this.onSubmit}>
                                         <FormInputs
                                             ncols={["col-md-3", "col-md-3", "col-md-3", "col-md-3"]}
                                             properties={[
                                                 {
                                                     label: "Username",
                                                     type: "text",
-                                                    id: 'username',
+                                                    id: "username",
                                                     bsClass: "form-control",
                                                     placeholder: "User Name",
+                                                    autoComplete:"username",
                                                     onChange: this.onChange,
                                                     value: this.state.username,
                                                     error: errors.username,
@@ -117,7 +118,7 @@ class Register extends Component {
                                                 {
                                                     label: "Email",
                                                     type: "email",
-                                                    id: 'email',
+                                                    id: "email",
                                                     bsClass: "form-control",
                                                     placeholder: "Email Address",
                                                     onChange: this.onChange,
@@ -128,9 +129,10 @@ class Register extends Component {
                                                 {
                                                     label: "Password",
                                                     type: "password",
-                                                    id: 'password',
+                                                    id: "password",
                                                     bsClass: "form-control",
                                                     placeholder: "Password",
+                                                    autoComplete:"password",
                                                     onChange: this.onChange,
                                                     value: this.state.password,
                                                     error: errors.password,
@@ -142,6 +144,7 @@ class Register extends Component {
                                                     id: "passwordConfirm",
                                                     bsClass: "form-control",
                                                     placeholder: "Confirm Password",
+                                                    autoComplete: "password",
                                                     onChange: this.onChange,
                                                     value: this.state.passwordConfirm,
                                                     error: errors.passwordConfirm,
@@ -153,10 +156,11 @@ class Register extends Component {
                                             ncols={["col-md-2", "col-md-2", "col-md-2", "col-md-2", "col-md-2", "col-md-2"]}
                                             properties={[{
                                                     label:"Address",
-                                                    type:"text",
-                                                    id:"streetOne",
-                                                    bsClass:"form-control",
-                                                    onChange:this.onChange,
+                                                    type: "text",
+                                                    id: "streetOne",
+                                                    bsClass: "form-control",
+                                                    placeholder: "Street Address",
+                                                    onChange: this.onChange,
                                                     value: this.state.streetOne,
                                                     error: errors.streetOne,
                                                     className: classnames("", { invalid: errors.streetOne })
@@ -166,6 +170,7 @@ class Register extends Component {
                                                     type: "text",
                                                     id: "streetTwo",
                                                     bsClass: "form-control",
+                                                    placeholder: "Address Two",
                                                     onChange: this.onChange,
                                                     value: this.state.streetTwo,
                                                     error: errors.streetTwo,
@@ -176,6 +181,7 @@ class Register extends Component {
                                                     type: "text",
                                                     id: "city",
                                                     bsClass: "form-control",
+                                                    placeholder: "City",
                                                     onChange: this.onChange,
                                                     value: this.state.city,
                                                     error: errors.city,
@@ -183,9 +189,10 @@ class Register extends Component {
                                                 },
                                                 {
                                                     label: "State",
-                                                    type:"text",
+                                                    type: "text",
                                                     id: "addressState",
                                                     bsClass: "form-control",
+                                                    placeholder: "State",
                                                     onChange: this.onChange,
                                                     value: this.state.addressState,
                                                     error: errors.addressState,
@@ -196,6 +203,7 @@ class Register extends Component {
                                                     type: "text",
                                                     id: "country",
                                                     bsClass: "form-control",
+                                                    placeholder: "Country",
                                                     onChange: this.onChange,
                                                     value: this.state.country,
                                                     error: errors.country,
@@ -206,6 +214,7 @@ class Register extends Component {
                                                     type: "text",
                                                     id: "zipcode",
                                                     bsClass: "form-control",
+                                                    placeholder: "Zipcode",
                                                     onChange: this.onChange,
                                                     value: this.state.zipcode,
                                                     error: errors.zipcode,
@@ -218,7 +227,7 @@ class Register extends Component {
                                                 {
                                                     label: "First Name",
                                                     type: "text",
-                                                    id: 'firstName',
+                                                    id: "firstName",
                                                     bsClass: "form-control",
                                                     placeholder: "First Name",
                                                     onChange: this.onChange,
@@ -229,7 +238,7 @@ class Register extends Component {
                                                 {
                                                     label: "Last Name",
                                                     type: "text",
-                                                    id: 'lastName',
+                                                    id: "lastName",
                                                     bsClass: "form-control",
                                                     placeholder: "Last Name",
                                                     onChange: this.onChange,
@@ -240,7 +249,7 @@ class Register extends Component {
                                                 {
                                                     label: "Phone Number",
                                                     type: "text",
-                                                    id: 'phoneNumber',
+                                                    id: "phoneNumber",
                                                     bsClass: "form-control",
                                                     placeholder: "(000)-000-0000",
                                                     onChange: this.onChange,
@@ -251,7 +260,7 @@ class Register extends Component {
                                                 {
                                                     label: "Birthday",
                                                     type: "date",
-                                                    id: 'birthday',
+                                                    id: "birthday",
                                                     bsClass: "form-control",
                                                     placeholder: "MM/DD/YYYY",
                                                     onChange: this.onChange,
