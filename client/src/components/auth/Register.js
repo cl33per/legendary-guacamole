@@ -23,6 +23,8 @@ class Register extends Component {
             profile: {
                 firstName: "",
                 lastName: "",
+                phoneNumber: "",
+                birthday: "",
                 // avatar: "",
                 // bio: "",
                 address: {
@@ -68,6 +70,8 @@ class Register extends Component {
             profile: {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
+                phoneNumber: this.state.phoneNumber,
+                birthday: this.state.birthday,
                 // avatar: this.state.avatar,
                 // bio: this.state.bio,
                 address: {
@@ -97,7 +101,7 @@ class Register extends Component {
                                 content={
                                     <form noValidate onSubmit={this.onSubmit}>
                                         <FormInputs
-                                            ncols={["col-md-2", "col-md-2", "col-md-2", "col-md-2", "col-md-2", "col-md-2"]}
+                                            ncols={["col-md-3", "col-md-3", "col-md-3", "col-md-3"]}
                                             properties={[
                                                 {
                                                     label: "Username",
@@ -109,28 +113,6 @@ class Register extends Component {
                                                     value: this.state.username,
                                                     error: errors.username,
                                                     className: classnames("", { invalid: errors.username })
-                                                },
-                                                {
-                                                    label: "First Name",
-                                                    type: "text",
-                                                    id: 'firstName',
-                                                    bsClass: "form-control",
-                                                    placeholder: "First Name",
-                                                    onChange: this.onChange,
-                                                    value: this.state.firstName,
-                                                    error: errors.firstName,
-                                                    className: classnames("", { invalid: errors.firstName })
-                                                },
-                                                {
-                                                    label: "Last Name",
-                                                    type: "text",
-                                                    id: 'lastName',
-                                                    bsClass: "form-control",
-                                                    placeholder: "Last Name",
-                                                    onChange: this.onChange,
-                                                    value: this.state.lastName,
-                                                    error: errors.lastName,
-                                                    className: classnames("", { invalid: errors.lastName })
                                                 },
                                                 {
                                                     label: "Email",
@@ -221,14 +203,62 @@ class Register extends Component {
                                                 },
                                                 {
                                                     label: "Zipcode",
-                                                    type: "number",
+                                                    type: "text",
                                                     id: "zipcode",
                                                     bsClass: "form-control",
                                                     onChange: this.onChange,
                                                     value: this.state.zipcode,
                                                     error: errors.zipcode,
                                                     className: classnames("", { invalid: errors.zipcode })
-                                                }
+                                                },
+                                            ]} />
+                                        <FormInputs
+                                            ncols={["col-md-3", "col-md-3", "col-md-3", "col-md-3"]}
+                                            properties={[
+                                                {
+                                                    label: "First Name",
+                                                    type: "text",
+                                                    id: 'firstName',
+                                                    bsClass: "form-control",
+                                                    placeholder: "First Name",
+                                                    onChange: this.onChange,
+                                                    value: this.state.firstName,
+                                                    error: errors.firstName,
+                                                    className: classnames("", { invalid: errors.firstName })
+                                                },
+                                                {
+                                                    label: "Last Name",
+                                                    type: "text",
+                                                    id: 'lastName',
+                                                    bsClass: "form-control",
+                                                    placeholder: "Last Name",
+                                                    onChange: this.onChange,
+                                                    value: this.state.lastName,
+                                                    error: errors.lastName,
+                                                    className: classnames("", { invalid: errors.lastName })
+                                                }, 
+                                                {
+                                                    label: "Phone Number",
+                                                    type: "text",
+                                                    id: 'phoneNumber',
+                                                    bsClass: "form-control",
+                                                    placeholder: "(000)-000-0000",
+                                                    onChange: this.onChange,
+                                                    value: this.state.phoneNumber,
+                                                    error: errors.phoneNumber,
+                                                    className: classnames("", { invalid: errors.phoneNumber })
+                                                },
+                                                {
+                                                    label: "Birthday",
+                                                    type: "date",
+                                                    id: 'birthday',
+                                                    bsClass: "form-control",
+                                                    placeholder: "MM/DD/YYYY",
+                                                    onChange: this.onChange,
+                                                    value: this.state.birthday,
+                                                    error: errors.birthday,
+                                                    className: classnames("", { invalid: errors.birthday })
+                                                },
                                             ]}
                                             />
                                         <Button bsStyle="primary" pullRight fill type="submit">Register</Button>

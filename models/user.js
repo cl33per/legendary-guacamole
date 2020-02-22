@@ -22,8 +22,10 @@ const UserSchema = new Schema({
     profile: {
         firstName: String,
         lastName: String,
-        avatar: String,
-        bio: String,
+        phoneNumber: Number,
+        birthday:Date,
+        // avatar: String,
+        // bio: String,
         address: {
             streetOne: String,
             streetTwo: String,
@@ -31,7 +33,8 @@ const UserSchema = new Schema({
             state: String,
             country: String,
             zipcode: String
-        }
+        },
+
     },
     active: { type: Boolean, default: true }
 });
