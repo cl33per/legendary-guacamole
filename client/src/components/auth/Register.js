@@ -38,27 +38,46 @@ class Register extends Component {
                 }
             },
             errors: {}
-        }
-    }
+        };
+    };
 
     componentDidMount() {
         // If logged in and user navigates to Register page, should redirect them to dashboard
         if (this.props.auth.isAuthenticated) {
             this.props.history.push("/admin/dashboard");
-        }
-    }
+        };
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
                 errors: nextProps.errors
             });
-        }
-    }
+        };
+    };
 
     onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
+        this.setState({ 
+            [e.target.id]: e.target.value
+        });
     };
+
+    profileOnChange = e => {
+        const profile = this.state.profile;
+        profile[e.target.id] = e.target.value
+        this.setState({
+            profile
+        });
+    };
+
+    addressOnChange = e => {
+        const addressObject = this.state.profile.address;
+        addressObject[e.target.id] = e.target.value
+        this.setState({
+            addressObject
+        });
+    };
+
 
     onSubmit = e => {
         e.preventDefault();
@@ -69,24 +88,24 @@ class Register extends Component {
             password: this.state.password,
             passwordConfirm: this.state.passwordConfirm,
             profile: {
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                phoneNumber: this.state.phoneNumber,
-                birthday: this.state.birthday,
-                // avatar: this.state.avatar,
-                // bio: this.state.bio,
+                firstName: this.state.profile.firstName,
+                lastName: this.state.profile.lastName,
+                phoneNumber: this.state.profile.phoneNumber,
+                birthday: this.state.profile.birthday,
+                // avatar: this.state.profile.avatar,
+                // bio: this.state.profile.bio,
                 address: {
-                    streetOne: this.state.streetOne,
-                    streetTwo: this.state.streetTwo,
-                    city: this.state.city,
-                    state: this.state.addressState,
-                    country: this.state.country,
-                    zipcode: this.state.zipcode
+                    streetOne: this.state.profile.address.streetOne,
+                    streetTwo: this.state.profile.address.streetTwo,
+                    city: this.state.profile.address.city,
+                    state: this.state.profile.address.state,
+                    country: this.state.profile.address.country,
+                    zipcode: this.state.profile.address.zipcode
                 }
             }
-        }
+        };
         this.props.registerUser(newUser, this.props.history);
-    }
+    };
 
     render() {
         const { errors } = this.state;
@@ -160,8 +179,8 @@ class Register extends Component {
                                                     id: "streetOne",
                                                     bsClass: "form-control",
                                                     placeholder: "Street Address",
-                                                    onChange: this.onChange,
-                                                    value: this.state.streetOne,
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.streetOne,
                                                     error: errors.streetOne,
                                                     className: classnames("", { invalid: errors.streetOne })
                                                 },
@@ -171,8 +190,8 @@ class Register extends Component {
                                                     id: "streetTwo",
                                                     bsClass: "form-control",
                                                     placeholder: "Address Two",
-                                                    onChange: this.onChange,
-                                                    value: this.state.streetTwo,
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.streetTwo,
                                                     error: errors.streetTwo,
                                                     className: classnames("", { invalid: errors.streetTwo })
                                                 },
@@ -182,21 +201,21 @@ class Register extends Component {
                                                     id: "city",
                                                     bsClass: "form-control",
                                                     placeholder: "City",
-                                                    onChange: this.onChange,
-                                                    value: this.state.city,
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.city,
                                                     error: errors.city,
                                                     className: classnames("", { invalid: errors.city })
                                                 },
                                                 {
                                                     label: "State",
                                                     type: "text",
-                                                    id: "addressState",
+                                                    id: "state",
                                                     bsClass: "form-control",
                                                     placeholder: "State",
-                                                    onChange: this.onChange,
-                                                    value: this.state.addressState,
-                                                    error: errors.addressState,
-                                                    className: classnames("", { invalid: errors.addressState })
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.state,
+                                                    error: errors.state,
+                                                    className: classnames("", { invalid: errors.state })
                                                 },
                                                 {
                                                     label: "Country",
@@ -204,8 +223,8 @@ class Register extends Component {
                                                     id: "country",
                                                     bsClass: "form-control",
                                                     placeholder: "Country",
-                                                    onChange: this.onChange,
-                                                    value: this.state.country,
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.country,
                                                     error: errors.country,
                                                     className: classnames("", { invalid: errors.country })
                                                 },
@@ -215,8 +234,8 @@ class Register extends Component {
                                                     id: "zipcode",
                                                     bsClass: "form-control",
                                                     placeholder: "Zipcode",
-                                                    onChange: this.onChange,
-                                                    value: this.state.zipcode,
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.zipcode,
                                                     error: errors.zipcode,
                                                     className: classnames("", { invalid: errors.zipcode })
                                                 },
@@ -230,8 +249,8 @@ class Register extends Component {
                                                     id: "firstName",
                                                     bsClass: "form-control",
                                                     placeholder: "First Name",
-                                                    onChange: this.onChange,
-                                                    value: this.state.firstName,
+                                                    onChange: this.profileOnChange,
+                                                    value: this.state.profile.firstName,
                                                     error: errors.firstName,
                                                     className: classnames("", { invalid: errors.firstName })
                                                 },
@@ -241,8 +260,8 @@ class Register extends Component {
                                                     id: "lastName",
                                                     bsClass: "form-control",
                                                     placeholder: "Last Name",
-                                                    onChange: this.onChange,
-                                                    value: this.state.lastName,
+                                                    onChange: this.profileOnChange,
+                                                    value: this.state.profile.lastName,
                                                     error: errors.lastName,
                                                     className: classnames("", { invalid: errors.lastName })
                                                 }, 
@@ -252,8 +271,8 @@ class Register extends Component {
                                                     id: "phoneNumber",
                                                     bsClass: "form-control",
                                                     placeholder: "(000)-000-0000",
-                                                    onChange: this.onChange,
-                                                    value: this.state.phoneNumber,
+                                                    onChange: this.profileOnChange,
+                                                    value: this.state.profile.phoneNumber,
                                                     error: errors.phoneNumber,
                                                     className: classnames("", { invalid: errors.phoneNumber })
                                                 },
@@ -263,8 +282,8 @@ class Register extends Component {
                                                     id: "birthday",
                                                     bsClass: "form-control",
                                                     placeholder: "MM/DD/YYYY",
-                                                    onChange: this.onChange,
-                                                    value: this.state.birthday,
+                                                    onChange: this.profileOnChange,
+                                                    value: this.state.profile.birthday,
                                                     error: errors.birthday,
                                                     className: classnames("", { invalid: errors.birthday })
                                                 },
@@ -280,7 +299,7 @@ class Register extends Component {
                 </Grid>  
             </div>
         )
-    }
+    };
 }
 
 Register.propTypes = {
