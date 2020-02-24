@@ -18,11 +18,14 @@ class Register extends Component {
         super();
         this.state = {
             username: "",
-            password: "",
             email: "",
+            password: "",
+            passwordConfirm: "",
             profile: {
                 firstName: "",
                 lastName: "",
+                phoneNumber: "",
+                birthday: "",
                 // avatar: "",
                 // bio: "",
                 address: {
@@ -34,55 +37,75 @@ class Register extends Component {
                     zipcode: ""
                 }
             },
-            passwordConfirm: "",
             errors: {}
-        }
-    }
+        };
+    };
 
     componentDidMount() {
         // If logged in and user navigates to Register page, should redirect them to dashboard
         if (this.props.auth.isAuthenticated) {
             this.props.history.push("/admin/dashboard");
-        }
-    }
+        };
+    };
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
             this.setState({
                 errors: nextProps.errors
             });
-        }
-    }
+        };
+    };
 
     onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
+        this.setState({ 
+            [e.target.id]: e.target.value
+        });
     };
+
+    profileOnChange = e => {
+        const profile = this.state.profile;
+        profile[e.target.id] = e.target.value
+        this.setState({
+            profile
+        });
+    };
+
+    addressOnChange = e => {
+        const addressObject = this.state.profile.address;
+        addressObject[e.target.id] = e.target.value
+        this.setState({
+            addressObject
+        });
+    };
+
 
     onSubmit = e => {
         e.preventDefault();
 
         const newUser = {
             username: this.state.username,
-            password: this.state.password,
             email: this.state.email,
+            password: this.state.password,
+            passwordConfirm: this.state.passwordConfirm,
             profile: {
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                // avatar: this.state.avatar,
-                // bio: this.state.bio,
+                firstName: this.state.profile.firstName,
+                lastName: this.state.profile.lastName,
+                phoneNumber: this.state.profile.phoneNumber,
+                birthday: this.state.profile.birthday,
+                // avatar: this.state.profile.avatar,
+                // bio: this.state.profile.bio,
                 address: {
-                    streetOne: this.state.streetOne,
-                    streetTwo: this.state.streetTwo,
-                    city: this.state.city,
-                    state: this.state.addressState,
-                    country: this.state.country,
-                    zipcode: this.state.zipcode
+                    streetOne: this.state.profile.address.streetOne,
+                    streetTwo: this.state.profile.address.streetTwo,
+                    city: this.state.profile.address.city,
+                    state: this.state.profile.address.state,
+                    country: this.state.profile.address.country,
+                    zipcode: this.state.profile.address.zipcode
                 }
-            },
-            passwordConfirm: this.state.passwordConfirm
-        }
+            }
+        };
         this.props.registerUser(newUser, this.props.history);
-    }
+    };
 
     render() {
         const { errors } = this.state;
@@ -95,47 +118,26 @@ class Register extends Component {
                             <Card
                                 title="New Account Registration"
                                 content={
-                                    <form noValidate onSubmit={this.onSubmit}>
+                                    <form onSubmit={this.onSubmit}>
                                         <FormInputs
-                                            ncols={["col-md-2", "col-md-2", "col-md-2", "col-md-2", "col-md-2", "col-md-2"]}
+                                            ncols={["col-md-3", "col-md-3", "col-md-3", "col-md-3"]}
                                             properties={[
                                                 {
                                                     label: "Username",
                                                     type: "text",
-                                                    id: 'username',
+                                                    id: "username",
                                                     bsClass: "form-control",
                                                     placeholder: "User Name",
+                                                    autoComplete:"username",
                                                     onChange: this.onChange,
                                                     value: this.state.username,
                                                     error: errors.username,
                                                     className: classnames("", { invalid: errors.username })
                                                 },
                                                 {
-                                                    label: "First Name",
-                                                    type: "text",
-                                                    id: 'firstName',
-                                                    bsClass: "form-control",
-                                                    placeholder: "First Name",
-                                                    onChange: this.onChange,
-                                                    value: this.state.firstName,
-                                                    error: errors.firstName,
-                                                    className: classnames("", { invalid: errors.firstName })
-                                                },
-                                                {
-                                                    label: "Last Name",
-                                                    type: "text",
-                                                    id: 'lastName',
-                                                    bsClass: "form-control",
-                                                    placeholder: "Last Name",
-                                                    onChange: this.onChange,
-                                                    value: this.state.lastName,
-                                                    error: errors.lastName,
-                                                    className: classnames("", { invalid: errors.lastName })
-                                                },
-                                                {
                                                     label: "Email",
                                                     type: "email",
-                                                    id: 'email',
+                                                    id: "email",
                                                     bsClass: "form-control",
                                                     placeholder: "Email Address",
                                                     onChange: this.onChange,
@@ -146,9 +148,10 @@ class Register extends Component {
                                                 {
                                                     label: "Password",
                                                     type: "password",
-                                                    id: 'password',
+                                                    id: "password",
                                                     bsClass: "form-control",
                                                     placeholder: "Password",
+                                                    autoComplete:"password",
                                                     onChange: this.onChange,
                                                     value: this.state.password,
                                                     error: errors.password,
@@ -160,6 +163,7 @@ class Register extends Component {
                                                     id: "passwordConfirm",
                                                     bsClass: "form-control",
                                                     placeholder: "Confirm Password",
+                                                    autoComplete: "password",
                                                     onChange: this.onChange,
                                                     value: this.state.passwordConfirm,
                                                     error: errors.passwordConfirm,
@@ -171,11 +175,12 @@ class Register extends Component {
                                             ncols={["col-md-2", "col-md-2", "col-md-2", "col-md-2", "col-md-2", "col-md-2"]}
                                             properties={[{
                                                     label:"Address",
-                                                    type:"text",
-                                                    id:"streetOne",
-                                                    bsClass:"form-control",
-                                                    onChange:this.onChange,
-                                                    value: this.state.streetOne,
+                                                    type: "text",
+                                                    id: "streetOne",
+                                                    bsClass: "form-control",
+                                                    placeholder: "Street Address",
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.streetOne,
                                                     error: errors.streetOne,
                                                     className: classnames("", { invalid: errors.streetOne })
                                                 },
@@ -184,8 +189,9 @@ class Register extends Component {
                                                     type: "text",
                                                     id: "streetTwo",
                                                     bsClass: "form-control",
-                                                    onChange: this.onChange,
-                                                    value: this.state.streetTwo,
+                                                    placeholder: "Address Two",
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.streetTwo,
                                                     error: errors.streetTwo,
                                                     className: classnames("", { invalid: errors.streetTwo })
                                                 },
@@ -194,41 +200,93 @@ class Register extends Component {
                                                     type: "text",
                                                     id: "city",
                                                     bsClass: "form-control",
-                                                    onChange: this.onChange,
-                                                    value: this.state.city,
+                                                    placeholder: "City",
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.city,
                                                     error: errors.city,
                                                     className: classnames("", { invalid: errors.city })
                                                 },
                                                 {
                                                     label: "State",
-                                                    type:"text",
-                                                    id: "addressState",
+                                                    type: "text",
+                                                    id: "state",
                                                     bsClass: "form-control",
-                                                    onChange: this.onChange,
-                                                    value: this.state.addressState,
-                                                    error: errors.addressState,
-                                                    className: classnames("", { invalid: errors.addressState })
+                                                    placeholder: "State",
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.state,
+                                                    error: errors.state,
+                                                    className: classnames("", { invalid: errors.state })
                                                 },
                                                 {
                                                     label: "Country",
                                                     type: "text",
                                                     id: "country",
                                                     bsClass: "form-control",
-                                                    onChange: this.onChange,
-                                                    value: this.state.country,
+                                                    placeholder: "Country",
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.country,
                                                     error: errors.country,
                                                     className: classnames("", { invalid: errors.country })
                                                 },
                                                 {
                                                     label: "Zipcode",
-                                                    type: "number",
+                                                    type: "text",
                                                     id: "zipcode",
                                                     bsClass: "form-control",
-                                                    onChange: this.onChange,
-                                                    value: this.state.zipcode,
+                                                    placeholder: "Zipcode",
+                                                    onChange: this.addressOnChange,
+                                                    value: this.state.profile.address.zipcode,
                                                     error: errors.zipcode,
                                                     className: classnames("", { invalid: errors.zipcode })
-                                                }
+                                                },
+                                            ]} />
+                                        <FormInputs
+                                            ncols={["col-md-3", "col-md-3", "col-md-3", "col-md-3"]}
+                                            properties={[
+                                                {
+                                                    label: "First Name",
+                                                    type: "text",
+                                                    id: "firstName",
+                                                    bsClass: "form-control",
+                                                    placeholder: "First Name",
+                                                    onChange: this.profileOnChange,
+                                                    value: this.state.profile.firstName,
+                                                    error: errors.firstName,
+                                                    className: classnames("", { invalid: errors.firstName })
+                                                },
+                                                {
+                                                    label: "Last Name",
+                                                    type: "text",
+                                                    id: "lastName",
+                                                    bsClass: "form-control",
+                                                    placeholder: "Last Name",
+                                                    onChange: this.profileOnChange,
+                                                    value: this.state.profile.lastName,
+                                                    error: errors.lastName,
+                                                    className: classnames("", { invalid: errors.lastName })
+                                                }, 
+                                                {
+                                                    label: "Phone Number",
+                                                    type: "text",
+                                                    id: "phoneNumber",
+                                                    bsClass: "form-control",
+                                                    placeholder: "(000)-000-0000",
+                                                    onChange: this.profileOnChange,
+                                                    value: this.state.profile.phoneNumber,
+                                                    error: errors.phoneNumber,
+                                                    className: classnames("", { invalid: errors.phoneNumber })
+                                                },
+                                                {
+                                                    label: "Birthday",
+                                                    type: "date",
+                                                    id: "birthday",
+                                                    bsClass: "form-control",
+                                                    placeholder: "MM/DD/YYYY",
+                                                    onChange: this.profileOnChange,
+                                                    value: this.state.profile.birthday,
+                                                    error: errors.birthday,
+                                                    className: classnames("", { invalid: errors.birthday })
+                                                },
                                             ]}
                                             />
                                         <Button bsStyle="primary" pullRight fill type="submit">Register</Button>
@@ -241,7 +299,7 @@ class Register extends Component {
                 </Grid>  
             </div>
         )
-    }
+    };
 }
 
 Register.propTypes = {

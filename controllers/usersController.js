@@ -27,6 +27,8 @@ module.exports = {
                     profile: {
                         firstName: req.body.profile.firstName,
                         lastName: req.body.profile.lastName,
+                        phoneNumber: req.body.profile.phoneNumber,
+                        birthday: req.body.profile.birthday,
                         // avatar: req.body.profile.avatar,
                         // bio: req.body.profile.bio,
                         address: {
