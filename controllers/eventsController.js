@@ -1,7 +1,5 @@
 const db = require("../models");
 
-// TODO: This is a good start for an idea on how the current API routes are configured for the Profile route.
-// Defining methods for the ProfilesController
 module.exports = {
   findAll: function(req, res) {
     db.Event

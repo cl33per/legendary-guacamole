@@ -2,17 +2,14 @@ const db = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
-// Load input validation
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
-// User: This is a good start for an idea on how the current API routes are configured for the User route.
-// Defining methods for the UsersController
 module.exports = {
     // @route POST api/users/register
     // @desc Register user
     // @access Public
-    register: (req, res) => {
+    register: (req, res) => {       
         // Form validation
         const { errors, isValid } = validateRegisterInput(req.body);
         // Check validation
@@ -24,11 +21,27 @@ module.exports = {
                 return res.status(400).json({ email: "Email already exists" });
             } else {
                 const newUser = new User({
-                    name: req.body.name,
+                    username: req.body.username,
+                    password: req.body.password,
                     email: req.body.email,
-                    password: req.body.password
-                });
-
+                    profile: {
+                        firstName: req.body.profile.firstName,
+                        lastName: req.body.profile.lastName,
+                        phoneNumber: req.body.profile.phoneNumber,
+                        birthday: req.body.profile.birthday,
+                        // avatar: req.body.profile.avatar,
+                        // bio: req.body.profile.bio,
+                        address: {
+                            streetOne: req.body.profile.address.streetOne,
+                            streetTwo: req.body.profile.address.streetTwo,
+                            city: req.body.profile.address.city,
+                            state: req.body.profile.address.addressState,
+                            country: req.body.profile.address.country,
+                            zipcode: req.body.profile.address.zipcode
+                            }
+                        },
+                    active: true
+                    });
                 // Hash password before saving in database
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(newUser.password, salt, (err, hash) => {
