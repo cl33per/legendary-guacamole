@@ -134,7 +134,7 @@ class Register extends Component {
                                                     error: errors.username,
                                                     className: classnames("", { invalid: errors.username })
                                                 },
-                                                
+                                                {
                                                     label: "Email",
                                                     type: "email",
                                                     id: "email",
