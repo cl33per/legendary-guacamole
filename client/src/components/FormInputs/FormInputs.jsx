@@ -17,6 +17,7 @@ export class FormInputs extends Component {
       row.push(
         <div key={i} className={this.props.ncols[i]}>
           <FieldGroup {...this.props.properties[i]} />
+        <span className="red-text">{this.props.errors}</span>
         </div>
       );
     }
