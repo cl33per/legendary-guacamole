@@ -9,11 +9,12 @@ module.exports = {
     // @route POST api/users/register
     // @desc Register user
     // @access Public
-    register: (req, res) => {       
+    register: (req, res) => {
         // Form validation
         const { errors, isValid } = validateRegisterInput(req.body);
         // Check validation
         if (!isValid) {
+            console.log('help')
             return res.status(400).json(errors);
         }
         User.findOne({ email: req.body.email }).then(user => {
@@ -29,8 +30,6 @@ module.exports = {
                         lastName: req.body.profile.lastName,
                         phoneNumber: req.body.profile.phoneNumber,
                         birthday: req.body.profile.birthday,
-                        // avatar: req.body.profile.avatar,
-                        // bio: req.body.profile.bio,
                         address: {
                             streetOne: req.body.profile.address.streetOne,
                             streetTwo: req.body.profile.address.streetTwo,
@@ -38,8 +37,8 @@ module.exports = {
                             state: req.body.profile.address.addressState,
                             country: req.body.profile.address.country,
                             zipcode: req.body.profile.address.zipcode
-                            }
-                        },
+                        }
+                    },
                     active: true
                     });
                 // Hash password before saving in database
@@ -81,9 +80,9 @@ module.exports = {
                     // Create JWT Payload
                     const payload = {
                         id: user.id,
-                        name: user.name
+                        name: user.username
                     };
-                    // Sign token  
+                    // Sign token
                     jwt.sign(
                         payload,
                         keys.secretOrKey,
@@ -117,5 +116,5 @@ module.exports = {
             .create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
-    },   
+    },
 };

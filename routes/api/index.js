@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const usersRoutes = require("./users");
+const userRoutes  = require("./users")
 const plaidRoutes = require("./plaid");
 
 const groupRoutes = require("./groups");
@@ -10,6 +11,7 @@ const filesRoutes = require('./files')
 const uploadRoutes = require("./upload");
 
 router.use("/users",usersRoutes);
+router.use("/users",userRoutes);
 router.use("/plaid", plaidRoutes);
 
 router.use("/groups", groupRoutes);
