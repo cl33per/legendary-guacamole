@@ -26,8 +26,6 @@ class Register extends Component {
                 lastName: "",
                 phoneNumber: "",
                 birthday: "",
-                // avatar: "",
-                // bio: "",
                 address: {
                     streetOne: "",
                     streetTwo: "",
@@ -57,7 +55,7 @@ class Register extends Component {
     };
 
     onChange = e => {
-        this.setState({ 
+        this.setState({
             [e.target.id]: e.target.value
         });
     };
@@ -92,8 +90,6 @@ class Register extends Component {
                 lastName: this.state.profile.lastName,
                 phoneNumber: this.state.profile.phoneNumber,
                 birthday: this.state.profile.birthday,
-                // avatar: this.state.profile.avatar,
-                // bio: this.state.profile.bio,
                 address: {
                     streetOne: this.state.profile.address.streetOne,
                     streetTwo: this.state.profile.address.streetTwo,
@@ -127,7 +123,7 @@ class Register extends Component {
                                                     type: "text",
                                                     id: "username",
                                                     bsClass: "form-control",
-                                                    placeholder: "User Name",
+                                                    placeholder: "Username",
                                                     autoComplete:"username",
                                                     onChange: this.onChange,
                                                     value: this.state.username,
@@ -264,7 +260,7 @@ class Register extends Component {
                                                     value: this.state.profile.lastName,
                                                     error: errors.lastName,
                                                     className: classnames("", { invalid: errors.lastName })
-                                                }, 
+                                                },
                                                 {
                                                     label: "Phone Number",
                                                     type: "text",
@@ -296,10 +292,10 @@ class Register extends Component {
                             />
                         </Col>
                     </Row>
-                </Grid>  
+                </Grid>
             </div>
-        )
-    };
+        );
+    }
 }
 
 Register.propTypes = {
