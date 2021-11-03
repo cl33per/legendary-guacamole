@@ -48,6 +48,6 @@
     "react_google_calendar": "^2.2.4444",
     "redux": "^4.0.5",
     "stream-chat-react": "^0.7.15",
-    "validator": "^12.1.0"
+    "validator": "^13.7.0"
   }
 }
